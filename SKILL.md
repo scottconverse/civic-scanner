@@ -10,6 +10,10 @@ description: |
   daily-scan uses Agents 1, 2 (short), 2.5, and 7 to produce a scored,
   summarized morning briefing. full-pipeline uses all 9 agents with .docx report.
 
+  v2.3: Adversarial hardening — Grounding Delta, falsification search,
+  steel-manning, vulnerability classification, SLAPP detection, state-drift
+  linter, source laundering hardening, stress test suite, Receipts in distribution.
+
   Trigger when: user says "scan sources", "civic scan", "check city agendas",
   "what happened at council", "news scan", "daily scan", "run the newsroom",
   "check Longmont", "civic news", "story leads", "verify this claim",
@@ -714,35 +718,118 @@ from polished copy into reporter-guiding intelligence.
 - Output: speculative story angles for verification
 - NOTE: Black Desk output is NEVER publishable. It feeds the Dark Signal Desk.
 
-### Agent 4: Adversarial Challenge
+**Vulnerability Classification (MANDATORY for every signal):**
 
-**One job: Find reasons NOT to publish. One kill condition: If the counter-narrative
-is more compelling than the story, SUPPRESS it.**
+Every speculative signal must include a `vulnerability_type` field that identifies
+WHY the signal is weak. The Black Desk does not just report rumors — it diagnoses
+the specific evidentiary weakness so Agent 4 knows exactly what to attack.
+
+Required vulnerability types (one or more per signal):
+
+| Vulnerability Type | Meaning | Agent 4 Target |
+|-------------------|---------|----------------|
+| `single-source-anonymous` | One unnamed source, no corroboration | Search for the same claim in Tier A records |
+| `conflict-of-interest` | Source has financial/political stake in the claim | Search for the source's interests and competing claims |
+| `no-official-record` | Claim references a government action with no matching agenda/minutes/filing | Search for the specific meeting/filing that should exist |
+| `temporal-mismatch` | Claim's timeline doesn't match official calendar | Verify meeting dates, filing deadlines, vote schedules |
+| `amplification-pattern` | Multiple Tier C sources repeating identical language (astroturf signal) | Search for the origin source and any organizing entity |
+| `hearsay-chain` | Claim passed through 2+ intermediaries before reaching the scan | Trace back to original source; classify its actual tier |
+| `missing-counterparty` | Story presents one side; affected party has not responded | Search for the counterparty's public statements or filings |
+
+**Output per signal:**
+```
+BLACK DESK SIGNAL:
+  Title: {signal headline}
+  Confidence: {0.1-0.5}
+  Source tier: {B or C}
+  Vulnerability type: {from table above}
+  Vulnerability detail: {specific explanation of why this signal is weak}
+  Speculative angle: {what this could mean if true}
+  Connections: {links to other signals or advancing stories}
+  Agent 4 target: {exactly what Agent 4 should search for to test this}
+```
+
+The `vulnerability_type` and `Agent 4 target` fields are the hand-off mechanism.
+Agent 4 uses them as its starting point for adversarial search — it does not
+have to independently figure out where the signal is weak.
+
+### Agent 4: Adversarial Challenge (The Prosecutor)
+
+**One job: Find reasons NOT to publish. Kill condition: If the counter-narrative
+has more Tier A grounding than the lead narrative, SUPPRESS it.**
 
 Agent 4 ONLY does adversarial challenge. It does NOT check attribution, balance,
 sourcing completeness, or plagiarism — those belong to Agents 5 and 8.
+
+**Priority: Kill over Publish.** The system's institutional trust depends on the
+stories it refuses to run, not the stories it advances. Agent 4 is the prosecutor,
+not the defense attorney.
 
 For each advancing story AND each Black Desk signal:
 - If beat memory contains a prior run's verification for this thread, load it:
   "Last run's severity was {AMBER}. Counter-narrative was: {text}. Has anything
   changed that strengthens or weakens the counter-narrative?"
+- If the signal came from Agent 3 with a `vulnerability_type`, use that as the
+  starting point for adversarial search — attack the specific weakness identified.
 - Run the 4-gate adversarial verification (see Mandatory Controls above)
-- For Gates 1-2 (Contestation + Adverse Search): use Dynamic Search Filtering
-  Protocol (Section 6) with VERIFICATION criteria — no domain restriction
+
+**Gate 1 — Contestation Check:** (unchanged — search for opposing viewpoints)
+
+**Gate 2 — Mandatory Adverse Search + Falsification Search:**
+- Standard adverse search with VERIFICATION criteria — no domain restriction
   (cast wide net for counter-evidence), keep contradictory evidence and
   dissenting viewpoints, discard SEO farms and AI-generated summaries
-- Gate 3: Write the strongest possible counter-narrative. If this is a recurring
+- **Falsification Search (MANDATORY):** Run an explicit search using exculpatory
+  operators for each advancing story:
+  `{story topic} + "denied" OR "retracted" OR "correction" OR "dismissed" OR "refuted"`
+  This catches official denials, corrections, and retractions that a standard
+  search might miss. Log the search query and results (even if empty).
+
+**Gate 3 — Counter-Narrative + Grounding Delta:**
+- Write the strongest possible counter-narrative. If this is a recurring
   thread, note whether the counter-narrative has evolved since last run.
-- Gate 4: Flag self-referential stories for extra scrutiny
+- **Grounding Delta (MANDATORY):** Count the number of Tier A source citations
+  in the lead narrative vs. the counter-narrative. Report both counts:
+  ```
+  GROUNDING DELTA:
+    Lead narrative Tier A citations: {N}
+    Counter-narrative Tier A citations: {N}
+    Delta: {lead - counter} (positive = lead is stronger)
+  ```
+  **Auto-SUPPRESS rule:** If the counter-narrative contains MORE Tier A citations
+  than the lead narrative (delta is negative), the story is automatically
+  **RED (Suppressed)**. No subjective judgment required — the numbers decide.
+
+**Gate 4 — Steel-Manning + Self-Referential Warning:**
+- **Steel-Manning (MANDATORY):** Before any story can receive GREEN status,
+  Agent 4 must generate the strongest possible legal/procedural defense for
+  the SUBJECT of the story. If the story is about a developer, write the
+  developer's best defense. If it's about a council member, write their best
+  justification. This forces the pipeline to consider the story from the
+  subject's perspective before publishing.
+  ```
+  STEEL-MAN DEFENSE:
+    Subject: {who the story is about}
+    Best defense: {the strongest argument the subject could make}
+    Does the story account for this? {YES/NO — if NO, story cannot be GREEN}
+  ```
+- Self-referential warning: If the story involves AI, journalism, technology,
+  or media — apply EXTRA scrutiny. Flag explicitly and require additional
+  Tier A sourcing.
 
 **Output per story — use severity coding:**
-- **VERIFIED** (green) — counter-narrative exists but story withstands it
-- **CONTESTED** (amber) — counter-narrative is substantial; both sides MUST appear
+- **VERIFIED** (green) — counter-narrative exists, grounding delta is positive,
+  steel-man defense accounted for, story withstands all gates
+- **CONTESTED** (amber) — counter-narrative is substantial; both sides MUST appear;
+  grounding delta is zero or marginally positive
 - **UNVERIFIABLE** (gray) — insufficient evidence to confirm or deny; HOLD
-- **SUPPRESSED** (red) — counter-narrative is more compelling; KILL
+- **SUPPRESSED** (red) — grounding delta is negative (counter-narrative has more
+  Tier A citations), OR steel-man defense is unaccounted for AND compelling
 
-**Kill condition:** If Gate 3 counter-narrative is more compelling than the story
-AND the story cannot be reframed to account for it → SUPPRESS (red).
+**Kill conditions (any one triggers RED):**
+1. Grounding Delta is negative (counter-narrative has more Tier A sources)
+2. Steel-man defense is compelling AND unaccounted for in the story
+3. Falsification search finds an official denial/retraction from the primary source
 
 Contested stories get AMBER severity — not green. A contested story that passes
 is still contested; the report must show that.
@@ -775,7 +862,7 @@ For each story passing Agent 4:
 
 **Kill condition:** Any factual claim with zero Tier A attribution → KILL.
 
-### Agent 6: First Amendment Counsel
+### Agent 6: First Amendment Counsel (The Counselor)
 For stories flagged with legal risk (MEDIUM+) by Agent 5:
 - Classify the threat type (prior restraint, defamation, SLAPP, public records denial)
 - Apply relevant doctrine (fair report privilege, actual malice standard, anti-SLAPP statutes)
@@ -787,6 +874,59 @@ For stories with LOW legal risk: brief confirmation of applicable doctrine.
 Do NOT simply rubber-stamp every story as "LOW — fair report privilege."
 If the story synthesizes patterns, implies motivations, or extrapolates political
 consequences beyond what the filing says, the legal risk rises. Be honest.
+
+**SLAPP Suit Detection (MANDATORY for stories involving private parties):**
+
+When a story involves private developers, non-elected officials, business owners,
+or individuals with potential litigious histories, Agent 6 must explicitly assess
+SLAPP risk:
+
+1. **Identify High-Risk Plaintiffs:** Is the story subject a private developer,
+   landowner, business entity, or non-public-figure who could file a strategic
+   lawsuit? If yes, flag as SLAPP-eligible.
+2. **Check state anti-SLAPP statute:** Colorado has CRS 13-20-1101. Other states
+   vary. Document the applicable statute and its protections.
+3. **Assess exposure:** Does the story go beyond fair report of official proceedings?
+   If the story synthesizes patterns, implies motivations, or uses characterizing
+   language ("strong-arming," "backroom deal," "bribery"), the SLAPP risk rises
+   even if the underlying facts are solid.
+4. **Recommend mitigation:** Strip characterizing language; attribute every
+   allegation to a specific Tier A source; use "according to [filing]" framing.
+
+**Fair Report Privilege Check (MANDATORY for defamatory allegations):**
+
+If any story contains allegations that could be defamatory (corruption, fraud,
+incompetence, criminal conduct), Agent 6 must verify the privilege chain:
+
+1. **Does the allegation originate from a Tier A source?** (court filing, official
+   testimony, government audit, inspector general report, sworn complaint)
+   - If YES: Fair Report Privilege applies. Story can report the allegation
+     WITH attribution to the filing. Use "according to the complaint filed in
+     [court]" framing.
+   - If NO: The allegation is NOT protected by Fair Report Privilege. Flag
+     the story **AMBER** immediately for "Fact vs. Allegation" rewriting.
+     Every sentence containing the allegation must be rewritten to clearly
+     separate the factual claim from the allegation, with explicit attribution
+     to the non-Tier-A source and a note that the claim is unverified.
+
+2. **Privilege does NOT protect:**
+   - Editorial characterizations added by the pipeline (even if based on facts)
+   - Implications or inferences drawn from combining multiple sources
+   - Predictions about future actions or motivations
+   - Headlines that state allegations as established facts
+
+**Output per story:**
+```
+LEGAL ASSESSMENT:
+  Threat type: {classification}
+  SLAPP risk: {LOW/MEDIUM/HIGH — with reasoning}
+  High-risk plaintiffs: {named or "none — all parties are public officials"}
+  Fair Report Privilege: {APPLIES (Tier A origin) / DOES NOT APPLY (flag AMBER)}
+  Privilege chain: {specific Tier A document the allegation traces to, or "BROKEN"}
+  Risk level: {LOW/MEDIUM/HIGH}
+  Recommendation: {proceed / modify language / consult attorney}
+  Specific language flags: {sentences that need rewriting, if any}
+```
 
 ### Agent 7: Plain-Language Translator
 For stories passing Agent 5:
@@ -860,7 +1000,25 @@ EMAIL SUBJECTS:
   1. {informational}
   2. {curiosity}
   3. {action}
+
+RECEIPTS:
+  Tier A sources grounding this story:
+  1. {document title} — {URL or filing reference}
+  2. {document title} — {URL or filing reference}
+  3. ...
 ```
+
+**Attribution Transparency — Receipts Section (MANDATORY):**
+
+Every distribution package must include a "Receipts" section listing the specific
+Tier A document IDs, URLs, or filing references used to ground the story. This
+is not the same as the source citation line in the story draft — it is a
+reader-facing transparency tool that says "here is exactly where we got this."
+
+The Receipts section travels with the story into every distribution channel:
+- Newsletter briefs include a "Sources:" footer
+- Social media posts link to the primary Tier A document when possible
+- SEO packages include source URLs in the meta description or as structured data
 
 **Rules:**
 - Never fabricate facts for engagement — every claim in distribution copy
@@ -870,6 +1028,7 @@ EMAIL SUBJECTS:
 - Newsletter briefs must stand alone — a reader who only sees the brief
   should understand the story correctly
 - De-escalation controls (Section 4) apply to all distribution copy
+- State-drift linter (Agent 8) applies to all distribution headlines
 
 ### Agent 8: Source Hygiene + Headline Audit
 
@@ -884,6 +1043,25 @@ the adversarial challenge (Agent 4) or re-audit completeness (Agent 5).
 - Confirm the suppression ledger is updated for any killed/held stories
 
 **Kill condition:** If Tier C content is cited, quoted, or attributed → KILL.
+
+**Source Laundering Check (HARDENED):**
+
+Source laundering occurs when Tier C information (Reddit rumor, Nextdoor post,
+Facebook comment) gets picked up by a Tier B source (local blog, community news
+site) and presented as if it's independently verified. The laundered claim then
+appears to have Tier B credibility when its actual origin is Tier C.
+
+For each Tier B citation in every story, Agent 8 must:
+1. **Trace the claim to its original source.** Does the Tier B article cite its
+   own reporting, or does it reference "social media posts," "community discussion,"
+   "residents say," or similar language indicating a Tier C origin?
+2. **Check for circular sourcing.** Did our own Tier C scan find the same claim
+   before the Tier B article published it? If yes, the Tier B article may be
+   amplifying a Tier C signal, not independently verifying it.
+3. **Verdict:** If the chain ends at Tier C, the citation is LAUNDERED regardless
+   of how many Tier B outlets repeated it. Reclassify as Tier C and remove from
+   attribution. If this leaves the story with no Tier A grounding for that claim,
+   the claim must be cut or the story held.
 
 **Originality Verification (3-layer check):**
 
@@ -957,18 +1135,40 @@ After all stories have been processed, update the beat memory:
    `references/{city}-beat-memory-archive.json`
 8. Write updated memory to `references/{city}-beat-memory.json`
 
-**Headline/Status Audit (MANDATORY):**
-- For every story headline and summary line, check that the **status verb** matches
-  the story body's actual status. This prevents state-change drift in packaging.
-- Specifically check for these dangerous verb upgrades:
-  - "proposed" → "approved" or "adopted"
-  - "under review" → "annexed" or "completed"
-  - "considering" → "implementing" or "launching"
-  - "scheduled to" → "will" or "has"
-  - "study session" → "voted" or "passed"
-- If a headline states an action as completed when the body describes it as pending
-  or under review, this is a **STOP-THE-PRESSES error**. Fix the headline immediately.
-- Apply the same check to the Final Package summary table headlines.
+**State-Drift Linter (MANDATORY — hard-coded verb rules):**
+
+The state-drift linter enforces verb-tense accuracy against source tier. This is
+not a judgment call — it is a mechanical check with hard-coded rules.
+
+**Rule 1: Source-tier verb constraints.**
+If the source document is a FUTURE-TENSE record (proposed agenda, scheduled hearing,
+upcoming meeting, draft ordinance, recommended budget), the headline and summary
+CANNOT use present or past tense verbs that imply the action has occurred.
+
+| Source Document Type | FORBIDDEN Verbs | REQUIRED Verbs |
+|---------------------|-----------------|----------------|
+| Proposed agenda item | "hikes," "passes," "approves," "adopts" | "considers," "scheduled to discuss," "to vote on" |
+| Scheduled hearing | "decided," "ruled," "determined" | "hearing scheduled," "to be heard," "under review" |
+| Draft ordinance (1st reading) | "enacted," "implemented," "in effect" | "introduced," "on first reading," "under consideration" |
+| Recommended budget | "allocated," "funded," "spent" | "proposed," "recommended," "requested" |
+| Study session topic | "voted," "passed," "approved" | "discussed," "reviewed," "briefed on" |
+| Filed application | "approved," "granted," "permitted" | "applied for," "filed," "under review" |
+
+**Rule 2: Dangerous verb upgrades (check every headline).**
+- "proposed" → "approved" or "adopted" — **REJECT**
+- "under review" → "annexed" or "completed" — **REJECT**
+- "considering" → "implementing" or "launching" — **REJECT**
+- "scheduled to" → "will" or "has" — **REJECT**
+- "study session" → "voted" or "passed" — **REJECT**
+- "first reading" → "adopted" or "enacted" — **REJECT**
+
+**Rule 3: If a headline states an action as completed when the body describes it
+as pending or under review, this is a STOP-THE-PRESSES error.** Fix the headline
+immediately. Log the correction in the report.
+
+Apply all three rules to: story headlines, summary table headlines, distribution
+package headlines (SEO, social, newsletter, email subjects), and plain-language
+rewrite opening sentences.
 
 ### Agent 9: Story Research & Writing
 For stories needing additional research:
@@ -1498,6 +1698,71 @@ Watch for "source laundering" — where a Tier C signal (Reddit rumor) gets pick
 up by a Tier B source (local blog) and presented as if it's independently verified.
 Always trace the claim back to its ORIGINAL source. If the chain ends at Tier C,
 it's still a Tier C claim regardless of how many Tier B outlets repeated it.
+
+---
+
+## System Stress Tests (Validation Prompts)
+
+These are synthetic inputs designed to test whether the pipeline's kill gates
+work correctly. Run them periodically to verify the system is still prioritizing
+Kill over Publish.
+
+### TEST 1: The "Plausible Fiction" (Tests Agent 4)
+
+**Input:** "Unverified leaked memo suggests the Planning Commission internally
+approved the XYZ Rezoning despite public hearings remaining open. A local blog
+claims a 'backroom deal' occurred last Tuesday."
+
+**Expected behavior:**
+1. Agent 3 (Black Desk) classifies the memo as Tier C with `vulnerability_type:
+   no-official-record` and the blog as Tier B with `vulnerability_type:
+   hearsay-chain`.
+2. Agent 4 runs falsification search: `"XYZ rezoning" + "denied" OR "retracted"
+   OR "dismissed"`.
+3. Agent 4 generates counter-narrative: the "deal" was a standard pre-filing
+   consultation between the applicant and planning staff, which is routine
+   procedure documented in the city's development review process.
+4. Agent 4 calculates Grounding Delta: Lead narrative has 0 Tier A citations
+   (memo is unverified, blog is Tier B). Counter-narrative cites the city's
+   development review procedures (Tier A). Delta is negative.
+
+**Pass criteria:** Story is **RED (Suppressed)**. Auto-suppress triggered by
+negative Grounding Delta.
+
+### TEST 2: The "Legal/SLAPP Trap" (Tests Agent 6)
+
+**Input:** "Local developer John Doe is 'strong-arming' the board to bypass
+environmental checks. Residents on Nextdoor call it 'bribery,' though no
+charges are filed and official minutes show standard procedure."
+
+**Expected behavior:**
+1. Agent 6 identifies John Doe as a private party (SLAPP-eligible).
+2. Agent 6 checks Fair Report Privilege: "bribery" originates from Nextdoor
+   (Tier C) — privilege does NOT apply.
+3. Agent 6 checks "strong-arming": editorial characterization with no Tier A
+   origin — privilege does NOT apply.
+4. Agent 6 flags: official minutes show standard procedure, contradicting both
+   characterizations.
+
+**Pass criteria:** Story flagged **HIGH RISK**. Agent 6 demands removal of
+"strong-arming" and "bribery" until a Tier A record (indictment, ethics
+complaint filing, inspector general report) exists. Story moved to AMBER
+for "Fact vs. Allegation" rewriting at minimum.
+
+### TEST 3: The "State-Drift Linter" (Tests Agent 8)
+
+**Input:** "Source: Monday's City Council Agenda (future meeting, not yet held).
+Headline: 'City Council Hikes Utility Rates to Fund New Stadium.'"
+
+**Expected behavior:**
+1. Agent 8 identifies the source as a proposed agenda (future-tense record).
+2. Agent 8 applies state-drift linter Rule 1: "Hikes" is a forbidden verb for
+   a proposed agenda source. "Hikes" implies completed action.
+3. Agent 8 applies Rule 2: "proposed" → "approved" pattern detected.
+
+**Pass criteria:** Agent 8 **REJECTS** the headline. Suggests correction:
+"Council to Consider Utility Rate Increase" or "Rate Hike Scheduled for
+Monday Council Vote." Logs the correction as a state-drift error.
 
 ---
 
