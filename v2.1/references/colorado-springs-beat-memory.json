@@ -1,0 +1,143 @@
+{
+  "city": "Colorado Springs",
+  "state": "Colorado",
+  "lastRun": "2026-03-29",
+  "runCount": 2,
+  "threads": [
+    {
+      "threadId": "bailey-recall-district2-vacancy",
+      "headline": "District 2 Vacancy — 26 Applicants Compete After Bailey Recall Resignation",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 19, "run": 1},
+        {"date": "2026-03-29", "status": "advanced", "score": 18, "run": 2}
+      ],
+      "severityHistory": ["AMBER", "AMBER"],
+      "keyChanges": [
+        "2026-03-29 Run 1: First detection. Bailey resigned 3/10. Applications closed 3/26. Interviews 4/1.",
+        "2026-03-29 Run 2: 26 applicants confirmed. Key applicants: Helms, Casey, Savala, Carter. Special meeting 4/6. Swearing-in 4/13. Score decreased from 19 to 18 (novelty aging)."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null
+    },
+    {
+      "threadId": "car-camping-ban-7-2",
+      "headline": "City Council Approves Expanded Camping Ban Including Vehicles (7-2)",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 18, "run": 1},
+        {"date": "2026-03-29", "status": "advanced", "score": 17, "run": 2}
+      ],
+      "severityHistory": ["AMBER", "AMBER"],
+      "keyChanges": [
+        "2026-03-29 Run 1: First detection. Final vote 3/10. Enforcement timeline unknown.",
+        "2026-03-29 Run 2: Penalty details confirmed ($300 max, 10 days max, warning first). Mayor signature pending. Safe parking zones at churches planned (Aimee Cox). Accelerated timeline documented (moved from May to February). Score decreased 18→17 (novelty aging, vote concluded)."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null
+    },
+    {
+      "threadId": "csu-fuel-rate-decrease-april2026",
+      "headline": "Colorado Springs Utilities Fuel Rate Decrease Approved — NGIFCC Offset Pending",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 15, "run": 1},
+        {"date": "2026-03-29", "status": "advanced", "score": 15, "run": 2}
+      ],
+      "severityHistory": ["AMBER", "GREEN"],
+      "keyChanges": [
+        "2026-03-29 Run 1: First detection. Effective April 1. Competing NGIFCC charge ($8.54/mo).",
+        "2026-03-29 Run 2: Status changed from 'proposed' to 'approved' (council final approval). NGIFCC details: PHMSA enforcement, 80→10 year pipe replacement, consent agreement. Gas decrease 38%, electric 11%. Net savings ~$1.16/month. Severity changed AMBER→GREEN (verified, framing adjusted)."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null
+    },
+    {
+      "threadId": "palmer-hs-road-closure-reconsideration",
+      "headline": "Palmer High School Boulder Street Closure — Council Flip-Flop, May 26 Hearing",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 16, "run": 1},
+        {"date": "2026-03-29", "status": "advanced", "score": 17, "run": 2}
+      ],
+      "severityHistory": ["AMBER", "AMBER"],
+      "keyChanges": [
+        "2026-03-29 Run 1: First detection. Williams requested reconsideration 3/13. Traffic study shows Platte impacts.",
+        "2026-03-29 Run 2: MAJOR DEVELOPMENT. 3/24 morning reconsideration failed 4-3, then Rainey reversed 4 hrs later. Issue reopened. May 26 public hearing scheduled. D11 denied requesting reconsideration. Score increased 16→17 (conflict/novelty up)."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null
+    },
+    {
+      "threadId": "2026-budget-austerity-revenue",
+      "headline": "2026 Budget — Austerity Measures Active, Revenue Under Watch",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 14, "run": 1},
+        {"date": "2026-03-29", "status": "advanced", "score": 12, "run": 2}
+      ],
+      "severityHistory": ["GREEN", "GREEN"],
+      "keyChanges": [
+        "2026-03-29 Run 1: First detection. $427.3M GF. 38 positions cut. 5 furlough days.",
+        "2026-03-29 Run 2: Furlough dates confirmed (Feb 13, May 22, Jul 6, Sep 4, Nov 25). Meadows Park CC closed Oct 2025. $907M total budget. $72K+ earners get 7 furlough days. Score decreased 14→12 (novelty aging, execution phase, no new decisions)."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null
+    },
+    {
+      "threadId": "ray-nixon-coal-closure-sb26022",
+      "headline": "Ray Nixon Power Plant — Coal Closure Deadline in Doubt, SB 26-022 Filed",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 1,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 18, "run": 2}
+      ],
+      "severityHistory": ["AMBER"],
+      "keyChanges": [
+        "2026-03-29 Run 2: First detection. 260MW coal plant, Dec 2029 closure target. Renewable bids 50-60% over budget. SB 26-022 filed Jan 2026. SPP/RTO entry April 2026. Rate impact: 13.9% over 10yr, 35% over 5yr, 50% over 10yr."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null
+    }
+  ],
+  "suppressionLedger": [
+    {
+      "headline": "El Paso County BoCC Sales Tax Update",
+      "dateSuppressed": "2026-03-29",
+      "reason": "Score 5/20 — routine quarterly briefing, no policy action",
+      "tierANeeded": "Revenue shortfall announcement or policy change from BoCC",
+      "reopenTrigger": "County revenue shortfall requiring service cuts or tax increase proposal",
+      "revisionPath": "Upgrade to story if county fiscal stress mirrors city's $31M shortfall",
+      "origin": "Tier A — elpasoco.com quarterly briefing"
+    },
+    {
+      "headline": "Sign Ordinance Update — Content-Neutral Overhaul",
+      "dateSuppressed": "2026-03-29",
+      "reason": "Score 7/20 — HOLD. No hearing date, no conflict, limited impact",
+      "tierANeeded": "Specific council hearing date with public comment scheduled",
+      "reopenTrigger": "Business opposition to electronic message center restrictions or connection to development controversy",
+      "revisionPath": "Upgrade to story if organized opposition emerges or hearing date set",
+      "origin": "Tier A — coloradosprings.gov/SignOrdinanceUpdate"
+    }
+  ],
+  "sourcePerformance": {
+    "coloradosprings.gov": {"leadsGenerated": 8, "storiesAdvanced": 6, "lastSeen": "2026-03-29"},
+    "coloradosprings.legistar.com": {"leadsGenerated": 3, "storiesAdvanced": 3, "lastSeen": "2026-03-29"},
+    "csu.org": {"leadsGenerated": 3, "storiesAdvanced": 2, "lastSeen": "2026-03-29"},
+    "d11.org": {"leadsGenerated": 1, "storiesAdvanced": 1, "lastSeen": "2026-03-29"},
+    "elpasoco.com": {"leadsGenerated": 2, "storiesAdvanced": 0, "lastSeen": "2026-03-29"},
+    "cpr.org": {"leadsGenerated": 5, "storiesAdvanced": 5, "lastSeen": "2026-03-29"},
+    "gazette.com": {"leadsGenerated": 6, "storiesAdvanced": 6, "lastSeen": "2026-03-29"}
+  }
+}

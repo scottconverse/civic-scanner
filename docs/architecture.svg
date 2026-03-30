@@ -1,0 +1,300 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 3200" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1F4E79"/>
+      <stop offset="100%" style="stop-color:#2E75B6"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E9"/>
+      <stop offset="100%" style="stop-color:#C8E6C9"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0"/>
+      <stop offset="100%" style="stop-color:#FFE0B2"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFEBEE"/>
+      <stop offset="100%" style="stop-color:#FFCDD2"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD"/>
+      <stop offset="100%" style="stop-color:#BBDEFB"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#EDE7F6"/>
+      <stop offset="100%" style="stop-color:#D1C4E9"/>
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E0F2F1"/>
+      <stop offset="100%" style="stop-color:#B2DFDB"/>
+    </linearGradient>
+    <filter id="shadow" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#1F4E79"/>
+    </marker>
+    <marker id="redarrow" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#C62828"/>
+    </marker>
+    <marker id="feedbackarrow" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#3F51B5"/>
+    </marker>
+    <marker id="tealarrow" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#00695C"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1800" height="3200" fill="#F5F7FA"/>
+
+  <!-- ==================== TITLE BAR ==================== -->
+  <rect x="0" y="0" width="1800" height="120" fill="url(#headerGrad)"/>
+  <text x="900" y="50" text-anchor="middle" fill="white" font-size="40" font-weight="bold">CIVIC SOURCE SCANNER v2.1</text>
+  <text x="900" y="85" text-anchor="middle" fill="#B0C4DE" font-size="20">Pipeline Architecture  —  11 Agents  |  4 Kill Gates  |  6 Modes  |  11 Controls</text>
+  <text x="900" y="108" text-anchor="middle" fill="#90A4AE" font-size="16">Smart Source Lists  |  Reddit Tiered Access  |  YouTube/Video Discovery  |  Beat Memory</text>
+
+  <!-- ==================== SOURCE TIER INPUTS ==================== -->
+  <rect x="60" y="155" width="320" height="100" rx="14" fill="#2E7D32" filter="url(#shadow)"/>
+  <text x="220" y="193" text-anchor="middle" fill="white" font-size="22" font-weight="bold">TIER A — Official Records</text>
+  <text x="220" y="220" text-anchor="middle" fill="#C8E6C9" font-size="16">Agendas, minutes, budgets, permits</text>
+  <text x="220" y="242" text-anchor="middle" fill="#A5D6A7" font-size="14">Only tier supporting publication</text>
+
+  <rect x="420" y="155" width="320" height="100" rx="14" fill="#D4760A" filter="url(#shadow)"/>
+  <text x="580" y="193" text-anchor="middle" fill="white" font-size="22" font-weight="bold">TIER B — Institutional</text>
+  <text x="580" y="220" text-anchor="middle" fill="#FFE0B2" font-size="16">Newspapers, radio, institutional</text>
+  <text x="580" y="242" text-anchor="middle" fill="#FFCC80" font-size="14">Leads only — corroborate with A</text>
+
+  <rect x="780" y="155" width="320" height="100" rx="14" fill="#757575" filter="url(#shadow)"/>
+  <text x="940" y="193" text-anchor="middle" fill="white" font-size="22" font-weight="bold">TIER C — Community</text>
+  <text x="940" y="220" text-anchor="middle" fill="#E0E0E0" font-size="16">Reddit, Nextdoor, Facebook</text>
+  <text x="940" y="242" text-anchor="middle" fill="#BDBDBD" font-size="14">Signals only — never cite</text>
+
+  <!-- Beat Memory (top right) -->
+  <rect x="1200" y="155" width="340" height="100" rx="14" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="1370" y="193" text-anchor="middle" fill="white" font-size="22" font-weight="bold">BEAT MEMORY</text>
+  <text x="1370" y="220" text-anchor="middle" fill="#B0C4DE" font-size="16">Thread tracking across runs</text>
+  <text x="1370" y="242" text-anchor="middle" fill="#90A4AE" font-size="14">Loads at start, updates at end</text>
+
+  <!-- Arrows from sources to Agent 1 -->
+  <line x1="220" y1="255" x2="560" y2="300" stroke="#2E7D32" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <line x1="580" y1="255" x2="560" y2="300" stroke="#D4760A" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <line x1="940" y1="255" x2="560" y2="300" stroke="#757575" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <line x1="1200" y1="205" x2="830" y2="340" stroke="#3F51B5" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#feedbackarrow)"/>
+
+  <!-- ==================== PIPELINE AGENTS ==================== -->
+
+  <!-- Agent 1: News Aggregator -->
+  <rect x="260" y="305" width="600" height="80" rx="14" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="3" filter="url(#shadow)"/>
+  <text x="560" y="340" text-anchor="middle" font-size="20" font-weight="bold" fill="#1B5E20">Agent 1: News Aggregator</text>
+  <text x="560" y="368" text-anchor="middle" font-size="16" fill="#388E3C">Scan all tiers, classify leads, extract blocked source intelligence</text>
+  <line x1="560" y1="385" x2="560" y2="420" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 2: Story Expansion -->
+  <rect x="260" y="425" width="600" height="80" rx="14" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="3" filter="url(#shadow)"/>
+  <text x="560" y="460" text-anchor="middle" font-size="20" font-weight="bold" fill="#1B5E20">Agent 2: Story Expansion</text>
+  <text x="560" y="488" text-anchor="middle" font-size="16" fill="#388E3C">Draft 400-800 word research scaffolding per lead</text>
+  <line x1="560" y1="505" x2="560" y2="540" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 2.5: Newsworthiness Gate (KILL GATE) -->
+  <rect x="210" y="545" width="700" height="100" rx="14" fill="url(#amberGrad)" stroke="#D4760A" stroke-width="3.5" filter="url(#shadow)"/>
+  <text x="560" y="578" text-anchor="middle" font-size="20" font-weight="bold" fill="#E65100">Agent 2.5: Newsworthiness Gate</text>
+  <text x="560" y="604" text-anchor="middle" font-size="16" fill="#BF360C">Immediacy / Impact / Conflict / Novelty (1-5 each, threshold 10/20)</text>
+  <text x="560" y="628" text-anchor="middle" font-size="16" fill="#BF360C">Produces: Reporter Task Memo + Visual Direction Brief + AI Prompts</text>
+  <text x="185" y="578" text-anchor="end" font-size="16" font-weight="bold" fill="#D4760A">KILL</text>
+  <text x="185" y="598" text-anchor="end" font-size="16" font-weight="bold" fill="#D4760A">GATE</text>
+  <line x1="910" y1="595" x2="1020" y2="595" stroke="#C62828" stroke-width="3" marker-end="url(#redarrow)"/>
+  <rect x="1025" y="576" width="160" height="42" rx="10" fill="#FFEBEE" stroke="#C62828" stroke-width="2.5"/>
+  <text x="1105" y="604" text-anchor="middle" font-size="17" font-weight="bold" fill="#C62828">KILL / HOLD</text>
+  <line x1="560" y1="645" x2="560" y2="680" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 3: Black Desk -->
+  <rect x="260" y="685" width="600" height="80" rx="14" fill="url(#purpleGrad)" stroke="#5E35B1" stroke-width="3" filter="url(#shadow)"/>
+  <text x="560" y="720" text-anchor="middle" font-size="20" font-weight="bold" fill="#311B92">Agent 3: Black Desk — Speculative Signals</text>
+  <text x="560" y="748" text-anchor="middle" font-size="16" fill="#4527A0">Reddit deep-read + faint connections + cross-story links — NEVER publishable</text>
+  <line x1="560" y1="765" x2="560" y2="800" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 4: Adversarial Challenge (KILL GATE) -->
+  <rect x="210" y="805" width="700" height="100" rx="14" fill="url(#redGrad)" stroke="#C62828" stroke-width="3.5" filter="url(#shadow)"/>
+  <text x="560" y="838" text-anchor="middle" font-size="20" font-weight="bold" fill="#B71C1C">Agent 4: Adversarial Challenge</text>
+  <text x="560" y="864" text-anchor="middle" font-size="16" fill="#C62828">4 Gates: Contestation → Adverse Search → Counter-Narrative → Self-Referential</text>
+  <text x="560" y="888" text-anchor="middle" font-size="16" fill="#C62828">Kill condition: counter-narrative more compelling = SUPPRESS</text>
+  <text x="185" y="838" text-anchor="end" font-size="16" font-weight="bold" fill="#C62828">KILL</text>
+  <text x="185" y="858" text-anchor="end" font-size="16" font-weight="bold" fill="#C62828">GATE</text>
+  <line x1="910" y1="855" x2="1020" y2="855" stroke="#C62828" stroke-width="3" marker-end="url(#redarrow)"/>
+  <rect x="1025" y="836" width="160" height="42" rx="10" fill="#FFEBEE" stroke="#C62828" stroke-width="2.5"/>
+  <text x="1105" y="864" text-anchor="middle" font-size="17" font-weight="bold" fill="#C62828">SUPPRESS</text>
+  <line x1="560" y1="905" x2="560" y2="940" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 5: Completeness Auditor (KILL GATE) -->
+  <rect x="210" y="945" width="700" height="100" rx="14" fill="url(#amberGrad)" stroke="#D4760A" stroke-width="3.5" filter="url(#shadow)"/>
+  <text x="560" y="978" text-anchor="middle" font-size="20" font-weight="bold" fill="#E65100">Agent 5: Completeness Auditor</text>
+  <text x="560" y="1004" text-anchor="middle" font-size="16" fill="#BF360C">Attribution completeness, balance, harm assessment, legal flag</text>
+  <text x="560" y="1028" text-anchor="middle" font-size="16" fill="#BF360C">Kill condition: unattributable factual claim</text>
+  <text x="185" y="978" text-anchor="end" font-size="16" font-weight="bold" fill="#D4760A">KILL</text>
+  <text x="185" y="998" text-anchor="end" font-size="16" font-weight="bold" fill="#D4760A">GATE</text>
+  <line x1="560" y1="1045" x2="560" y2="1080" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 6: First Amendment Counsel -->
+  <rect x="260" y="1085" width="600" height="80" rx="14" fill="url(#blueGrad)" stroke="#1565C0" stroke-width="3" filter="url(#shadow)"/>
+  <text x="560" y="1120" text-anchor="middle" font-size="20" font-weight="bold" fill="#0D47A1">Agent 6: First Amendment Counsel</text>
+  <text x="560" y="1148" text-anchor="middle" font-size="16" fill="#1565C0">Per-story legal risk: defamation, SLAPP, prior restraint, source protection</text>
+  <line x1="560" y1="1165" x2="560" y2="1200" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 7: Plain-Language Translator -->
+  <rect x="260" y="1205" width="600" height="80" rx="14" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="3" filter="url(#shadow)"/>
+  <text x="560" y="1240" text-anchor="middle" font-size="20" font-weight="bold" fill="#1B5E20">Agent 7: Plain-Language Translator</text>
+  <text x="560" y="1268" text-anchor="middle" font-size="16" fill="#388E3C">150-200 word rewrites at 8th grade level for newsletters/social</text>
+  <line x1="560" y1="1285" x2="560" y2="1320" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 7.5: Distribution Packager -->
+  <rect x="260" y="1325" width="600" height="80" rx="14" fill="url(#blueGrad)" stroke="#1565C0" stroke-width="3" filter="url(#shadow)"/>
+  <text x="560" y="1360" text-anchor="middle" font-size="20" font-weight="bold" fill="#0D47A1">Agent 7.5: Distribution Packager</text>
+  <text x="560" y="1388" text-anchor="middle" font-size="16" fill="#1565C0">SEO + Twitter/X + Facebook + LinkedIn + Nextdoor + Newsletter + Email</text>
+  <line x1="560" y1="1405" x2="560" y2="1440" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 8: Source Hygiene (KILL GATE) -->
+  <rect x="210" y="1445" width="700" height="100" rx="14" fill="url(#redGrad)" stroke="#C62828" stroke-width="3.5" filter="url(#shadow)"/>
+  <text x="560" y="1478" text-anchor="middle" font-size="20" font-weight="bold" fill="#B71C1C">Agent 8: Source Hygiene + Headline Audit + Originality</text>
+  <text x="560" y="1504" text-anchor="middle" font-size="16" fill="#C62828">Tier C contamination check | Status verb validation | 3-layer plagiarism</text>
+  <text x="560" y="1528" text-anchor="middle" font-size="16" fill="#C62828">Kill: Tier C in attribution  |  Hold: originality FAIL</text>
+  <text x="185" y="1478" text-anchor="end" font-size="16" font-weight="bold" fill="#C62828">KILL</text>
+  <text x="185" y="1498" text-anchor="end" font-size="16" font-weight="bold" fill="#C62828">GATE</text>
+  <line x1="560" y1="1545" x2="560" y2="1580" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 9: Story Research -->
+  <rect x="260" y="1585" width="600" height="80" rx="14" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="3" filter="url(#shadow)"/>
+  <text x="560" y="1620" text-anchor="middle" font-size="20" font-weight="bold" fill="#1B5E20">Agent 9: Story Research &amp; Writing</text>
+  <text x="560" y="1648" text-anchor="middle" font-size="16" fill="#388E3C">Deep-dive research + final story drafting</text>
+  <line x1="560" y1="1665" x2="560" y2="1700" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- Beat Memory Update -->
+  <rect x="260" y="1705" width="600" height="80" rx="14" fill="url(#purpleGrad)" stroke="#5E35B1" stroke-width="3" filter="url(#shadow)"/>
+  <text x="560" y="1740" text-anchor="middle" font-size="20" font-weight="bold" fill="#311B92">Beat Memory Update + Smart Source Proposals</text>
+  <text x="560" y="1768" text-anchor="middle" font-size="16" fill="#4527A0">Write threads, scores, suppression triggers, new source proposals</text>
+  <!-- Feedback arrow back to Beat Memory -->
+  <path d="M 860 1745 Q 1370 1745 1370 255" stroke="#3F51B5" stroke-width="2.5" stroke-dasharray="8,4" fill="none" marker-end="url(#feedbackarrow)"/>
+  <text x="1395" y="1000" font-size="15" fill="#3F51B5" transform="rotate(90, 1395, 1000)">Feedback Loop</text>
+  <line x1="560" y1="1785" x2="560" y2="1830" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- ==================== REPORT OUTPUT ==================== -->
+  <rect x="140" y="1840" width="820" height="160" rx="16" fill="url(#headerGrad)" filter="url(#shadow)"/>
+  <text x="550" y="1880" text-anchor="middle" fill="white" font-size="24" font-weight="bold">REPORT OUTPUT (.docx)</text>
+  <text x="550" y="1912" text-anchor="middle" fill="#B0C4DE" font-size="17">Section A: Editorial Dashboard (2-3 pages)</text>
+  <text x="550" y="1938" text-anchor="middle" fill="#B0C4DE" font-size="17">Section B: Verification Appendix (full agent output)</text>
+  <text x="550" y="1964" text-anchor="middle" fill="#B0C4DE" font-size="17">Community: Tip Prompts + Trust Dashboard + Pulse Check</text>
+  <text x="550" y="1988" text-anchor="middle" fill="#90A4AE" font-size="15">All agents unabridged — no summarizing or truncating</text>
+
+  <!-- ==================== SUPPRESSION LEDGER ==================== -->
+  <rect x="1050" y="1840" width="420" height="160" rx="16" fill="#FFF5F5" stroke="#C62828" stroke-width="3" filter="url(#shadow)"/>
+  <text x="1260" y="1880" text-anchor="middle" font-size="22" font-weight="bold" fill="#C62828">SUPPRESSION LEDGER</text>
+  <text x="1260" y="1912" text-anchor="middle" font-size="16" fill="#666">Killed stories with reopen triggers</text>
+  <text x="1260" y="1938" text-anchor="middle" font-size="16" fill="#666">Monitored each pipeline run</text>
+  <text x="1260" y="1964" text-anchor="middle" font-size="16" fill="#888" font-style="italic">"A pipeline, not a graveyard"</text>
+
+  <!-- ==================== NEW v2.1: SMART SOURCES + REDDIT ==================== -->
+
+  <!-- Smart Source Lists -->
+  <rect x="60" y="2060" width="520" height="200" rx="16" fill="url(#tealGrad)" stroke="#00695C" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="60" y="2060" width="520" height="50" rx="16" fill="#00695C"/>
+  <text x="320" y="2093" text-anchor="middle" font-size="20" font-weight="bold" fill="white">SMART SOURCE LISTS</text>
+  <text x="85" y="2140" font-size="16" fill="#004D40" font-weight="bold">Auto-discovery from scans:</text>
+  <text x="85" y="2165" font-size="15" fill="#333">New domains found → proposed with tier + context</text>
+  <text x="85" y="2190" font-size="15" fill="#333">.gov auto-add | Tier B/C need editor approval</text>
+  <text x="85" y="2215" font-size="15" fill="#333">Performance tracking: leads vs stories per source</text>
+  <text x="85" y="2240" font-size="15" fill="#333">Rejected sources logged to prevent re-proposal</text>
+
+  <!-- Reddit Tiered Access -->
+  <rect x="640" y="2060" width="520" height="200" rx="16" fill="#FFF3E0" stroke="#E65100" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="640" y="2060" width="520" height="50" rx="16" fill="#E65100"/>
+  <text x="900" y="2093" text-anchor="middle" font-size="20" font-weight="bold" fill="white">REDDIT TIERED ACCESS</text>
+  <text x="665" y="2140" font-size="16" fill="#BF360C" font-weight="bold">4-tier fallback protocol:</text>
+  <text x="665" y="2165" font-size="15" fill="#333">1. Direct access (patched extension)</text>
+  <text x="665" y="2190" font-size="15" fill="#333">2. Google index (site:reddit.com queries)</text>
+  <text x="665" y="2215" font-size="15" fill="#333">3. Manual review checklist for reporter</text>
+  <text x="665" y="2240" font-size="15" fill="#333">4. Reference to Appendix A fix</text>
+
+  <!-- YouTube/Video Discovery -->
+  <rect x="1220" y="2060" width="520" height="200" rx="16" fill="url(#blueGrad)" stroke="#1565C0" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="1220" y="2060" width="520" height="50" rx="16" fill="#1565C0"/>
+  <text x="1480" y="2093" text-anchor="middle" font-size="20" font-weight="bold" fill="white">YOUTUBE / VIDEO DISCOVERY</text>
+  <text x="1245" y="2140" font-size="16" fill="#0D47A1" font-weight="bold">5-part systematic search:</text>
+  <text x="1245" y="2165" font-size="15" fill="#333">City gov channel + Public access TV</text>
+  <text x="1245" y="2190" font-size="15" fill="#333">County channel + Boards/Commissions</text>
+  <text x="1245" y="2215" font-size="15" fill="#333">School district channel + website video</text>
+  <text x="1245" y="2240" font-size="15" fill="#333">Auto-transcripts = Tier A content</text>
+
+  <!-- Arrows from new features to pipeline -->
+  <line x1="320" y1="2060" x2="320" y2="1840" stroke="#00695C" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#tealarrow)"/>
+  <line x1="900" y1="2060" x2="780" y2="730" stroke="#E65100" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="870" y="1400" font-size="14" fill="#E65100" transform="rotate(-70, 870, 1400)">Feeds Black Desk</text>
+  <line x1="1480" y1="2060" x2="220" y2="345" stroke="#1565C0" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="1000" y="1200" font-size="14" fill="#1565C0" transform="rotate(-35, 1000, 1200)">Feeds Agent 1</text>
+
+  <!-- ==================== CONTROLS SIDEBAR ==================== -->
+  <rect x="1200" y="305" width="360" height="590" rx="14" fill="white" stroke="#1F4E79" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="1200" y="305" width="360" height="50" rx="14" fill="#1F4E79"/>
+  <text x="1380" y="338" text-anchor="middle" font-size="20" font-weight="bold" fill="white">CONTROLS (11)</text>
+
+  <text x="1225" y="385" font-size="16" fill="#333" font-weight="bold">1.</text>
+  <text x="1250" y="385" font-size="16" fill="#333">Hard-No-Bluff Rule</text>
+  <text x="1225" y="415" font-size="16" fill="#333" font-weight="bold">2.</text>
+  <text x="1250" y="415" font-size="16" fill="#333">Source Tier Classification</text>
+  <text x="1225" y="445" font-size="16" fill="#333" font-weight="bold">3.</text>
+  <text x="1250" y="445" font-size="16" fill="#333">Adversarial Verification</text>
+  <text x="1225" y="475" font-size="16" fill="#333" font-weight="bold">4.</text>
+  <text x="1250" y="475" font-size="16" fill="#333">De-Escalation Controls</text>
+  <text x="1225" y="505" font-size="16" fill="#333" font-weight="bold">5.</text>
+  <text x="1250" y="505" font-size="16" fill="#333">Suppression Ledger</text>
+  <text x="1225" y="535" font-size="16" fill="#333" font-weight="bold">6.</text>
+  <text x="1250" y="535" font-size="16" fill="#333">Dynamic Search Filtering</text>
+  <text x="1225" y="565" font-size="16" fill="#333" font-weight="bold">7.</text>
+  <text x="1250" y="565" font-size="16" fill="#333">Blocked Source Intelligence</text>
+  <text x="1225" y="595" font-size="16" fill="#333" font-weight="bold">8.</text>
+  <text x="1250" y="595" font-size="16" fill="#333">Beat Memory Protocol</text>
+  <text x="1225" y="630" font-size="16" fill="#00695C" font-weight="bold">9.</text>
+  <text x="1250" y="630" font-size="16" fill="#00695C" font-weight="bold">Reddit Tiered Access</text>
+  <text x="1225" y="660" font-size="16" fill="#00695C" font-weight="bold">10.</text>
+  <text x="1257" y="660" font-size="16" fill="#00695C" font-weight="bold">Smart Source Lists</text>
+  <text x="1225" y="690" font-size="16" fill="#00695C" font-weight="bold">11.</text>
+  <text x="1257" y="690" font-size="16" fill="#00695C" font-weight="bold">YouTube/Video Discovery</text>
+  <text x="1380" y="720" text-anchor="middle" font-size="13" fill="#00695C" font-style="italic">NEW in v2.1</text>
+  <rect x="1218" y="617" width="330" height="112" rx="8" fill="none" stroke="#00695C" stroke-width="2" stroke-dasharray="6,3"/>
+
+  <!-- ==================== SEVERITY CODING LEGEND ==================== -->
+  <rect x="1200" y="930" width="360" height="230" rx="14" fill="white" stroke="#1F4E79" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="1200" y="930" width="360" height="50" rx="14" fill="#1F4E79"/>
+  <text x="1380" y="963" text-anchor="middle" font-size="20" font-weight="bold" fill="white">SEVERITY CODING</text>
+
+  <rect x="1230" y="1005" width="26" height="26" rx="6" fill="#2E7D32"/>
+  <text x="1268" y="1025" font-size="18" fill="#333" font-weight="bold">GREEN</text>
+  <text x="1345" y="1025" font-size="16" fill="#666">— Clean pass</text>
+
+  <rect x="1230" y="1048" width="26" height="26" rx="6" fill="#D4760A"/>
+  <text x="1268" y="1068" font-size="18" fill="#333" font-weight="bold">AMBER</text>
+  <text x="1345" y="1068" font-size="16" fill="#666">— Contested</text>
+
+  <rect x="1230" y="1091" width="26" height="26" rx="6" fill="#C62828"/>
+  <text x="1268" y="1111" font-size="18" fill="#333" font-weight="bold">RED</text>
+  <text x="1318" y="1111" font-size="16" fill="#666">— Killed / Suppressed</text>
+
+  <rect x="1230" y="1134" width="26" height="26" rx="6" fill="#757575"/>
+  <text x="1268" y="1154" font-size="18" fill="#333" font-weight="bold">GRAY</text>
+  <text x="1330" y="1154" font-size="16" fill="#666">— Held / Awaiting docs</text>
+
+  <!-- ==================== APPENDICES BOX ==================== -->
+  <rect x="1200" y="1200" width="360" height="160" rx="14" fill="white" stroke="#00695C" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="1200" y="1200" width="360" height="50" rx="14" fill="#00695C"/>
+  <text x="1380" y="1233" text-anchor="middle" font-size="20" font-weight="bold" fill="white">APPENDICES</text>
+  <text x="1225" y="1280" font-size="16" fill="#333" font-weight="bold">A.</text>
+  <text x="1250" y="1280" font-size="16" fill="#333">Reddit Access Fix</text>
+  <text x="1225" y="1305" font-size="14" fill="#666">   Chrome extension patch instructions</text>
+  <text x="1225" y="1335" font-size="16" fill="#333" font-weight="bold">B.</text>
+  <text x="1250" y="1335" font-size="16" fill="#333">Smart Source List Spec</text>
+  <text x="1225" y="1355" font-size="14" fill="#666">   Registry format, queue, auto-discovery</text>
+
+  <!-- ==================== FOOTER ==================== -->
+  <rect x="0" y="2320" width="1800" height="70" fill="url(#headerGrad)"/>
+  <text x="900" y="2355" text-anchor="middle" fill="white" font-size="20">Civic Source Scanner v2.1  —  Verified Research Scaffolding for Civic Newsrooms</text>
+  <text x="900" y="2378" text-anchor="middle" fill="#90A4AE" font-size="14">11 Agents  |  4 Kill Gates  |  6 Modes  |  11 Controls  |  Smart Sources  |  Reddit Access  |  YouTube Discovery</text>
+</svg>

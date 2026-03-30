@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civic Source Scanner — Verified Research Scaffolding for Civic Newsrooms</title>
+  <meta name="description" content="AI-powered civic journalism pipeline. Scans public records, generates verified story leads, runs adversarial verification, and produces reporter-guiding intelligence for any US municipality.">
+  <style>
+    :root {
+      --navy: #1F4E79;
+      --blue: #2E75B6;
+      --green: #2E7D32;
+      --amber: #D4760A;
+      --red: #C62828;
+      --gray: #757575;
+      --light-bg: #F8F9FA;
+      --card-bg: #FFFFFF;
+      --text: #333333;
+      --text-light: #666666;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--light-bg);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: white;
+      padding: 80px 20px 60px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3em;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    .hero .tagline {
+      font-size: 1.3em;
+      color: #B0C4DE;
+      margin-bottom: 24px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero .stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .hero .stat {
+      text-align: center;
+    }
+    .hero .stat-number {
+      font-size: 2.4em;
+      font-weight: 800;
+      display: block;
+    }
+    .hero .stat-label {
+      font-size: 0.85em;
+      color: #B0C4DE;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.85em;
+      margin: 4px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section */
+    section {
+      padding: 60px 0;
+    }
+    section:nth-child(even) {
+      background: white;
+    }
+    section h2 {
+      font-size: 2em;
+      color: var(--navy);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    section .section-sub {
+      text-align: center;
+      color: var(--text-light);
+      margin-bottom: 40px;
+      font-size: 1.1em;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--navy);
+    }
+    .card h3 {
+      font-size: 1.2em;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .card p {
+      color: var(--text-light);
+      font-size: 0.95em;
+    }
+
+    /* Pipeline */
+    .pipeline {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .pipeline-step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .pipeline-step::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 48px;
+      bottom: -1px;
+      width: 2px;
+      background: #D0D5DD;
+    }
+    .pipeline-step:last-child::before { display: none; }
+    .step-dot {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85em;
+      color: white;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .step-dot.green { background: var(--green); }
+    .step-dot.amber { background: var(--amber); }
+    .step-dot.red { background: var(--red); }
+    .step-dot.blue { background: var(--blue); }
+    .step-dot.purple { background: #5E35B1; }
+    .step-content {
+      margin-left: 16px;
+      padding-bottom: 28px;
+    }
+    .step-content h4 {
+      font-size: 1.05em;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .step-content p {
+      color: var(--text-light);
+      font-size: 0.9em;
+    }
+    .kill-badge {
+      display: inline-block;
+      background: #FFEBEE;
+      color: var(--red);
+      font-size: 0.75em;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+
+    /* Modes table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    th {
+      background: var(--navy);
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.9em;
+    }
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #E0E0E0;
+      font-size: 0.9em;
+    }
+    tr:nth-child(even) td { background: #F2F7FB; }
+    code {
+      background: #E8EAF6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-family: 'SF Mono', Consolas, monospace;
+    }
+
+    /* Controls */
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .control {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      border-left: 4px solid var(--navy);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .control h4 {
+      font-size: 0.95em;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .control p {
+      font-size: 0.85em;
+      color: var(--text-light);
+    }
+
+    /* Severity */
+    .severity-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .severity-card {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      font-weight: 600;
+    }
+    .severity-card.s-green { background: var(--green); }
+    .severity-card.s-amber { background: var(--amber); }
+    .severity-card.s-red { background: var(--red); }
+    .severity-card.s-gray { background: var(--gray); }
+    .severity-card .s-label { font-size: 1.2em; display: block; margin-bottom: 4px; }
+    .severity-card .s-desc { font-size: 0.8em; opacity: 0.9; }
+
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .cta h2 { color: white; margin-bottom: 16px; }
+    .cta p { color: #B0C4DE; max-width: 600px; margin: 0 auto 24px; }
+    .cta-code {
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      padding: 20px 32px;
+      display: inline-block;
+      font-family: 'SF Mono', Consolas, monospace;
+      font-size: 1.1em;
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: var(--text-light);
+      font-size: 0.85em;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2em; }
+      .hero .stats { gap: 20px; }
+      .severity-grid { grid-template-columns: repeat(2, 1fr); }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="container">
+      <h1>Civic Source Scanner</h1>
+      <p class="tagline">Verified research scaffolding for civic newsrooms. Scans public records, runs adversarial verification, produces reporter-guiding intelligence.</p>
+      <div>
+        <span class="badge">Claude Code Skill</span>
+        <span class="badge">Any US Municipality</span>
+        <span class="badge">v2.0</span>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-number">11</span>
+          <span class="stat-label">Agents</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">6</span>
+          <span class="stat-label">Modes</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Kill Gates</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">8</span>
+          <span class="stat-label">Controls</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What It Does -->
+  <section>
+    <div class="container">
+      <h2>What It Does</h2>
+      <p class="section-sub">Replaces 4-10 hours of morning newsroom work with a structured, verified pipeline.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Scans Public Records</h3>
+          <p>Checks government agendas, meeting minutes, budgets, permits, and official YouTube channels. Classifies every source by tier (A/B/C) and extracts actionable civic data.</p>
+        </div>
+        <div class="card">
+          <h3>Kills Bad Stories</h3>
+          <p>Four kill gates can stop a story before it reaches an editor. No Tier A source? Killed. Counter-narrative stronger? Suppressed. Below newsworthiness threshold? Held.</p>
+        </div>
+        <div class="card">
+          <h3>Guides the Reporter</h3>
+          <p>Every story produces a Reporter Task Memo: what's confirmed, what's missing, who to call, what documents to file, and what evidence would kill the story.</p>
+        </div>
+        <div class="card">
+          <h3>Packages for Distribution</h3>
+          <p>SEO headlines, social media posts for 4 platforms, newsletter briefs, email subject lines, visual direction briefs with AI generation prompts — all per story.</p>
+        </div>
+        <div class="card">
+          <h3>Remembers Across Runs</h3>
+          <p>Beat memory tracks story threads over time. Score trends show if stories are gaining or losing newsworthiness. Suppression triggers are monitored every run.</p>
+        </div>
+        <div class="card">
+          <h3>Works in Any City</h3>
+          <p>Discovery mode auto-builds a source registry for any US municipality. Finds agenda portals, YouTube channels, school boards, newspapers, and community forums.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pipeline -->
+  <section>
+    <div class="container">
+      <h2>Pipeline Architecture</h2>
+      <p class="section-sub">11 agents, 4 kill gates, 1 principle: no Tier A source = no publication.</p>
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-dot green">1</div>
+          <div class="step-content">
+            <h4>News Aggregator</h4>
+            <p>Scan Tier A/B/C sources, classify leads, extract blocked source intelligence</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot green">2</div>
+          <div class="step-content">
+            <h4>Story Expansion</h4>
+            <p>Draft 400-800 word research scaffolding per lead</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot amber">2.5</div>
+          <div class="step-content">
+            <h4>Newsworthiness Gate <span class="kill-badge">CAN KILL</span></h4>
+            <p>Score Immediacy/Impact/Conflict/Novelty. Threshold: 10/20. Produces Reporter Task Memos + Visual Briefs.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot purple">3</div>
+          <div class="step-content">
+            <h4>Black Desk</h4>
+            <p>Speculative signal hunting. Low confidence OK. Never publishable — feeds adversarial verification.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot red">4</div>
+          <div class="step-content">
+            <h4>Adversarial Challenge <span class="kill-badge">CAN SUPPRESS</span></h4>
+            <p>4-gate verification: Contestation, Adverse Search, Counter-Narrative, Self-Referential Warning.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot amber">5</div>
+          <div class="step-content">
+            <h4>Completeness Auditor <span class="kill-badge">CAN KILL</span></h4>
+            <p>Attribution completeness, balance, harm assessment, legal risk flag.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot green">6</div>
+          <div class="step-content">
+            <h4>First Amendment Counsel</h4>
+            <p>Legal risk assessment. Honest, not rubber-stamped.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot green">7</div>
+          <div class="step-content">
+            <h4>Plain-Language Translator</h4>
+            <p>8th grade reading level summaries for newsletters and social media.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot blue">7.5</div>
+          <div class="step-content">
+            <h4>Distribution Packager</h4>
+            <p>SEO, Twitter/X, Facebook, LinkedIn, Nextdoor, newsletter briefs, email subjects.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot red">8</div>
+          <div class="step-content">
+            <h4>Source Hygiene + Originality <span class="kill-badge">CAN KILL/HOLD</span></h4>
+            <p>Tier C contamination, headline audit, 3-layer originality verification.</p>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-dot green">9</div>
+          <div class="step-content">
+            <h4>Story Research & Writing</h4>
+            <p>Additional deep-dive if needed. Beat memory updated. Report generated.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Severity -->
+  <section>
+    <div class="container">
+      <h2>Severity Coding</h2>
+      <p class="section-sub">Every story carries a severity color through the entire pipeline.</p>
+      <div class="severity-grid">
+        <div class="severity-card s-green">
+          <span class="s-label">GREEN</span>
+          <span class="s-desc">Clean pass. No caveats. Ready for reporter follow-up.</span>
+        </div>
+        <div class="severity-card s-amber">
+          <span class="s-label">AMBER</span>
+          <span class="s-desc">Contested. Both sides required. Framing adjusted.</span>
+        </div>
+        <div class="severity-card s-red">
+          <span class="s-label">RED</span>
+          <span class="s-desc">Killed. Counter-narrative won or unattributable claims.</span>
+        </div>
+        <div class="severity-card s-gray">
+          <span class="s-label">GRAY</span>
+          <span class="s-desc">Held. Awaiting documents or below threshold.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modes -->
+  <section>
+    <div class="container">
+      <h2>6 Modes</h2>
+      <p class="section-sub">One skill, six ways to use it.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>Command</th>
+            <th>What It Produces</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Daily Scan</strong></td>
+            <td><code>daily-scan</code></td>
+            <td>Prioritized lead list from all source tiers</td>
+          </tr>
+          <tr>
+            <td><strong>Full Pipeline</strong></td>
+            <td><code>full-pipeline</code></td>
+            <td>Complete story packages through all 11 agents</td>
+          </tr>
+          <tr>
+            <td><strong>Verify Only</strong></td>
+            <td><code>verify-only {claim}</code></td>
+            <td>4-gate adversarial verification of a specific claim</td>
+          </tr>
+          <tr>
+            <td><strong>Research</strong></td>
+            <td><code>research {topic}</code></td>
+            <td>Deep-dive research brief with CORA targets</td>
+          </tr>
+          <tr>
+            <td><strong>Legal Threat</strong></td>
+            <td><code>legal-threat {situation}</code></td>
+            <td>First Amendment counsel triage</td>
+          </tr>
+          <tr>
+            <td><strong>Discover</strong></td>
+            <td><code>discover {city}, {state}</code></td>
+            <td>Auto-build source registry for any US municipality</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <section>
+    <div class="container">
+      <h2>8 Mandatory Controls</h2>
+      <p class="section-sub">Non-negotiable. Every mode, every story, every claim.</p>
+      <div class="control-grid">
+        <div class="control">
+          <h4>1. Hard-No-Bluff</h4>
+          <p>No Tier A source = no publication. Period.</p>
+        </div>
+        <div class="control">
+          <h4>2. Source Tiers</h4>
+          <p>A: publishable. B: leads only. C: signals, never cite.</p>
+        </div>
+        <div class="control">
+          <h4>3. Adversarial Verification</h4>
+          <p>4 gates: contestation, adverse search, counter-narrative, self-referential.</p>
+        </div>
+        <div class="control">
+          <h4>4. De-Escalation</h4>
+          <p>"Scheduled to" not "will." Fact/interpretation/allegation separated.</p>
+        </div>
+        <div class="control">
+          <h4>5. Suppression Ledger</h4>
+          <p>Dead stories with reopen triggers. A pipeline, not a graveyard.</p>
+        </div>
+        <div class="control">
+          <h4>6. Dynamic Filtering</h4>
+          <p>Tier-specific search domains and keep/discard criteria.</p>
+        </div>
+        <div class="control">
+          <h4>7. Blocked Source Intel</h4>
+          <p>Blocked results become leads, not dead ends.</p>
+        </div>
+        <div class="control">
+          <h4>8. Beat Memory</h4>
+          <p>Thread tracking across runs. Score trends. Trigger monitoring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="container">
+      <h2>Get Started in 30 Seconds</h2>
+      <p>Discover sources for your city, then run your first scan. No setup required beyond the discover command.</p>
+      <div class="cta-code">
+        /civic-scanner discover Austin, Texas
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Civic Source Scanner v2.0 &mdash; Built from 30+ civic newsroom prompt variants</p>
+    <p>Reviewed by 4 independent managing editors &mdash; Hard-No-Bluff Rule enforced</p>
+    <p style="margin-top: 12px; font-size: 0.8em; color: #999;">This system produces verified research scaffolding, not publishable journalism. Publication requires human reporting.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1800" font-family="Arial, sans-serif">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1F4E79"/>
+      <stop offset="100%" style="stop-color:#2E75B6"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F5E9"/>
+      <stop offset="100%" style="stop-color:#C8E6C9"/>
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0"/>
+      <stop offset="100%" style="stop-color:#FFE0B2"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFEBEE"/>
+      <stop offset="100%" style="stop-color:#FFCDD2"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="redarrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#C62828"/>
+    </marker>
+    <marker id="amberarrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#D4760A"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="1800" fill="#FAFAFA"/>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="1200" height="80" fill="url(#headerGrad)"/>
+  <text x="600" y="35" text-anchor="middle" fill="white" font-size="28" font-weight="bold">CIVIC SOURCE SCANNER v2.0</text>
+  <text x="600" y="60" text-anchor="middle" fill="#B0C4DE" font-size="16">Pipeline Architecture — 11 Agents, 6 Modes, 8 Mandatory Controls</text>
+
+  <!-- Source Tier Inputs -->
+  <rect x="80" y="110" width="200" height="60" rx="8" fill="#2E7D32" filter="url(#shadow)"/>
+  <text x="180" y="135" text-anchor="middle" fill="white" font-size="13" font-weight="bold">TIER A</text>
+  <text x="180" y="155" text-anchor="middle" fill="#C8E6C9" font-size="11">Official Records</text>
+
+  <rect x="320" y="110" width="200" height="60" rx="8" fill="#D4760A" filter="url(#shadow)"/>
+  <text x="420" y="135" text-anchor="middle" fill="white" font-size="13" font-weight="bold">TIER B</text>
+  <text x="420" y="155" text-anchor="middle" fill="#FFE0B2" font-size="11">Institutional (Leads)</text>
+
+  <rect x="560" y="110" width="200" height="60" rx="8" fill="#757575" filter="url(#shadow)"/>
+  <text x="660" y="135" text-anchor="middle" fill="white" font-size="13" font-weight="bold">TIER C</text>
+  <text x="660" y="155" text-anchor="middle" fill="#E0E0E0" font-size="11">Signals (Never Cite)</text>
+
+  <!-- Beat Memory (side) -->
+  <rect x="880" y="110" width="240" height="60" rx="8" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="1000" y="135" text-anchor="middle" fill="white" font-size="13" font-weight="bold">BEAT MEMORY</text>
+  <text x="1000" y="155" text-anchor="middle" fill="#B0C4DE" font-size="11">Thread tracking across runs</text>
+
+  <!-- Arrows from sources to Agent 1 -->
+  <line x1="180" y1="170" x2="420" y2="210" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="420" y1="170" x2="420" y2="210" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="660" y1="170" x2="420" y2="210" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Beat memory arrow -->
+  <line x1="880" y1="140" x2="640" y2="230" stroke="#1F4E79" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 1: News Aggregator -->
+  <rect x="220" y="210" width="400" height="55" rx="10" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="2" filter="url(#shadow)"/>
+  <text x="420" y="232" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B5E20">Agent 1: News Aggregator</text>
+  <text x="420" y="252" text-anchor="middle" font-size="11" fill="#388E3C">Scan sources, classify leads, blocked source intelligence</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="265" x2="420" y2="295" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 2: Story Expansion -->
+  <rect x="220" y="295" width="400" height="55" rx="10" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="2" filter="url(#shadow)"/>
+  <text x="420" y="317" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B5E20">Agent 2: Story Expansion</text>
+  <text x="420" y="337" text-anchor="middle" font-size="11" fill="#388E3C">Draft 400-800 word research scaffolding per lead</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="350" x2="420" y2="380" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 2.5: Newsworthiness Gate (KILL GATE) -->
+  <rect x="180" y="380" width="480" height="75" rx="10" fill="url(#amberGrad)" stroke="#D4760A" stroke-width="3" filter="url(#shadow)"/>
+  <text x="420" y="402" text-anchor="middle" font-size="14" font-weight="bold" fill="#E65100">Agent 2.5: NEWSWORTHINESS GATE</text>
+  <text x="420" y="420" text-anchor="middle" font-size="11" fill="#BF360C">Immediacy / Impact / Conflict / Novelty (1-5 each)</text>
+  <text x="420" y="438" text-anchor="middle" font-size="11" fill="#BF360C">Threshold: 10/20 | Produces: Reporter Task Memo + Visual Brief</text>
+  <!-- Kill arrow -->
+  <line x1="660" y1="417" x2="780" y2="417" stroke="#C62828" stroke-width="2" marker-end="url(#redarrow)"/>
+  <rect x="780" y="400" width="120" height="34" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="840" y="422" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">KILL / HOLD</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="455" x2="420" y2="485" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 3: Black Desk -->
+  <rect x="220" y="485" width="400" height="55" rx="10" fill="#E8EAF6" stroke="#3F51B5" stroke-width="2" filter="url(#shadow)"/>
+  <text x="420" y="507" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A237E">Agent 3: Black Desk</text>
+  <text x="420" y="527" text-anchor="middle" font-size="11" fill="#283593">Speculative signals (low confidence OK) — NEVER publishable</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="540" x2="420" y2="570" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 4: Adversarial Challenge (KILL GATE) -->
+  <rect x="180" y="570" width="480" height="75" rx="10" fill="url(#redGrad)" stroke="#C62828" stroke-width="3" filter="url(#shadow)"/>
+  <text x="420" y="592" text-anchor="middle" font-size="14" font-weight="bold" fill="#B71C1C">Agent 4: ADVERSARIAL CHALLENGE</text>
+  <text x="420" y="610" text-anchor="middle" font-size="11" fill="#C62828">4 Gates: Contestation → Adverse Search → Counter-Narrative → Self-Ref</text>
+  <text x="420" y="628" text-anchor="middle" font-size="11" fill="#C62828">Kill: counter-narrative more compelling = SUPPRESS</text>
+  <!-- Kill arrow -->
+  <line x1="660" y1="607" x2="780" y2="607" stroke="#C62828" stroke-width="2" marker-end="url(#redarrow)"/>
+  <rect x="780" y="590" width="120" height="34" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="840" y="612" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">SUPPRESS</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="645" x2="420" y2="675" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 5: Completeness Auditor (KILL GATE) -->
+  <rect x="180" y="675" width="480" height="65" rx="10" fill="url(#amberGrad)" stroke="#D4760A" stroke-width="3" filter="url(#shadow)"/>
+  <text x="420" y="697" text-anchor="middle" font-size="14" font-weight="bold" fill="#E65100">Agent 5: COMPLETENESS AUDITOR</text>
+  <text x="420" y="715" text-anchor="middle" font-size="11" fill="#BF360C">Attribution / Balance / Harm / Legal flag</text>
+  <text x="420" y="730" text-anchor="middle" font-size="11" fill="#BF360C">Kill: unattributable factual claim</text>
+  <!-- Kill arrow -->
+  <line x1="660" y1="707" x2="780" y2="707" stroke="#C62828" stroke-width="2" marker-end="url(#redarrow)"/>
+  <rect x="780" y="690" width="120" height="34" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="840" y="712" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">KILL</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="740" x2="420" y2="770" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 6: First Amendment Counsel -->
+  <rect x="220" y="770" width="400" height="50" rx="10" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="2" filter="url(#shadow)"/>
+  <text x="420" y="792" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B5E20">Agent 6: First Amendment Counsel</text>
+  <text x="420" y="808" text-anchor="middle" font-size="11" fill="#388E3C">Legal risk assessment (honest, not rubber-stamped)</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="820" x2="420" y2="850" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 7: Plain-Language Translator -->
+  <rect x="220" y="850" width="400" height="50" rx="10" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="2" filter="url(#shadow)"/>
+  <text x="420" y="872" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B5E20">Agent 7: Plain-Language Translator</text>
+  <text x="420" y="888" text-anchor="middle" font-size="11" fill="#388E3C">8th grade reading level — newsletters + social</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="900" x2="420" y2="930" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 7.5: Distribution Packager -->
+  <rect x="220" y="930" width="400" height="50" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="2" filter="url(#shadow)"/>
+  <text x="420" y="952" text-anchor="middle" font-size="14" font-weight="bold" fill="#0D47A1">Agent 7.5: Distribution Packager</text>
+  <text x="420" y="968" text-anchor="middle" font-size="11" fill="#1565C0">SEO / Social / Newsletter / Email subjects</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="980" x2="420" y2="1010" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 8: Source Hygiene + Originality (KILL/HOLD GATE) -->
+  <rect x="180" y="1010" width="480" height="75" rx="10" fill="url(#redGrad)" stroke="#C62828" stroke-width="3" filter="url(#shadow)"/>
+  <text x="420" y="1032" text-anchor="middle" font-size="14" font-weight="bold" fill="#B71C1C">Agent 8: SOURCE HYGIENE + ORIGINALITY</text>
+  <text x="420" y="1050" text-anchor="middle" font-size="11" fill="#C62828">Tier C contamination | Headline audit | 3-layer plagiarism check</text>
+  <text x="420" y="1068" text-anchor="middle" font-size="11" fill="#C62828">Kill: Tier C in attribution | Hold: originality FAIL</text>
+  <!-- Kill arrow -->
+  <line x1="660" y1="1042" x2="780" y2="1042" stroke="#C62828" stroke-width="2" marker-end="url(#redarrow)"/>
+  <rect x="780" y="1025" width="120" height="34" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="840" y="1047" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">KILL / HOLD</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="1085" x2="420" y2="1115" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Agent 9: Story Research -->
+  <rect x="220" y="1115" width="400" height="50" rx="10" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="2" filter="url(#shadow)"/>
+  <text x="420" y="1137" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B5E20">Agent 9: Story Research &amp; Writing</text>
+  <text x="420" y="1153" text-anchor="middle" font-size="11" fill="#388E3C">Additional deep-dive if needed</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="1165" x2="420" y2="1195" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Beat Memory Update -->
+  <rect x="220" y="1195" width="400" height="50" rx="10" fill="#E8EAF6" stroke="#3F51B5" stroke-width="2" filter="url(#shadow)"/>
+  <text x="420" y="1217" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A237E">Beat Memory Update</text>
+  <text x="420" y="1233" text-anchor="middle" font-size="11" fill="#283593">Write threads, scores, suppression triggers to JSON</text>
+  <!-- Arrow to beat memory box -->
+  <line x1="620" y1="1220" x2="880" y2="140" stroke="#3F51B5" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowhead)"/>
+
+  <!-- Arrow to outputs -->
+  <line x1="420" y1="1245" x2="420" y2="1285" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Output Section -->
+  <rect x="100" y="1285" width="640" height="120" rx="12" fill="url(#headerGrad)" filter="url(#shadow)"/>
+  <text x="420" y="1315" text-anchor="middle" fill="white" font-size="16" font-weight="bold">REPORT OUTPUT (.docx)</text>
+  <text x="420" y="1340" text-anchor="middle" fill="#B0C4DE" font-size="13">Section A: Editorial Dashboard (2-3 pages)</text>
+  <text x="420" y="1360" text-anchor="middle" fill="#B0C4DE" font-size="13">Section B: Verification Appendix (full agent output)</text>
+  <text x="420" y="1380" text-anchor="middle" fill="#B0C4DE" font-size="13">Community Engagement: Tip Prompts + Trust Dashboard + Pulse Check</text>
+
+  <!-- Mandatory Controls sidebar -->
+  <rect x="880" y="210" width="240" height="360" rx="10" fill="#F5F5F5" stroke="#1F4E79" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1000" y="235" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F4E79">MANDATORY CONTROLS</text>
+  <text x="905" y="260" font-size="11" fill="#333">1. Hard-No-Bluff Rule</text>
+  <text x="905" y="280" font-size="11" fill="#333">2. Source Tier Classification</text>
+  <text x="905" y="300" font-size="11" fill="#333">3. Adversarial Verification</text>
+  <text x="905" y="320" font-size="11" fill="#333">4. De-Escalation Controls</text>
+  <text x="905" y="340" font-size="11" fill="#333">5. Suppression Ledger</text>
+  <text x="905" y="360" font-size="11" fill="#333">6. Dynamic Search Filtering</text>
+  <text x="905" y="380" font-size="11" fill="#333">7. Blocked Source Intel</text>
+  <text x="905" y="400" font-size="11" fill="#333">8. Beat Memory Protocol</text>
+
+  <!-- Severity Legend -->
+  <rect x="880" y="600" width="240" height="140" rx="10" fill="#F5F5F5" stroke="#1F4E79" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1000" y="625" text-anchor="middle" font-size="14" font-weight="bold" fill="#1F4E79">SEVERITY CODING</text>
+  <rect x="905" y="640" width="16" height="16" rx="3" fill="#2E7D32"/>
+  <text x="930" y="653" font-size="12" fill="#333">GREEN — clean pass</text>
+  <rect x="905" y="663" width="16" height="16" rx="3" fill="#D4760A"/>
+  <text x="930" y="676" font-size="12" fill="#333">AMBER — contested</text>
+  <rect x="905" y="686" width="16" height="16" rx="3" fill="#C62828"/>
+  <text x="930" y="699" font-size="12" fill="#333">RED — killed/suppressed</text>
+  <rect x="905" y="709" width="16" height="16" rx="3" fill="#757575"/>
+  <text x="930" y="722" font-size="12" fill="#333">GRAY — held</text>
+
+  <!-- Suppression Ledger -->
+  <rect x="780" y="1285" width="320" height="120" rx="12" fill="#F5F5F5" stroke="#C62828" stroke-width="2" filter="url(#shadow)"/>
+  <text x="940" y="1315" text-anchor="middle" font-size="14" font-weight="bold" fill="#C62828">SUPPRESSION LEDGER</text>
+  <text x="940" y="1340" text-anchor="middle" font-size="11" fill="#666">Killed stories with reopen triggers</text>
+  <text x="940" y="1360" text-anchor="middle" font-size="11" fill="#666">Monitored each run</text>
+  <text x="940" y="1380" text-anchor="middle" font-size="11" fill="#666">"A pipeline, not a graveyard"</text>
+
+  <!-- Footer -->
+  <rect x="0" y="1440" width="1200" height="50" fill="url(#headerGrad)"/>
+  <text x="600" y="1470" text-anchor="middle" fill="white" font-size="14">Civic Source Scanner v2.0 — Verified Research Scaffolding for Civic Newsrooms</text>
+</svg>

@@ -1,0 +1,140 @@
+{
+  "city": "longmont",
+  "state": "colorado",
+  "lastRun": "2026-03-29",
+  "runCount": 2,
+  "threads": {
+    "rcv-ballot-measure": {
+      "headline": "RCV Study Session Draws Strong Support; Ballot Measure Path Taking Shape",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 17},
+        {"date": "2026-03-29", "status": "advanced", "score": 16}
+      ],
+      "severityHistory": ["AMBER", "AMBER"],
+      "keyChanges": [
+        "2026-03-29: First appearance. Study session March 3. 17/20 public support. ~1000 petition signatures targeted. HB 21-1071 July 1 legal framework. Prop 131 rejected statewide.",
+        "2026-03-29 (run 2): No new facts. Novelty score decayed 5→4. Score 17→16. Need: petition update, council action, retreat outcomes."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null,
+      "tierASources": ["longmontcolorado.gov/government/city-council-meetings/"]
+    },
+    "transit-hub-1st-main": {
+      "headline": "Longmont Moves Forward on Downtown Transit Hub and FRCC Campus at 1st & Main",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 18},
+        {"date": "2026-03-29", "status": "advanced", "score": 17}
+      ],
+      "severityHistory": ["AMBER", "AMBER"],
+      "keyChanges": [
+        "2026-03-29: First appearance. $4M TOCI + $16.4M RTD + $9M land. FRCC campus partnership. 600 parking, 10 bus bays, 300 units. Construction start Q1 2026. BRT to Boulder timeline slipping 2026→2027→2028.",
+        "2026-03-29 (run 2): Coffman Street mobility improvements nearing completion (related infrastructure). No new construction milestone confirmed. Novelty decayed 5→4."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null,
+      "tierASources": ["longmontcolorado.gov/news/longmont-council-to-consider-agreements-advancing-innovative-urban-downtown-campus-and-transit-hub-at-1st-and-main/"]
+    },
+    "water-infrastructure-cost-overruns": {
+      "headline": "Longmont Raises Water Rates as Nelson-Flanders Expansion Costs Nearly Double",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 18},
+        {"date": "2026-03-29", "status": "advanced", "score": 18}
+      ],
+      "severityHistory": ["AMBER", "AMBER"],
+      "keyChanges": [
+        "2026-03-29: First appearance. 9.7% rate increase effective Jan 1 2026. Nelson-Flanders $50M→$80-100M. 58% material cost escalation. Construction halted→2029. $147M revenue bonds needed.",
+        "2026-03-29 (run 2): NEW — Water Advisory Board developing 5-year rolling average rate methodology tied to construction cost index. Spring runoff risk flagged; April/May data will drive conservation decisions. Score sustained at 18."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null,
+      "tierASources": ["longmontcolorado.gov/water/water-resources-supply/nelson-flanders-water-treatment-plant-expansion/"]
+    },
+    "beauprez-farms-annexation": {
+      "headline": "Developer Proposes Annexing 58 Acres of Farmland Into Longmont",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 13},
+        {"date": "2026-03-29", "status": "advanced", "score": 12}
+      ],
+      "severityHistory": ["GREEN", "GREEN"],
+      "keyChanges": [
+        "2026-03-29: First appearance. Maple Leaf Investments. MU-C 27ac + R-MN 31.4ac. In review since March 2024.",
+        "2026-03-29 (run 2): No new facts. Novelty decayed 3→2. Score 13→12. Approaching hold threshold. Need: Planning Commission date, neighborhood meeting feedback, unit count."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null,
+      "tierASources": ["longmontcolorado.gov/wp-content/uploads/2026/02/ADL20260217.pdf"]
+    },
+    "front-range-passenger-rail": {
+      "headline": "Front Range Passenger Rail Targets Denver-to-Longmont Starter Phase by 2029",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 2,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 16},
+        {"date": "2026-03-29", "status": "advanced", "score": 16}
+      ],
+      "severityHistory": ["AMBER", "AMBER"],
+      "keyChanges": [
+        "2026-03-29: First appearance. Town hall April 8. $800-900M. Denver-to-Longmont. Possible Nov 2026 ballot.",
+        "2026-03-29 (run 2): Denver town hall held March 19; CO Springs March 27. District naming vote underway. August ballot decision deadline confirmed. Score sustained at 16."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null,
+      "tierASources": ["longmontcolorado.gov/news/this-week-in-longmont-march-16-march-22-2026/", "ridethefrontrange.com"]
+    },
+    "kalkhofer-ward-3-acclamation": {
+      "headline": "Alex Kalkhofer Elected to Ward 3 by Acclamation — Special Election Canceled",
+      "firstSeen": "2026-03-29",
+      "lastSeen": "2026-03-29",
+      "appearances": 1,
+      "statusHistory": [
+        {"date": "2026-03-29", "status": "advanced", "score": 14}
+      ],
+      "severityHistory": ["GREEN"],
+      "keyChanges": [
+        "2026-03-29: First appearance. Only one candidate filed for Ward 3 special election (March 3). Election canceled per Colorado law. Fills vacancy from Susie Hidalgo-Fahring (elected mayor Nov 2025). Term ends Dec 2027."
+      ],
+      "suppressed": false,
+      "reopenTrigger": null,
+      "tierASources": ["longmontcolorado.gov/news/alex-kalkhofer-elected-to-longmont-city-council-ward-3/"]
+    }
+  },
+  "suppressionLedger": [
+    {
+      "threadId": "building-codes-may-adoption",
+      "headline": "2024 Building Codes Adoption Targeted by May 1, 2026",
+      "dateSuppressed": "2026-03-29",
+      "reason": "Newsworthiness 8/20 — no conflict (1), low impact (2), routine code update",
+      "reopenTrigger": "Builder publicly objects to cost impact, council debates local amendments, or a specific construction project is affected by the timeline",
+      "reopened": false,
+      "triggerCheckHistory": [
+        "2026-03-29 (run 2): PARTIALLY MET — CO Association of Home Builders objects to state energy code (statewide, not Longmont-specific). Public meetings on code amendments upcoming. FLAGGED FOR EDITOR REVIEW."
+      ]
+    }
+  ],
+  "sourcePerformance": {
+    "longmontcolorado.gov": {"leadsGenerated": 17, "storiesAdvanced": 11, "lastSeen": "2026-03-29"},
+    "longmont.primegov.com": {"leadsGenerated": 3, "storiesAdvanced": 1, "lastSeen": "2026-03-29"},
+    "bouldercounty.gov": {"leadsGenerated": 1, "storiesAdvanced": 0, "lastSeen": "2026-03-29"},
+    "svvsd.org": {"leadsGenerated": 1, "storiesAdvanced": 0, "lastSeen": "2026-03-29"},
+    "ridethefrontrange.com": {"leadsGenerated": 2, "storiesAdvanced": 2, "lastSeen": "2026-03-29"}
+  },
+  "demotedThreads": [
+    {"threadId": "council-retreat-march-2026", "headline": "City Council Retreat March 27-28", "reason": "Monitoring only"},
+    {"threadId": "city-flag-review", "headline": "City Flag Review — 50-Year Symbol", "reason": "Soft feature"},
+    {"threadId": "longmont-155th-anniversary", "headline": "Longmont 155th Anniversary Events", "reason": "Community interest"},
+    {"threadId": "penny-rounding", "headline": "Longmont Rounds Cash to Nearest Nickel (Penny Phase-Out)", "reason": "Score 6/20, low impact"}
+  ]
+}

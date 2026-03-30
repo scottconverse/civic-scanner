@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Pipeline data schema for civic-scanner build-report.js. The pipeline MUST produce a JSON file matching this schema. The build script validates against these requirements before generating the .docx.",
+  "type": "object",
+  "required": ["meta", "stats", "agent1_leads", "agent2_stories", "agent25_gate", "agent3_blackDesk", "agent4_adversarial", "agent5_completeness", "agent6_legal", "agent7_plainLanguage", "agent75_distribution", "agent8_hygiene", "heldStories", "trustDashboard"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["city", "state", "date", "runNumber", "version"],
+      "properties": {
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "runNumber": { "type": "integer", "minimum": 1 },
+        "version": { "type": "string" }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "required": ["scanned", "advanced", "held", "killed", "suppressed", "tierACounts", "tierBCounts", "tierCCounts"],
+      "properties": {
+        "scanned": { "type": "integer" },
+        "advanced": { "type": "integer" },
+        "held": { "type": "integer" },
+        "killed": { "type": "integer" },
+        "suppressed": { "type": "integer" },
+        "tierACounts": { "type": "integer" },
+        "tierBCounts": { "type": "integer" },
+        "tierCCounts": { "type": "integer" }
+      }
+    },
+    "beatContext": {
+      "type": "object",
+      "properties": { "text": { "type": "string" } }
+    },
+    "sourceAccessLimitations": {
+      "type": "object",
+      "properties": {
+        "blockedDomains": { "type": "string" },
+        "manualReviewItems": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "agent1_leads": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "tier", "headline", "details"],
+        "properties": {
+          "id": { "type": "string" },
+          "tier": { "type": "string", "enum": ["A", "B", "C"] },
+          "headline": { "type": "string" },
+          "source": { "type": "string" },
+          "url": { "type": "string" },
+          "confidence": { "type": "string" },
+          "action": { "type": "string" },
+          "beat": { "type": "string" },
+          "details": { "type": "string", "minLength": 20 }
+        }
+      }
+    },
+    "agent2_stories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "headline", "draft"],
+        "properties": {
+          "id": { "type": "string" },
+          "headline": { "type": "string" },
+          "draft": { "type": "string", "minLength": 400, "$comment": "Full 400-800 word story draft. NOT a summary." },
+          "sources": { "type": "string" }
+        }
+      }
+    },
+    "agent25_gate": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "headline", "immediacy", "impact", "conflict", "novelty", "total", "decision"],
+        "properties": {
+          "id": { "type": "string" },
+          "headline": { "type": "string" },
+          "immediacy": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "immediacyReason": { "type": "string" },
+          "impact": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "impactReason": { "type": "string" },
+          "conflict": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "conflictReason": { "type": "string" },
+          "novelty": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "noveltyReason": { "type": "string" },
+          "total": { "type": "integer", "minimum": 4, "maximum": 20 },
+          "decision": { "type": "string", "enum": ["ADVANCE", "HOLD", "DEMOTE"] },
+          "reasoning": { "type": "string" },
+          "beat": { "type": "string" },
+          "headlineAudit": { "type": "string" },
+          "legalRisk": { "type": "string" },
+          "reporterTaskMemo": { "type": "string", "$comment": "Confirmed / Missing / Calls / Docs / What Kills This Story" },
+          "visualDirection": { "type": "string", "$comment": "FULL visual direction brief with generation prompts. NOT a one-liner." }
+        }
+      }
+    },
+    "agent3_blackDesk": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["signalId", "confidence", "title", "speculativeAngle", "investigationQuestion"],
+        "properties": {
+          "signalId": { "type": "string" },
+          "confidence": { "type": "number" },
+          "title": { "type": "string" },
+          "speculativeAngle": { "type": "string", "minLength": 50, "$comment": "Full speculative reasoning, not a one-liner" },
+          "connections": { "type": "string" },
+          "investigationQuestion": { "type": "string" }
+        }
+      }
+    },
+    "agent4_adversarial": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "headline", "gate1", "gate2", "gate3_counterNarrative", "severity", "verdict"],
+        "properties": {
+          "id": { "type": "string" },
+          "headline": { "type": "string" },
+          "gate1": { "type": "string", "minLength": 50 },
+          "gate2": { "type": "string", "minLength": 50 },
+          "gate3_counterNarrative": { "type": "string", "minLength": 100, "$comment": "FULL counter-narrative. The strongest possible opposing argument." },
+          "gate4": { "type": "string" },
+          "severity": { "type": "string" },
+          "verdict": { "type": "string" }
+        }
+      }
+    },
+    "agent5_completeness": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "headline", "attribution", "balance", "harm", "legalFlag", "verdict"],
+        "properties": {
+          "id": { "type": "string" },
+          "headline": { "type": "string" },
+          "attribution": { "type": "string" },
+          "balance": { "type": "string" },
+          "harm": { "type": "string" },
+          "legalFlag": { "type": "string" },
+          "verdict": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "agent6_legal": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "headline", "riskLevel", "analysis", "recommendation"],
+        "properties": {
+          "id": { "type": "string" },
+          "headline": { "type": "string" },
+          "threatType": { "type": "string" },
+          "doctrine": { "type": "string" },
+          "riskLevel": { "type": "string" },
+          "analysis": { "type": "string", "minLength": 100, "$comment": "Per-story legal analysis. NOT a summary paragraph." },
+          "recommendation": { "type": "string" }
+        }
+      }
+    },
+    "agent7_plainLanguage": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "headline", "rewrite"],
+        "properties": {
+          "id": { "type": "string" },
+          "headline": { "type": "string" },
+          "rewrite": { "type": "string", "minLength": 150, "$comment": "Full 150-200+ word plain-language rewrite. NOT a 3-sentence summary." }
+        }
+      }
+    },
+    "agent75_distribution": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "headline", "seo", "twitter", "facebook", "linkedin", "nextdoor", "newsletter", "emailSubjects"],
+        "properties": {
+          "id": { "type": "string" },
+          "headline": { "type": "string" },
+          "seo": { "type": "string" },
+          "twitter": { "type": "string" },
+          "hashtags": { "type": "string" },
+          "facebook": { "type": "string" },
+          "linkedin": { "type": "string" },
+          "nextdoor": { "type": "string" },
+          "newsletter": { "type": "string" },
+          "emailSubjects": { "$comment": "3 email subject line options", "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }] }
+        }
+      }
+    },
+    "agent8_hygiene": {
+      "type": "object",
+      "required": ["sourceChecks", "headlineAudit", "originalityCheck"],
+      "properties": {
+        "sourceChecks": { "type": "string" },
+        "headlineAudit": { "type": "string" },
+        "originalityCheck": { "type": "string" }
+      }
+    },
+    "agent9_research": {
+      "type": "object",
+      "properties": { "text": { "type": "string" } }
+    },
+    "heldStories": { "type": "array" },
+    "suppressionLedger": { "type": "array" },
+    "upcomingMeetings": { "type": "array", "items": { "type": "string" } },
+    "trustDashboard": { "type": "object" }
+  }
+}
