@@ -2079,7 +2079,8 @@ exists and MUST be used for every report:
 
 **Process:**
 1. During the pipeline, write ALL agent output to a JSON data file conforming to
-   `report-schema.json`. Save as `pipeline-data-{city}-{date}.json` in the working directory.
+   `report-schema.json`. Save as `pipeline-data-{city}-{date}.json` in
+   `~/Desktop/CivicScanner/` (created automatically on first run).
    Every field is MANDATORY. The build script will reject incomplete data.
 2. Run: `node C:\Users\scott\.claude\skills\civic-scanner\build-report.js pipeline-data-{city}-{date}.json`
 3. The script validates the JSON (errors if fields are missing or too short),

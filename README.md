@@ -355,6 +355,8 @@ Full, unabridged agent output:
 - Full distribution packages (all platforms)
 - Originality verification and source hygiene results
 
+**Output location:** `~/Desktop/CivicScanner/` — created automatically on first run. Works on any machine without hardcoded paths.
+
 **Validation:** After generation, the script checks total content > 15,000 characters and reports the result. No more skeleton reports.
 
 ---

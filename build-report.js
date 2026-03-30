@@ -8,6 +8,9 @@
  * Usage:
  *   node build-report.js <pipeline-data.json> [output-dir]
  *
+ * Default output-dir: C:\Users\scott\OneDrive\Desktop\CivicScanner\
+ * Pipeline JSON data files are also saved there.
+ *
  * The JSON file must conform to the schema in report-schema.json.
  * If validation fails, the script exits with an error listing what's missing.
  *
@@ -45,8 +48,16 @@ const RED   = "C62828";
 const GRAY  = "757575";
 
 // ─── CLI args ───────────────────────────────────────────────────────
+const os = require("os");
 const jsonPath = process.argv[2];
-const outputDir = process.argv[3] || process.cwd();
+const DEFAULT_OUTPUT_DIR = path.join(os.homedir(), "Desktop", "CivicScanner");
+const outputDir = process.argv[3] || DEFAULT_OUTPUT_DIR;
+
+// Create output directory if it doesn't exist
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true });
+  console.log(`Created output directory: ${outputDir}`);
+}
 
 if (!jsonPath) {
   console.error("Usage: node build-report.js <pipeline-data.json> [output-dir]");
