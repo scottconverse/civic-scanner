@@ -4,7 +4,7 @@
 
 Built as a Claude Code skill. One prompt, 11 agents, 6 modes, zero hallucinated civic facts.
 
-**v2.2** — Enhanced daily scan (Agents 1→2→2.5→7), permanent data-driven report build script.
+**v2.3** — Adversarial hardening: Grounding Delta, falsification search, steel-manning, SLAPP detection, state-drift linter, stress tests, Receipts.
 
 ---
 
@@ -163,9 +163,13 @@ Three agents can kill or hold stories. Every pipeline run reports its kill count
 | Agent | Kill Condition | Action |
 |-------|---------------|--------|
 | Agent 2.5 | Score < 10/20 | HOLD (7-9) or DEMOTE (≤6) |
-| Agent 4 | Counter-narrative more compelling | SUPPRESS (red) |
+| Agent 4 | Grounding Delta negative (counter has more Tier A) | SUPPRESS (red) — automatic |
+| Agent 4 | Steel-man defense compelling + unaccounted for | SUPPRESS (red) |
+| Agent 4 | Falsification search finds official denial/retraction | SUPPRESS (red) |
 | Agent 5 | Unattributable factual claim | KILL (red) |
-| Agent 8 | Tier C in attribution | KILL (red) |
+| Agent 6 | Fair Report Privilege chain broken on defamatory claim | AMBER — mandatory rewrite |
+| Agent 8 | Tier C in attribution (including laundered) | KILL (red) |
+| Agent 8 | State-drift: forbidden verb for source type | REJECT headline |
 | Agent 8 | Originality FAIL | HOLD for rewrite |
 
 ### Severity Coding
@@ -194,11 +198,11 @@ Every story gets a severity color that travels through the pipeline:
 | **B** | Newspapers, school district communications, institutional press releases | Leads only — must be corroborated by Tier A |
 | **C** | Reddit, Nextdoor, Facebook, YouTube comments, Twitter/X | Signals only — never quoted, cited, or referenced in published output |
 
-### 3. Adversarial Verification (4 Gates)
+### 3. Adversarial Verification (4 Gates + Grounding Delta)
 1. **Contestation** — Is anyone disagreeing?
-2. **Adverse Search** — Actively search for evidence AGAINST the story
-3. **Counter-Narrative** — Write the strongest opposing argument
-4. **Self-Referential** — Extra scrutiny for AI/journalism/tech/media stories
+2. **Adverse Search + Falsification** — Search for evidence AGAINST + mandatory exculpatory search ("denied" OR "retracted" OR "dismissed")
+3. **Counter-Narrative + Grounding Delta** — Write strongest opposing argument; count Tier A citations in lead vs. counter. If counter has more Tier A sources → auto-SUPPRESS (RED).
+4. **Steel-Manning + Self-Referential** — Generate subject's best legal/procedural defense before GREEN. Extra scrutiny for AI/journalism/tech/media stories.
 
 ### 4. De-Escalation Controls
 - "scheduled to" not "will"
@@ -373,6 +377,7 @@ Full, unabridged agent output:
 | v2.0 | 2026-03-29 | Architecture review, documentation package, clean release |
 | v2.1 | 2026-03-29 | Reddit tiered access, smart source lists, YouTube/video discovery expansion, appendices A+B |
 | v2.2 | 2026-03-30 | Enhanced daily scan (Agents 1→2→2.5→7), permanent data-driven report build script, JSON pipeline data schema |
+| v2.3 | 2026-03-30 | Adversarial hardening: Grounding Delta, falsification search, steel-manning, vulnerability classification, SLAPP detection, state-drift linter, stress test suite, Receipts |
 
 ---
 
@@ -380,7 +385,7 @@ Full, unabridged agent output:
 
 ```
 civic-scanner/
-  SKILL.md                              Main skill definition (v2.2)
+  SKILL.md                              Main skill definition (v2.3)
   build-report.js                       Permanent .docx report builder (DO NOT recreate)
   report-schema.json                    JSON schema for pipeline data validation
   README.md                             This file

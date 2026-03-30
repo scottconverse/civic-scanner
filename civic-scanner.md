@@ -12,7 +12,7 @@ This system produces **research scaffolding, not published stories.** Publicatio
 
 | Mode | What It Does | When to Use |
 |------|-------------|-------------|
-| `daily-scan` | Scan sources, produce prioritized lead list | Every morning |
+| `daily-scan` | Scored morning briefing: expansions, scores, summaries (Agents 1→2→2.5→7) | Every morning |
 | `full-pipeline` | 9+ agent pipeline with task memos | Producing verified story packages |
 | `verify-only` | Adversarial verification of a claim | Fact-checking a specific story |
 | `research` | Deep-dive on a topic | Investigating a lead |
@@ -24,22 +24,25 @@ This system produces **research scaffolding, not published stories.** Publicatio
 1. **News Aggregator** — scan sources, 15-25 raw leads
 2. **Story Expansion** — draft leads into 400-800 word research scaffolding
 2.5. **Newsworthiness Gate** — score Immediacy/Impact/Conflict/Novelty; can KILL/DEMOTE; produces Reporter Task Memos
-3. **Black Desk** — speculative signal hunting (low confidence OK)
-4. **Adversarial Challenge** — 4-gate verification; kill condition: counter-narrative more compelling
+3. **Black Desk** — speculative signal hunting with mandatory `vulnerability_type` classification and Agent 4 hand-off targets
+4. **Adversarial Challenge (The Prosecutor)** — 4-gate verification + Grounding Delta (auto-suppress if counter has more Tier A) + falsification search + steel-manning
 5. **Completeness Auditor** — attribution, balance, harm; kill condition: unattributable claim
-6. **First Amendment Counsel** — honest legal risk assessment
+6. **First Amendment Counsel (The Counselor)** — legal risk + SLAPP detection for private parties + Fair Report Privilege chain verification
 7. **Plain-Language Translator** — 8th grade summaries for newsletters/social
-7.5. **Distribution Packager** — SEO, social media headlines, newsletter briefs, email subjects per story
-8. **Source Hygiene + Headline Audit + Originality** — contamination check + status verb validation + 3-layer plagiarism check; kill: Tier C in attribution; hold: originality FAIL
+7.5. **Distribution Packager** — SEO, social media, newsletter briefs, email subjects + Receipts (Tier A source IDs) per story
+8. **Source Hygiene + State-Drift Linter + Originality** — source laundering 3-step trace + hard-coded verb-tier constraints + 3-layer plagiarism check; kill: Tier C in attribution; reject: forbidden verb for source type; hold: originality FAIL
 9. **Story Research & Writing** — standalone deep-dive
 
 ## Core Controls
 
 - **Hard-No-Bluff Rule** — no Tier A source = no publication
 - **3-Tier Source Classification** — A (official records), B (leads only), C (signals, never cite)
-- **4-Gate Adversarial Verification** — contestation, adverse search, counter-narrative, self-referential
+- **4-Gate Adversarial Verification + Grounding Delta** — contestation, adverse search + falsification, counter-narrative + Tier A citation count, steel-manning + self-referential
 - **Newsworthiness Gate** — 4 dimensions, threshold 10/20, can kill editorially thin stories
 - **Reporter Task Memo** — Confirmed, Missing, Calls, Documents, Falsify, Visuals
+- **SLAPP Detection** — identifies high-risk private-party plaintiffs; checks Fair Report Privilege chain
+- **State-Drift Linter** — hard-coded verb constraints by source document type (6 types, forbidden/required verbs)
+- **Attribution Transparency (Receipts)** — every distribution package lists specific Tier A document IDs
 - **Beat Memory** — persistent story thread tracking across runs with score trends, status history, and suppression trigger monitoring (90-day retention, auto-save, file-backed)
 - **Blocked Source Intelligence** — blocked search results become leads, not dead ends
 - **City Discovery** — auto-builds source registry for any US municipality
@@ -52,6 +55,21 @@ This system produces **research scaffolding, not published stories.** Publicatio
 - **YouTube/Video Discovery** — city, county, school, public access TV, boards/commissions channels
 
 ## Recent Features
+
+### v2.3: Adversarial Hardening — Kill Over Publish
+- **Grounding Delta** — quantitative kill metric: if counter-narrative has more Tier A citations than lead, auto-SUPPRESS
+- **Falsification Search** — mandatory exculpatory search operators for every advancing story
+- **Steel-Manning** — must generate subject's best defense before GREEN status
+- **Vulnerability Classification** — Agent 3 classifies why each signal is weak (7 types)
+- **SLAPP Detection** — identifies high-risk private plaintiffs; checks Fair Report Privilege chain
+- **State-Drift Linter** — hard-coded verb constraints by source document type
+- **Source Laundering Hardened** — 3-step trace protocol for every Tier B citation
+- **Stress Test Suite** — 3 synthetic validation prompts testing kill gates
+- **Receipts** — Tier A document IDs in every distribution package
+
+### v2.2: Enhanced Daily Scan + Permanent Report Build Script
+- Daily scan now uses Agents 1→2→2.5→7 (scored briefing, not just headline list)
+- Permanent data-driven .docx report build script (build-report.js + report-schema.json)
 
 ### v2.1: Reddit Access + Smart Source Lists + YouTube Discovery Expansion
 - **Reddit Tiered Access Protocol** — 4-tier fallback: (1) direct access via patched Chrome extension, (2) Google index fallback with `site:reddit.com` queries, (3) manual review checklist for reporter, (4) reference to Appendix A fix. Multi-subreddit scanning: city sub + state sub + topic subs discovered through story connections.
@@ -94,7 +112,9 @@ Blocked search results become leads, not dead ends. Titles/snippets/dates extrac
 
 ```
 civic-scanner/
-  SKILL.md                              Main skill definition (v2.1)
+  SKILL.md                              Main skill definition (v2.3)
+  build-report.js                       Permanent .docx report builder
+  report-schema.json                    Pipeline data validation schema
   README.md                             Comprehensive system documentation
   civic-scanner.md                      Quick reference (this file)
   RELEASE_NOTES.md                      Detailed version history
@@ -109,9 +129,9 @@ civic-scanner/
     {city}-proposed-sources.json        Smart source list proposals (runtime)
     {city}-reddit-signals.md            Reddit Tier C intelligence (runtime)
   docs/
-    CivicScanner-Documentation-v2.0.docx  Professional formatted documentation
+    CivicScanner-Documentation-v2.3.docx  Professional formatted documentation
     index.html                          GitHub Pages landing page
-  v1.0/ - v2.0/                         Archived versions
+  v1.0/ - v2.1/                         Archived versions
 ```
 
 ## Key Gotchas

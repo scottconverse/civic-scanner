@@ -483,7 +483,7 @@ Produce the daily briefing in this format:
 
 ```
 === DAILY BRIEFING: {City, State} ===
-Date: {today} | Run #{N} | Scanner v2.1
+Date: {today} | Run #{N} | Scanner v2.3
 Sources checked: {N Tier A} / {N Tier B} / {N Tier C}
 Leads found: {N Tier A}, {N Tier B}, {N Tier C}
 Beat memory: {summary or "None (first run)"}
@@ -525,7 +525,7 @@ Beat memory: {summary or "None (first run)"}
 {table}
 
 ---
-Scanner: Civic Source Scanner v2.1
+Scanner: Civic Source Scanner v2.3
 ```
 
 ### Beat Memory Update
@@ -1190,7 +1190,7 @@ What the editor reads at the morning meeting.
 ```
 === Civic Reporting Package: {City} ===
 Date: {today}
-Pipeline: Full (9+ agents) | Scanner: v2.0
+Pipeline: Full (9+ agents) | Scanner: v2.3
 
 PIPELINE STATS:
   Stories scanned:   {N}

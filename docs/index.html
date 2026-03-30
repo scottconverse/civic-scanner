@@ -311,7 +311,7 @@
       <div>
         <span class="badge">Claude Code Skill</span>
         <span class="badge">Any US Municipality</span>
-        <span class="badge">v2.2</span>
+        <span class="badge">v2.3</span>
       </div>
       <div class="stats">
         <div class="stat">
@@ -406,7 +406,7 @@
           <div class="step-dot red">4</div>
           <div class="step-content">
             <h4>Adversarial Challenge <span class="kill-badge">CAN SUPPRESS</span></h4>
-            <p>4-gate verification: Contestation, Adverse Search, Counter-Narrative, Self-Referential Warning.</p>
+            <p>4-gate verification + Grounding Delta (auto-suppress if counter has more Tier A). Falsification search. Steel-manning.</p>
           </div>
         </div>
         <div class="pipeline-step">
@@ -420,7 +420,7 @@
           <div class="step-dot green">6</div>
           <div class="step-content">
             <h4>First Amendment Counsel</h4>
-            <p>Legal risk assessment. Honest, not rubber-stamped.</p>
+            <p>Legal risk + SLAPP detection + Fair Report Privilege chain verification. Honest, not rubber-stamped.</p>
           </div>
         </div>
         <div class="pipeline-step">
@@ -440,8 +440,8 @@
         <div class="pipeline-step">
           <div class="step-dot red">8</div>
           <div class="step-content">
-            <h4>Source Hygiene + Originality <span class="kill-badge">CAN KILL/HOLD</span></h4>
-            <p>Tier C contamination, headline audit, 3-layer originality verification.</p>
+            <h4>Source Hygiene + State-Drift Linter <span class="kill-badge">CAN KILL/HOLD</span></h4>
+            <p>Tier C contamination, hard-coded verb-tier linter, source laundering trace, 3-layer originality check.</p>
           </div>
         </div>
         <div class="pipeline-step">
@@ -461,7 +461,7 @@
       <h2>Architecture Diagram</h2>
       <p class="section-sub">The full 11-agent pipeline with kill gates, mandatory controls, and feedback loops.</p>
       <div style="max-width: 100%; overflow-x: auto; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); padding: 16px;">
-        <img src="architecture.svg" alt="Civic Source Scanner v2.2 Pipeline Architecture Diagram" style="width: 100%; height: auto; min-width: 600px; display: block;">
+        <img src="architecture.svg" alt="Civic Source Scanner v2.3 Pipeline Architecture Diagram" style="width: 100%; height: auto; min-width: 600px; display: block;">
       </div>
     </div>
   </section>
@@ -596,7 +596,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>Civic Source Scanner v2.2 &mdash; Built from 30+ civic newsroom prompt variants</p>
+    <p>Civic Source Scanner v2.3 &mdash; Built from 30+ civic newsroom prompt variants</p>
     <p>Reviewed by 4 independent managing editors &mdash; Hard-No-Bluff Rule enforced</p>
     <p style="margin-top: 8px;">Tested: Fort Collins, Centennial, Colorado Springs, Boulder, Longmont (CO) &middot; Iowa City (IA)</p>
     <p style="margin-top: 12px; font-size: 0.8em; color: #999;">This system produces verified research scaffolding, not publishable journalism. Publication requires human reporting.</p>

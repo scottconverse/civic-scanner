@@ -1,5 +1,62 @@
 # Release Notes — civic-scanner skill
 
+## v2.3.0 — 2026-03-30
+
+### Adversarial Hardening — Kill Over Publish
+
+The system now prioritizes the Kill over the Publish to maintain institutional
+trust. Subjective kill conditions replaced with quantitative metrics. New
+mandatory checks at Agents 3, 4, 6, and 8.
+
+### Agent Changes
+
+**Agent 3 (Black Desk):**
+- Every signal now requires a `vulnerability_type` classification
+- 7 defined vulnerability types: single-source-anonymous, conflict-of-interest,
+  no-official-record, temporal-mismatch, amplification-pattern, hearsay-chain,
+  missing-counterparty
+- Each vulnerability generates a specific `Agent 4 target` for adversarial search
+
+**Agent 4 (Adversarial Challenge — The Prosecutor):**
+- **Grounding Delta:** Quantitative kill metric. Count Tier A citations in lead
+  vs. counter-narrative. If counter has more → auto-SUPPRESS (RED). No subjective
+  judgment — the numbers decide.
+- **Falsification Search:** Mandatory search with exculpatory operators:
+  `{topic} + "denied" OR "retracted" OR "correction" OR "dismissed" OR "refuted"`
+- **Steel-Manning:** Must generate the subject's best legal/procedural defense
+  before GREEN status can be issued. If the story doesn't account for it, cannot
+  be GREEN.
+- Three explicit kill conditions (any one triggers RED)
+
+**Agent 6 (First Amendment Counsel — The Counselor):**
+- **SLAPP Suit Detection:** Identifies high-risk plaintiffs (private developers,
+  non-elected officials). Checks state anti-SLAPP statutes.
+- **Fair Report Privilege Check:** Every defamatory allegation must trace to a
+  Tier A source (court filing, sworn testimony, government audit). If the chain
+  is broken → AMBER for Fact vs. Allegation rewriting.
+
+**Agent 8 (Source Hygiene — The Copy Chief):**
+- **State-Drift Linter:** Hard-coded verb constraints by source document type.
+  6 source types (proposed agenda, scheduled hearing, draft ordinance, recommended
+  budget, study session, filed application) with forbidden and required verb tables.
+- **Source Laundering Hardened:** 3-step trace protocol for every Tier B citation.
+  If the claim chain ends at Tier C, reclassify regardless of how many Tier B
+  outlets repeated it.
+
+### New: System Stress Test Suite
+
+Three synthetic validation prompts to verify kill gates work:
+1. **Plausible Fiction** (Agent 4) — leaked memo + blog claim → should auto-suppress
+2. **Legal/SLAPP Trap** (Agent 6) — private developer + Nextdoor "bribery" → should flag HIGH
+3. **State-Drift Linter** (Agent 8) — future agenda + past-tense headline → should reject
+
+### New: Attribution Transparency (Receipts)
+
+All distribution packages now include a "Receipts" section listing specific Tier A
+document IDs and URLs grounding each story. Reader-facing transparency.
+
+---
+
 ## v2.2.0 — 2026-03-30
 
 ### Enhanced Daily Scan + Permanent Report Build Script
