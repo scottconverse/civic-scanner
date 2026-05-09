@@ -1,10 +1,20 @@
-# Civic Source Scanner
+# Civic Scanner
 
-**Verified research scaffolding for civic newsrooms.** Scans public records, generates story leads, runs adversarial verification, and produces reporter-guiding intelligence — for any US municipality.
+> **Advanced civic signal detection and structured reporting for newsroom operators and power users**
 
-Built as a Claude Code skill. One prompt, 11 agents, 6 modes, zero hallucinated civic facts.
+Hard editorial gates, JSON report schema, publication-ready audit trails, and managing editor review. Runs inside Claude Code. Built for people who know what they're doing.
 
 **v2.3** — Adversarial hardening: Grounding Delta, falsification search, steel-manning, SLAPP detection, state-drift linter, stress tests, Receipts.
+
+---
+
+## Three ways to use the civic editorial system
+
+| | What it is | Best for |
+|---|---|---|
+| **[civic-newsroom](https://github.com/scottconverse/civic-newsroom)** | Nine editorial prompts you paste into any AI. No software, no setup. Built to newspaper standards. | Journalists, researchers, and anyone who wants newspaper-grade civic coverage from their browser |
+| **[civic-transparency-toolkit](https://github.com/scottconverse/civic-transparency-toolkit)** | Desktop app that runs the pipeline automatically | Residents, HOA boards, neighborhood newsletters, and community groups who want to know what's happening at city hall |
+| **civic-scanner** — you are here | Claude Code workflow with structured reports and hard editorial gates | Newsroom operators and power users who need structured intelligence reports and managing editor review |
 
 ---
 
@@ -29,6 +39,12 @@ The `docx` npm package is required for report generation:
 ```bash
 cd ~/Desktop/Claude  # or your working directory
 npm install docx
+```
+
+For fixture-only validation or operator dry runs, you can validate report JSON without generating a `.docx`:
+
+```bash
+node build-report.js --validate-only tests/fixtures/pipeline-data-valid.json
 ```
 
 Claude Code will auto-detect the skill on next launch.
@@ -336,6 +352,8 @@ Copy `references/source-template.md`, fill in your city's sources, save as `refe
 
 **Script:** `build-report.js` reads a JSON data file containing ALL agent output and generates the .docx. The JSON schema (`report-schema.json`) enforces completeness — the script rejects data with missing fields or content that's too short.
 
+**Safety guardrail:** report JSON must declare `meta.reportPurpose = "editorial-guidance"` and `meta.publicationReady = false`. This keeps the generated artifact framed as internal newsroom guidance, not publication-ready civic reporting. Use `node build-report.js --validate-only <pipeline-data.json>` to check fixtures or pipeline output without creating a document.
+
 **Section A: Editorial Dashboard (2-3 pages)**
 - Pipeline stats, beat context, source access limitations
 - Publishable stories table with severity, score, beat tracking
@@ -357,7 +375,7 @@ Full, unabridged agent output:
 
 **Output location:** `~/Desktop/CivicScanner/` — created automatically on first run. Works on any machine without hardcoded paths.
 
-**Validation:** After generation, the script checks total content > 15,000 characters and reports the result. No more skeleton reports.
+**Validation:** After generation, the script checks total content > 15,000 characters and reports the result. No more skeleton reports. In validate-only mode, the script exits after schema and guardrail checks so operators can smoke-test safe fixture data without needing `docx`.
 
 ---
 
