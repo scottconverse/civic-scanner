@@ -8,7 +8,11 @@ State the claim precisely, including who did what, when, and the stage of any pr
 
 ## `research {topic}`
 
-Find the original evidence chain and affected institutions or jurisdictions. Build a dated chronology and explain the event or policy mechanism, people affected, money or land involved, remaining decisions, and competing accounts. Deliver a research brief with verified facts, disputed claims, missing documents, accessible follow-up sources, interviews, and a falsification plan. Do not suggest formal records requests. If the topic involves a meeting, apply the meeting coverage rules in `daily-scan.md` to that meeting.
+Find the original evidence chain and affected institutions or jurisdictions. Build a dated chronology and explain the event or policy mechanism, people affected, money or land involved, remaining decisions, and competing accounts. Do the accessible source and counterevidence work, then deliver a substantial draft or reporting brief with verified facts, disputed claims, source URLs and locators, a falsification plan, and an editorial readiness tier. Name a human-only interview or observation only when AI-accessible evidence cannot answer a material question, and explain why. Do not suggest formal records requests. If the topic involves a meeting, apply the meeting coverage rules in `daily-scan.md` to that meeting.
+
+## `revise {story ID or editor-marked draft and instructions}`
+
+Treat editor feedback as the assignment. Accept direct edits, a request to rewrite, a request for more digging, or a kill decision. Identify the existing packet and keep its ID, claim/source ledger, links, status history, and prior editorial tier. For a rewrite, preserve verified meaning while changing structure, voice, focus, or length as requested; recheck every changed factual sentence against its source. For more digging, do the AI-accessible reporting first, including the named Black Desk or Dark Signal Desk vulnerability when requested, look for disconfirming evidence, and update the full draft, claims, sources, tier, and what-cannot-say note. Preserve any unverified possible story in the Black Desk section rather than smuggling it into copy. Return an editor-ready revised draft plus a concise change log and remaining decisions. If a human interview or visit is essential, give the precise question and reason. If the editor kills a story, do not rewrite it; log the reason and reopen trigger, and mark it killed. Never file, draft, or suggest a formal records request or a fee.
 
 ## `legal-threat {situation}`
 

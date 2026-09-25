@@ -26,6 +26,12 @@ test('transcript scaffold exposes separate annexation and future agenda actions'
   assert.ok(checkCoverage(ledger).gaps.some((gap) => gap.includes('unreviewed')));
 });
 
+test('transcript scaffold also flags conversational vote outcomes', () => {
+  const ledger = scaffold('00:20:00 Chair: All opposed? Seeing none, that carries.\n00:25:00 Chair: Without objection, we will add this to the future agenda.');
+  assert.equal(ledger.cues.length, 2);
+  assert.ok(ledger.cues.every((cue) => cue.disposition === 'unresolved'));
+});
+
 test('coverage gate requires resolved cues, action rows, reconciliation, and attestation', () => {
   const ledger = scaffold(transcript, { chunkLines: 3 });
   ledger.chunks.forEach((chunk) => { chunk.reviewed = true; });
@@ -78,7 +84,7 @@ test('ChatGPT/Codex plugin package has a discoverable skill and local marketplac
     const manifest = JSON.parse(readFileSync(join(plugin, 'plugin.json'), 'utf8'));
     const marketplace = JSON.parse(readFileSync(join(out, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
     assert.equal(manifest.name, 'civic-scanner');
-    assert.equal(manifest.version, '2.5.0');
+    assert.equal(manifest.version, '2.6.0');
     assert.equal(marketplace.plugins[0].source.path, './plugins/civic-scanner');
     assert.ok(existsSync(join(plugin, 'skills', 'civic-scanner', 'references', 'daily-scan.md')));
     assert.ok(existsSync(join(plugin, 'skills', 'civic-scanner', 'scripts', 'reddit_extract.py')));
@@ -92,12 +98,12 @@ test('report validation runs without docx and rejects missing meeting coverage',
   const reportPath = join(parent, 'pipeline.json');
   const builder = fileURLToPath(new URL('../build-report.js', import.meta.url));
   const data = {
-    meta: { city: 'Longmont', state: 'CO', date: '2026-09-24', runNumber: 1, version: '2.5.0' },
+    meta: { city: 'Longmont', state: 'CO', date: '2026-09-25', runNumber: 1, version: '2.6.0' },
     stats: { scanned: 1, advanced: 1, held: 0, killed: 0, suppressed: 0, tierACounts: 1, tierBCounts: 0, tierCCounts: 0 },
     meetingCoverage: { status: 'COMPLETE', sourceInventory: 'Council portal and recording checked', meetings: [{ body: 'City Council', date: '2026-09-22', coverageStatus: 'complete' }], actions: [{ actionId: 'future-agenda', timestamp: '00:45:00', motionOrAction: 'Put marijuana hospitality rules on a future agenda', outcome: 'passed', vote: '4-3', policyStage: 'future discussion directed', evidence: 'official recording at 00:45:00', disposition: 'lead' }], agendaReconciliation: 'Agenda and recording matched', unresolvedGaps: [] },
     agent1_leads: [{ id: 'future-agenda', tier: 'A', headline: 'Council requests future discussion', details: 'Official meeting action documented in the recording.' }],
     agent2_stories: [{ id: 'future-agenda', headline: 'Council requests future discussion', draft: 'Evidence. '.repeat(50), claims: [{ id: 'c1', text: 'Council requested a future discussion', status: 'VERIFIED', sourceIds: ['s1'] }], sourceList: [{ id: 's1', title: 'Council meeting recording', tier: 'A', url: 'https://example.org/council-recording', locator: '00:45:00' }] }],
-    agent25_gate: [{ id: 'future-agenda', headline: 'Council requests future discussion', total: 10, decision: 'ADVANCE' }],
+    agent25_gate: [{ id: 'future-agenda', headline: 'Council requests future discussion', immediacy: 3, impact: 3, conflict: 2, novelty: 2, total: 10, decision: 'ADVANCE', editorialTier: 1, editorRecommendation: 'EDIT', whatCannotSay: 'The rules were adopted', aiNextStep: 'Complete', reportingNotes: 'Confirmed in the recording; no human reporting required for this action.' }],
     agent3_blackDesk: [],
     agent4_adversarial: [{ id: 'future-agenda', headline: 'Council requests future discussion', gate1: 'checked', gate2: 'checked', gate3_counterNarrative: 'Counterevidence reviewed. '.repeat(6) }],
     agent5_completeness: [{}],
@@ -111,6 +117,12 @@ test('report validation runs without docx and rejects missing meeting coverage',
     writeFileSync(reportPath, JSON.stringify(data));
     const pass = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
     assert.equal(pass.status, 0, pass.stderr);
+    delete data.agent25_gate[0].editorialTier;
+    writeFileSync(reportPath, JSON.stringify(data));
+    const missingTier = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
+    assert.equal(missingTier.status, 1);
+    assert.match(missingTier.stderr, /editorialTier/);
+    data.agent25_gate[0].editorialTier = 1;
     data.heldStories = [{ storyId: 'missing-packet', headline: 'Held lead' }];
     writeFileSync(reportPath, JSON.stringify(data));
     const detachedHold = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });

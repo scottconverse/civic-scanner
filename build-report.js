@@ -158,6 +158,11 @@ if (data.agent25_gate) {
     requireField(g, "headline", `agent25_gate[${i}]`);
     requireField(g, "total", `agent25_gate[${i}]`);
     requireField(g, "decision", `agent25_gate[${i}]`);
+    ["editorialTier", "editorRecommendation", "whatCannotSay", "aiNextStep", "reportingNotes"].forEach(field => requireField(g, field, `agent25_gate[${i}]`));
+    if (g.editorialTier && ![1, 2, 3].includes(g.editorialTier)) errors.push(`agent25_gate[${i}].editorialTier must be 1, 2, or 3`);
+    if (g.editorRecommendation && !["EDIT", "REWRITE", "MORE_REPORTING", "DARK_DESK", "HOLD", "KILL"].includes(g.editorRecommendation)) errors.push(`agent25_gate[${i}].editorRecommendation is invalid`);
+    if (g.editorialTier === 1 && g.decision !== "ADVANCE") errors.push(`agent25_gate[${i}]: Tier 1 requires ADVANCE`);
+    if (g.editorialTier === 1 && g.editorRecommendation !== "EDIT") errors.push(`agent25_gate[${i}]: Tier 1 requires EDIT recommendation`);
     if (g.decision === "ADVANCE" && !data.agent2_stories?.some(story => story.id === g.id)) errors.push(`ADVANCE lead ${g.id} has no story packet with claims and sources`);
   });
 }
@@ -413,21 +418,24 @@ coverage.actions.forEach(action => {
   children.push(boldPara("Official evidence: ", action.evidence));
 });
 
-// ── Dashboard: Advancing story leads ────────────────────────────────
-children.push(h2("Advancing Story Leads"));
-const advancing = data.agent25_gate.filter(g => g.decision === "ADVANCE");
-advancing.forEach((gate, idx) => {
+// ── Dashboard: Editor desk ──────────────────────────────────────────
+children.push(h2("Editor Desk — Tiered Story Packets"));
+children.push(para("Editorial readiness Tier 1 = nearly finished draft for edit; Tier 2 = developing story with identified gaps; Tier 3 = possible lead for investigation. These differ from source tiers A/B/C and newsworthiness scores. The AI recommends a move; the human editor may edit, request a rewrite, order more reporting or a Dark Signal Desk dig, hold, or kill any item. Full drafts, claims, and sources appear in the appendix."));
+const ranked = [...data.agent25_gate].sort((a, b) => a.editorialTier - b.editorialTier || b.total - a.total);
+ranked.forEach((gate, idx) => {
   const story = data.agent2_stories.find(st => st.id === gate.id);
   const adv = data.agent4_adversarial.find(a => a.id === gate.id);
-  children.push(h3(`${idx + 1}. ${gate.headline}`));
+  children.push(h3(`${idx + 1}. Tier ${gate.editorialTier}: ${gate.headline}`));
   children.push(colorLabel("Severity", severityColor(adv ? adv.severity : ""), adv ? adv.severity : "N/A"));
   children.push(boldPara("Newsworthiness: ", `${gate.total}/20 (Immediacy ${gate.immediacy}, Impact ${gate.impact}, Conflict ${gate.conflict}, Novelty ${gate.novelty})`));
+  children.push(boldPara("Gate decision: ", gate.decision));
+  children.push(boldPara("AI recommendation for editor: ", gate.editorRecommendation));
+  children.push(boldPara("What the story cannot say: ", gate.whatCannotSay));
+  children.push(boldPara("AI next step: ", gate.aiNextStep));
   children.push(boldPara("Beat: ", gate.beat || "NEW"));
   children.push(boldPara("Headline audit: ", gate.headlineAudit || "PASSED"));
   children.push(boldPara("Legal risk: ", gate.legalRisk || "LOW"));
-  if (gate.reporterTaskMemo) {
-    children.push(para(gate.reporterTaskMemo, { italics: true }));
-  }
+  children.push(para(gate.reportingNotes, { italics: true }));
   if (story?.sourceList?.length) {
     children.push(boldPara("Story sources: ", story.sourceList.map(source => `${source.id}: ${source.url || source.recordRef}`).join("; ")));
   }
@@ -552,10 +560,11 @@ children.push(para("Scoring key: Each story scored on 4 dimensions (1-5 each, to
   children.push(boldPara("Total: ", `${g.total}/20`));
   children.push(boldPara("Beat: ", g.beat || "NEW"));
   children.push(boldPara("Decision: ", g.reasoning || g.decision));
-  if (g.reporterTaskMemo) {
-    children.push(h3("Reporter Task Memo"));
-    children.push(para(g.reporterTaskMemo));
-  }
+  children.push(boldPara("Editorial readiness: ", `Tier ${g.editorialTier} — AI recommends ${g.editorRecommendation}`));
+  children.push(boldPara("What the story cannot say: ", g.whatCannotSay));
+  children.push(boldPara("AI next step: ", g.aiNextStep));
+  children.push(h3("AI Reporting Notes"));
+  children.push(para(g.reportingNotes));
   if (g.visualDirection) {
     children.push(h3("Visual Direction Brief"));
     children.push(...longText(g.visualDirection));
@@ -565,7 +574,7 @@ children.push(para("Scoring key: Each story scored on 4 dimensions (1-5 each, to
 // ── Agent 3: Black Desk ─────────────────────────────────────────────
 children.push(pb());
 children.push(h2("Agent 3: Black Desk — Speculative Signals"));
-children.push(para("NOTE: Black Desk output is NEVER publishable. It feeds the adversarial desk and reporter investigation."));
+children.push(para("NOTE: Black Desk output is NEVER publication copy. It feeds the Dark Signal Desk and further AI reporting; the editor may order more digging or kill a signal."));
 (data.agent3_blackDesk || []).forEach((sig, i) => {
   children.push(h3(`Signal ${i + 1}: ${sig.title} (Confidence: ${sig.confidence})`));
   children.push(boldPara("Source: ", `${sig.sourceTier} — ${sig.source}`));

@@ -109,7 +109,7 @@
         "properties": {
           "id": { "type": "string" },
           "headline": { "type": "string" },
-          "draft": { "type": "string", "minLength": 400, "$comment": "Full 400-800 word story draft. NOT a summary." },
+          "draft": { "type": "string", "minLength": 400, "$comment": "Substantial 400-800 word or longer AI-reported story draft when warranted; Tier 1 is nearly finished editor copy, not a summary." },
           "claims": {
             "type": "array",
             "minItems": 1,
@@ -151,7 +151,7 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["id", "headline", "immediacy", "impact", "conflict", "novelty", "total", "decision"],
+        "required": ["id", "headline", "immediacy", "impact", "conflict", "novelty", "total", "decision", "editorialTier", "editorRecommendation", "whatCannotSay", "aiNextStep", "reportingNotes"],
         "properties": {
           "id": { "type": "string" },
           "headline": { "type": "string" },
@@ -165,11 +165,15 @@
           "noveltyReason": { "type": "string" },
           "total": { "type": "integer", "minimum": 4, "maximum": 20 },
           "decision": { "type": "string", "enum": ["ADVANCE", "HOLD", "DEMOTE"] },
+          "editorialTier": { "type": "integer", "enum": [1, 2, 3], "$comment": "Readiness tier; separate from source tier A/B/C and newsworthiness decision" },
+          "editorRecommendation": { "type": "string", "enum": ["EDIT", "REWRITE", "MORE_REPORTING", "DARK_DESK", "HOLD", "KILL"], "$comment": "AI recommendation only; human editor makes the decision" },
+          "whatCannotSay": { "type": "string", "$comment": "Material unsupported wording or state none" },
+          "aiNextStep": { "type": "string", "$comment": "Next AI-accessible check or state complete; human work belongs in reportingNotes only when essential" },
           "reasoning": { "type": "string" },
           "beat": { "type": "string" },
           "headlineAudit": { "type": "string" },
           "legalRisk": { "type": "string" },
-          "reporterTaskMemo": { "type": "string", "$comment": "Confirmed / Missing / Calls / Published Docs / What Kills This Story; no formal records requests" },
+          "reportingNotes": { "type": "string", "$comment": "Confirmed / Still unverified / Published documents checked / Falsify / Visuals / AI next steps / Human reporting required only when essential; no formal records requests" },
           "visualDirection": { "type": "string", "$comment": "FULL visual direction brief with generation prompts. NOT a one-liner." }
         }
       }

@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const cuePattern = /\b(?:i\s+move|motion\s+(?:to|by|passes|fails|carries)|second(?:ed)?\s+(?:the\s+)?motion|all\s+in\s+favor|roll\s+call|vote(?:d|s)?|passes|fails|future\s+agenda|direction\s+to\s+staff|consent\s+agenda|annexation|hospitality)\b/i;
+const cuePattern = /\b(?:i\s+(?:move|would\s+move)|motion\s+(?:to|by|passes|fails|carries|carried)|second(?:ed)?\s+(?:the\s+)?motion|all\s+in\s+favor|all\s+opposed|ayes?\s+have\s+it|that\s+(?:carries|passes|fails)|carried\s+(?:unanimously|by)|without\s+objection|roll\s+call|vote(?:d|s)?|passes|fails|unanimous(?:ly)?|future\s+agenda|direction\s+to\s+staff|consent\s+agenda|annexation|hospitality)\b/i;
 const timePattern = /\b(?:(?:\d{1,2}:)?\d{1,2}:\d{2})\b/;
 
 export function scaffold(text, { chunkLines = 80, meeting = 'unspecified meeting' } = {}) {
