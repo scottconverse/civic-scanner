@@ -6,6 +6,8 @@ The default source town is Longmont, Colorado. Use `discover` to build a registr
 
 "Whole civic landscape" describes the **range of beats**, not a promise to capture literally every event. Each scan names its date window and source inventory, and marks gaps. Government votes require official records; developments outside government need appropriate primary evidence, such as an organization's original documents or firsthand reporting. Local news and community posts are lead sources, not proof by themselves.
 
+The workflow uses published and freely accessible evidence. It never files, drafts, or recommends CORA, FOIA, or another formal records request, and does not incur records-access fees. Missing evidence stays marked as a gap; claims that depend on it remain unverified or are held.
+
 ## Install in an agent tool
 
 The same `SKILL.md` and `references/` work across tools that support Agent Skills. The installer uses Node.js built-ins and copies the complete skill bundle to the selected user's skill directory; it never changes model settings. Review an existing installation before replacing it. `--force` saves a backup of the previous skill directory.

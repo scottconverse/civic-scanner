@@ -8,6 +8,8 @@ Open each relevant registry entry separately. Cover the applicable beats: govern
 
 Keep a **beat/source inventory** with each source's tier, beat, check date, access status, and whether it produced a lead. A registry with only government portals does not support a claim that the whole civic landscape was scanned. Mark uncovered beats and registry gaps explicitly; use `discover` to expand the registry instead of inventing coverage.
 
+If a needed document is not already accessible, record the gap and continue with other published or firsthand evidence. Do not propose or make a formal records request or pay for retrieval.
+
 For each relevant public meeting, create a **meeting record** with body, meeting date, agenda URL, minutes URL or status, recording URL or status, transcript URL or status, and a `coverage_status` of `complete`, `partial`, or `unavailable`. If the recording exists but the transcript cannot be retrieved, review the recording by time ranges if the host permits; otherwise mark the meeting partial and give the unreviewed range. This meeting ledger is one part of the citywide scan, not its entire scope.
 
 ## 2. Review the full meeting chronologically

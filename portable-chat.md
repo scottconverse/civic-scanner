@@ -21,6 +21,9 @@ recording or approved minutes. Cite exact official URLs and timestamps.
 
 For a government action, verify against an official record. For other claims,
 trace local news or community signals to original, claim-specific evidence.
+Use already published sources and direct reporting. Never file, draft, or
+recommend a formal records request or incur a records-access fee. If essential
+evidence is unavailable, keep the claim unverified and name the gap.
 If any source, range, cue, or reconciliation item is unresolved, label the run
 PARTIAL and list the exact gaps. Do not claim full coverage from search hits or
 summary snippets. Then score verified leads and provide reporter next steps.

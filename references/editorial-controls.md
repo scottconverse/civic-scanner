@@ -20,6 +20,8 @@ If an official recording transcript is machine generated, use it to locate an ac
 
 Search each registry source separately over the specified date window, including nongovernment institutions and local reporting. Record checked, inaccessible, and not-yet-posted sources. Search snippets from blocked pages may suggest leads but never prove the page's contents. A broad web result is not evidence that every civic beat, meeting, or agenda item was checked.
 
+Do not file, draft, or recommend formal records requests or fee-based records retrieval. Look for already posted documents, public archives, open data, published statements, recordings, and firsthand reporting. An inaccessible record is an evidence gap, not a task to request it. Hold or suppress a consequential claim that cannot be verified through available sources.
+
 ## Adversarial review
 
 Before advancing a contentious lead, document:

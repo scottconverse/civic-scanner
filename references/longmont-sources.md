@@ -51,7 +51,6 @@ These records are the primary evidence for government actions. Nongovernment sto
 | Boulder County Clerk & Recorder | https://www.bouldercounty.gov/departments/clerk-and-recorder/ | Property, elections |
 | Weld County (partial jurisdiction) | https://www.weldgov.com/ | Eastern Longmont parcels |
 | Colorado Secretary of State | https://www.sos.state.co.us/ | Business filings, elections |
-| Colorado Open Records (CORA) | Via specific agency request | Formal CORA requests |
 
 ### School District
 
@@ -128,12 +127,6 @@ For **daily-scan** mode, check these mapped sources and identify gaps from the c
 
 ---
 
-## CORA (Colorado Open Records Act) Notes
+## Access boundary
 
-- Any person can request public records under CORA (CRS 24-72-201 et seq.)
-- Agencies must respond within 3 business days (acknowledge) and provide records
-  within a "reasonable" time
-- Fees: first hour free, then reasonable research/copy fees
-- Exemptions: ongoing investigations, attorney-client privilege, personnel records
-- Appeal: denial can be challenged in district court
-- Use CORA requests to obtain Tier A documents not published online
+Use already published agendas, packets, minutes, recordings, public data, and other accessible primary sources. Do not file or recommend a CORA or other formal records request. If an essential document is not publicly accessible, log the exact gap and keep dependent claims unverified.

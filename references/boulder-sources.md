@@ -28,8 +28,6 @@ These sources establish official actions. A broad city scan must also map origin
 | City Council Agendas & Materials | https://bouldercolorado.gov/city-council-agendas-and-materials | OneMeeting (PrimeGov) portal | 1st & 3rd Thursdays |
 | OneMeeting Public Portal | https://www.bouldercolorado.primegov.com/public/portal | PrimeGov | Agendas posted Thursday, 1 week before meeting |
 | City Clerk / Records Archive | https://bouldercolorado.gov/records-archive | Official archive | Ongoing |
-| Central Records (CORA) | https://bouldercolorado.gov/services/central-records | Public records custodian | Ongoing |
-| Open Records Request Form | https://bouldercolorado.gov/open-records-request | CORA request portal | Ongoing |
 | City Budget Documents | https://bouldercolorado.gov (search finance/budget) | Annual + amendments | Annual cycle |
 | Building Permits & Inspections | https://bouldercolorado.gov/services/building-permits-and-inspections | Permit database | Ongoing |
 | Planning & Development Services | https://bouldercolorado.gov/government/departments/planning-development-services | Agendas, code changes, applications | Ongoing |
@@ -54,7 +52,6 @@ These sources establish official actions. A broad city scan must also map origin
 | Boulder County Clerk & Recorder | https://bouldercounty.gov/departments/clerk-and-recorder/ | Property, elections |
 | Boulder County Planning Commission | https://bouldercounty.gov/government/boards-and-commissions/planning-commission/ | Land use, comp plan |
 | Colorado Secretary of State | https://www.sos.state.co.us/ | Business filings, elections |
-| Colorado Open Records (CORA) | Via specific agency request | CRS 24-72-201 et seq. |
 
 ### School District
 
@@ -131,18 +128,9 @@ For **daily-scan** mode, check sources in this order:
 
 ---
 
-## CORA (Colorado Open Records Act) Notes
+## Access boundary
 
-- **Statute:** CRS 24-72-201 et seq.
-- **Response deadline:** 3 business days to acknowledge; "reasonable" time to provide
-- **Fees:** First hour free, then reasonable research/copy fees
-- **Exemptions:** Ongoing investigations, attorney-client privilege, personnel records
-- **Appeal:** Denial can be challenged in district court
-- **Boulder-specific:** Use the city's Open Records Request Form at
-  https://bouldercolorado.gov/open-records-request
-- **Planning records:** Email p&dsrecordrequest@bouldercolorado.gov
-- **County records:** Boulder County Clerk & Recorder is custodian for recorded
-  documents (plats, annexations, easements, right-of-ways)
+Use already published council materials, records archives, meeting recordings, open data, and other accessible primary sources. Do not file or recommend a CORA or other formal records request. If an essential document is not publicly accessible, log the exact gap and keep dependent claims unverified.
 
 ---
 
