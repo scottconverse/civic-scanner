@@ -357,8 +357,8 @@ coverage.actions.forEach(action => {
   children.push(boldPara("Official evidence: ", action.evidence));
 });
 
-// ── Dashboard: Publishable Stories ──────────────────────────────────
-children.push(h2("Publishable Stories"));
+// ── Dashboard: Advancing story leads ────────────────────────────────
+children.push(h2("Advancing Story Leads"));
 const advancing = data.agent25_gate.filter(g => g.decision === "ADVANCE");
 advancing.forEach((gate, idx) => {
   const story = data.agent2_stories.find(st => st.id === gate.id);

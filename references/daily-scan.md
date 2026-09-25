@@ -1,12 +1,14 @@
 # Daily scan and meeting coverage
 
-Use this workflow for `daily-scan` and as the intake stage for `full-pipeline`. The source town, date window, and registry must be explicit. Longmont uses `longmont-sources.md`; a different town needs its own registry or a clearly marked provisional source list.
+Use this workflow for `daily-scan` and as the intake stage for `full-pipeline`. The source town, date window, civic beats, and registry must be explicit. Longmont uses `longmont-sources.md`; a different town needs its own registry or a clearly marked provisional source list. The scan covers developments affecting people in the town, regardless of whether the originating institution is city, county, regional, state, or nongovernment.
 
 ## 1. Inventory sources before ranking leads
 
-Open each relevant Tier A registry entry separately: council portal and packet, minutes, official recordings, boards and commissions, school district, county, and special districts. Check new and recently changed records within the date window. Note exact titles, dates, URLs, and access failures. Use Tier B coverage and Tier C signals to find omissions, never to replace official evidence.
+Open each relevant registry entry separately. Cover the applicable beats: government and elections; schools and youth; housing and land use; business and jobs; public safety and health; transportation and utilities; environment; arts and culture; and neighborhood or nonprofit activity. Include council packets, minutes, recordings, boards and commissions, school districts, county and special districts, original documents from involved organizations, local reporting, and community signals. Check new and recently changed material within the date window. Note exact titles, dates, URLs, and access failures. Follow Tier B coverage and Tier C signals to original evidence before presenting a claim as verified.
 
-For each relevant meeting, create a **meeting record** with body, meeting date, agenda URL, minutes URL or status, recording URL or status, transcript URL or status, and a `coverage_status` of `complete`, `partial`, or `unavailable`. If the recording exists but the transcript cannot be retrieved, review the recording by time ranges if the host permits; otherwise mark the meeting partial and give the unreviewed range.
+Keep a **beat/source inventory** with each source's tier, beat, check date, access status, and whether it produced a lead. A registry with only government portals does not support a claim that the whole civic landscape was scanned. Mark uncovered beats and registry gaps explicitly; use `discover` to expand the registry instead of inventing coverage.
+
+For each relevant public meeting, create a **meeting record** with body, meeting date, agenda URL, minutes URL or status, recording URL or status, transcript URL or status, and a `coverage_status` of `complete`, `partial`, or `unavailable`. If the recording exists but the transcript cannot be retrieved, review the recording by time ranges if the host permits; otherwise mark the meeting partial and give the unreviewed range. This meeting ledger is one part of the citywide scan, not its entire scope.
 
 ## 2. Review the full meeting chronologically
 
@@ -36,11 +38,11 @@ Record a **chunk ledger** for each transcript or recording range: start/end, whe
 
 Compare each agenda item with the action ledger: scheduled with no action, changed, deferred, withdrawn, and added during the meeting. Compare minutes and subsequent city postings to the ledger. Search local reporting for mentioned votes or motions and trace each candidate back to Tier A. Run a second targeted pass over all `motion`, `vote`, `future agenda`, `direction`, and roll-call cues. Resolve each candidate as a distinct action, a duplicate, routine, or an explicit unresolved item. Treat missing or later posted minutes as a source status, not as proof that no vote occurred.
 
-The scan completion gate is satisfied only when every relevant source has an access status, every available meeting range has a review status, every substantive action/cue has a disposition, and the agenda/recording/minutes comparison has no unexplained mismatch. If any gate fails, label the run `PARTIAL`, identify exact gaps, and avoid a claim of exhaustive coverage. A `COMPLETE` gate means the listed source inventory was fully reviewed for this date window; it is not a guarantee that the city has published every record.
+The scan completion gate is satisfied only when every source in the declared beat/source inventory has an access status, uncovered beats are named, every available relevant meeting range has a review status, every substantive action/cue has a disposition, and the agenda/recording/minutes comparison has no unexplained mismatch. If any gate fails, label the run `PARTIAL`, identify exact gaps, and avoid a claim of exhaustive coverage. A `COMPLETE` gate means the declared source inventory was fully reviewed for this date window; it is not a guarantee that every event in town was discovered.
 
 ## 4. Rank and deliver
 
-For each verified lead, write 200–300 words of sourced research, a 1–5 score for each newsworthiness dimension, a concise why-it-matters note, and a 100–150 word plain-language summary for advance or watch items. Tier B leads get a short note with the Tier A record needed. Tier C signals get a one-line investigation note. Do not describe either as verified.
+For each verified lead from any civic beat, write 200–300 words of sourced research, a 1–5 score for each newsworthiness dimension, a concise why-it-matters note, and a 100–150 word plain-language summary for advance or watch items. Tier B leads get a short note with the primary evidence needed. Tier C signals get a one-line investigation note. Do not describe either as verified.
 
 The briefing starts with:
 
@@ -48,6 +50,7 @@ The briefing starts with:
 DAILY BRIEFING — {town} — {date window}
 Run status: COMPLETE | PARTIAL
 Source inventory: {checked / blocked / not posted}
+Beat coverage: {covered beats / gaps}
 Meetings: {recording URLs, coverage status, unreviewed ranges}
 Action coverage: {substantive actions, routine groups, unresolved cues}
 Agenda reconciliation: {matched, changed, unexplained}

@@ -1,8 +1,10 @@
 # Civic Scanner
 
-A portable [Agent Skill](https://agentskills.io/specification) for local civic research. It scans government records and meeting recordings, logs every substantive action, checks what actually happened against agendas and minutes, and turns verified actions into ranked reporting leads. The output is **research scaffolding for a human reporter**, not a published article or legal clearance.
+A portable [Agent Skill](https://agentskills.io/specification) for local civic research. It watches the **whole civic landscape** affecting a town: government, schools, housing, business, health, transportation, utilities, environment, culture, neighborhood groups, local reporting, and community discussion. It verifies consequential claims against original evidence and turns developments into ranked reporting leads. For public meetings, it logs substantive actions and reconciles recordings with agendas and minutes. The output is **research scaffolding for a human reporter**, not a published article or legal clearance.
 
 The default source town is Longmont, Colorado. Use `discover` to build a registry for another town. The six modes are `daily-scan`, `full-pipeline`, `verify-only`, `research`, `legal-threat`, and `discover`.
+
+"Whole civic landscape" describes the **range of beats**, not a promise to capture literally every event. Each scan names its date window and source inventory, and marks gaps. Government votes require official records; developments outside government need appropriate primary evidence, such as an organization's original documents or firsthand reporting. Local news and community posts are lead sources, not proof by themselves.
 
 ## Install in an agent tool
 
@@ -48,8 +50,9 @@ An ordinary ChatGPT, Claude, Gemini, DeepSeek, or Grok web chat does not share o
 
 ```text
 Use civic-scanner daily-scan for Longmont, CO, covering the past seven days.
-Review all available council recording/transcript ranges, log every substantive
-motion and vote, reconcile with agenda/minutes, then rank the leads.
+Cover the civic beats in the source registry. Review all available relevant
+meeting recording/transcript ranges, log every substantive motion and vote,
+reconcile with agenda/minutes, then rank leads from across the town.
 ```
 
 The daily scan starts with a source inventory and meeting action ledger. The action ledger is kept separate from story ranking, so a low-scoring motion is still visible. It records a vote on dispensary annexation separately from a motion to schedule a discussion of marijuana hospitality rules. It distinguishes a future-agenda action from adoption of a rule.

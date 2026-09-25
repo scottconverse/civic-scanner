@@ -6,15 +6,17 @@ Apply these controls in every mode. The output is research for human review, not
 
 | Tier | Examples | Use |
 | --- | --- | --- |
-| A | Agendas, minutes, ordinances, budgets, official recordings, official press releases, court records, records responses | Evidence for the specific claim the record actually supports |
-| B | Established news coverage and institutional statements | Lead and context; follow the cited record back to Tier A |
+| A | Original, claim-specific evidence: government records and recordings; original organization documents and data; attributable firsthand interviews or direct observation with notes | Evidence for the specific claim the source actually supports |
+| B | Established news coverage and secondary institutional summaries | Lead and context; trace consequential claims to original evidence |
 | C | Social posts, forums, comments, anonymous tips | Investigation signal only; never launder into an attributed fact |
 
-For each claim, record the source URL, document title and date, page or agenda item, and if applicable the recording timestamp. Separate **scheduled**, **proposed**, **discussed**, **moved**, **seconded**, **voted**, **adopted**, and **implemented**. Check that headline verbs match the verified stage. A first reading, a study session, or a future-agenda motion does not establish final adoption.
+Source tiers are **claim-specific**. A hospital's own announcement is primary evidence that it made an announcement, but does not independently prove its projected effects. An interview can establish what an identified person said; a contested factual allegation needs corroboration. For a government vote or enacted rule, use the official record or recording as the primary source.
+
+For each claim, record the source URL or interview/observation notes, document title and date, page or agenda item, and if applicable the recording timestamp. Separate **scheduled**, **proposed**, **discussed**, **moved**, **seconded**, **voted**, **adopted**, and **implemented**. Check that headline verbs match the verified stage. A first reading, a study session, or a future-agenda motion does not establish final adoption.
 
 If an official recording transcript is machine generated, use it to locate an action, then confirm consequential wording, named speakers, and tallies with the audio/video or approved minutes. If that confirmation is unavailable, label the detail unverified and provide the timestamp for human review.
 
-Search each registry source separately over the specified date window. Record checked, inaccessible, and not-yet-posted sources. Search snippets from blocked pages may suggest leads but never prove the page's contents. A broad web result is not evidence that every meeting or agenda item was checked.
+Search each registry source separately over the specified date window, including nongovernment institutions and local reporting. Record checked, inaccessible, and not-yet-posted sources. Search snippets from blocked pages may suggest leads but never prove the page's contents. A broad web result is not evidence that every civic beat, meeting, or agenda item was checked.
 
 ## Adversarial review
 

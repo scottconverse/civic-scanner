@@ -1,14 +1,28 @@
 # Longmont, Colorado — Source Registry
 
-Default source configuration for the Civic Source Scanner.
-All sources classified by tier (A/B/C) per the Civic Grounding Protocol.
+Starting source configuration for the Civic Source Scanner. It includes strong public-record coverage and selected local reporting/community signals; it is not a complete map of Longmont's civic life. Confirm URLs, schedules, and coverage gaps at each run.
+All sources are classified by tier (A/B/C) per the Civic Grounding Protocol.
 
 ---
 
-## Tier A — Official Records (Publishable)
+## Civic beat coverage map
 
-These are the ONLY sources that support publication. If a story cannot be
-grounded in at least one Tier A source, it goes to the suppression ledger.
+| Beat | Sources currently mapped | Gap to resolve in `discover` |
+|------|--------------------------|------------------------------|
+| Government, elections, land use | City, county, state, planning sources below | Verify current portals and meeting archive |
+| Schools & youth | SVVSD board and district sources below | Map colleges and youth organizations as relevant |
+| Housing | City planning and building permits; local reporting | Map housing providers and original project records |
+| Business & jobs | Chamber and economic development; local reporting | Map original employer announcements and labor data |
+| Health & public safety | City and county government sources | Map health providers and public safety data |
+| Transportation & utilities | RTD, Longmont Power & Communications, flood district | Verify current project and service feeds |
+| Environment | Flood district and government sources | Map monitoring and conservation sources |
+| Arts, culture & neighborhoods | Local reporting and community signals | Map venues, libraries, nonprofits, and neighborhood organizations |
+
+---
+
+## Tier A — Official records currently mapped
+
+These records are the primary evidence for government actions. Nongovernment stories also require original, claim-specific evidence; map those sources before calling a broad scan complete. A source's own announcement proves what it announced, not every claimed effect.
 
 ### City Council & Government
 
@@ -58,8 +72,7 @@ grounded in at least one Tier A source, it goes to the suppression ledger.
 
 ## Tier B — Institutional Sources (Leads Only)
 
-These sources may generate leads but CANNOT be the sole basis for publication.
-Every Tier B lead must be corroborated by a Tier A source before publishing.
+These sources generate leads and context. Trace consequential claims to original evidence before advancing them.
 
 | Source | URL | Notes |
 |--------|-----|-------|
@@ -76,7 +89,7 @@ Every Tier B lead must be corroborated by a Tier A source before publishing.
 
 ## Tier C — Signal Generators (Never for Publication)
 
-These sources generate SIGNALS that must be verified against Tier A sources
+These sources generate SIGNALS that must be verified against original evidence
 before any story work begins. Tier C content is never quoted, cited, or
 referenced in published reporting.
 
@@ -92,7 +105,7 @@ referenced in published reporting.
 
 ## Source Scanning Priority
 
-For **daily-scan** mode, check sources in this order:
+For **daily-scan** mode, check these mapped sources and identify gaps from the coverage map. Priority order:
 
 1. PrimeGov portal — new agendas or minutes posted?
 2. City of Longmont YouTube — new meeting recordings?
