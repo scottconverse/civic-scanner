@@ -3,7 +3,7 @@
 Start with the complete `daily-scan.md` action and source inventory. Run the editorial stages below in order for the leads that pass intake. Each stage may hold or suppress a story. Preserve its evidence and decision, including why a story stopped.
 
 1. **Aggregation:** Normalize leads, merge true duplicates, and retain separate council actions even when they concern the same topic. Preserve the all-actions ledger.
-2. **Research expansion:** For each advancing lead, draft 400–800 words of sourced background and a Reporter Task Memo with `Confirmed`, `Missing`, `Calls`, `Documents`, `Falsify`, and `Visuals`. Label drafts as research scaffolding.
+2. **Research expansion:** For each advancing lead, draft 400–800 words of sourced background and a Reporter Task Memo with `Confirmed`, `Missing`, `Calls`, `Documents`, `Falsify`, and `Visuals`. Build a story packet with its own `claims` and `sourceList`: every consequential factual claim gets a status and source IDs; each source has a public URL and locator, or an honest offline record reference. Label drafts as research scaffolding.
 3. **Newsworthiness:** Score immediacy, local impact, conflict, and novelty (1–5 each). Apply the thresholds in `editorial-controls.md`; explain holds and demotions.
 4. **Black Desk (Agent 3):** Turn weak Tier B/C signals and unexplained primary-source anomalies into testable hypotheses. Record why each is weak and the exact evidence or search that could disprove it. Do not promote a hypothesis into a reported fact. If no plausible signal exists, record an empty list rather than inventing one.
 5. **Adversarial challenge (Agent 4, the Dark Signal Desk):** Take each advancing story **and each Black Desk handoff**. Start by attacking its named vulnerability and running its `agent4Target` check. Then run the four checks in `editorial-controls.md`. Search specifically for records that would falsify each advancing claim, then steel-man the subject's best defense. Count independent Tier A records supporting the lead and the strongest counter-account (the **Grounding Delta**). Suppress if the counter-account has stronger Tier A support or a material falsification target remains unresolved. Do not count repeated coverage of one document as multiple records.
@@ -22,6 +22,10 @@ For every Black Desk signal, record `signalId`, title, original source and tier,
 Agent 4 must include a review row whose `id` matches the Black Desk `signalId` and whose `targetCheck` records whether the named check confirmed, contradicted, or failed to resolve the hypothesis. Only a separately verified claim can enter the normal story gates. Keep the original signal and its disposition visible in the verification appendix. Black Desk output is never publication copy and cannot substitute for the separate all-actions meeting ledger.
 
 Output an editorial dashboard followed by a verification appendix: source inventory, meeting/action ledger, score and gate decisions, research scaffolding, Reporter Task Memos, counterevidence, source links, gaps, and next steps. Label the run `PARTIAL` if the daily-scan coverage gate failed, even if downstream research is strong.
+
+Keep each story packet keyed by its stable `id` through scoring, Black Desk connections, adversarial review, hold/suppression, and report generation. The claim ledger and source list belong next to that story in the report. If verification changes a claim, update its status and supporting source IDs before the report is built. A global source appendix may supplement the packets but cannot replace them.
+
+An entry in `heldStories` must carry `storyId` pointing to its packet, so the hold dashboard can show its sources and the appendix can show its claims. Keep an unexpanded, weak item as a lead or Black Desk signal rather than calling it a story packet.
 
 The optional report builder takes a completed pipeline JSON matching `report-schema.json`:
 

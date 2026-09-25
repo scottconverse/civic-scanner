@@ -110,11 +110,43 @@ if (data.agent1_leads) {
 // Agent 2 stories
 requireArray(data, "agent2_stories", "root");
 if (data.agent2_stories) {
+  const storyIds = new Set();
   data.agent2_stories.forEach((story, i) => {
+    requireField(story, "id", `agent2_stories[${i}]`);
+    if (storyIds.has(story.id)) errors.push(`Duplicate story ID: ${story.id}`);
+    storyIds.add(story.id);
     requireField(story, "headline", `agent2_stories[${i}]`);
     requireField(story, "draft", `agent2_stories[${i}]`);
+    requireArray(story, "claims", `agent2_stories[${i}]`);
+    requireArray(story, "sourceList", `agent2_stories[${i}]`);
     if (story.draft && story.draft.length < 400) {
       errors.push(`agent2_stories[${i}].draft is too short (${story.draft.length} chars, need >= 400): "${story.headline}"`);
+    }
+    const sourceIds = new Set();
+    for (const [j, source] of (story.sourceList || []).entries()) {
+      ["id", "title", "tier", "locator"].forEach(f => requireField(source, f, `agent2_stories[${i}].sourceList[${j}]`));
+      if (sourceIds.has(source.id)) errors.push(`agent2_stories[${i}]: duplicate source ID ${source.id}`);
+      sourceIds.add(source.id);
+      if (!["A", "B", "C"].includes(source.tier)) errors.push(`agent2_stories[${i}].sourceList[${j}]: invalid tier`);
+      if (!source.url && !source.recordRef) errors.push(`agent2_stories[${i}].sourceList[${j}]: URL or offline recordRef required`);
+      if (source.url) {
+        try {
+          const parsed = new URL(source.url);
+          if (!["http:", "https:"].includes(parsed.protocol)) throw new Error("unsupported protocol");
+        } catch { errors.push(`agent2_stories[${i}].sourceList[${j}]: invalid public URL`); }
+      }
+    }
+    const claimIds = new Set();
+    for (const [j, claim] of (story.claims || []).entries()) {
+      ["id", "text", "status"].forEach(f => requireField(claim, f, `agent2_stories[${i}].claims[${j}]`));
+      if (claimIds.has(claim.id)) errors.push(`agent2_stories[${i}]: duplicate claim ID ${claim.id}`);
+      claimIds.add(claim.id);
+      if (!["VERIFIED", "CONTESTED", "UNVERIFIED"].includes(claim.status)) errors.push(`agent2_stories[${i}].claims[${j}]: invalid status`);
+      if (!Array.isArray(claim.sourceIds)) errors.push(`agent2_stories[${i}].claims[${j}]: sourceIds array required`);
+      const refs = Array.isArray(claim.sourceIds) ? claim.sourceIds : [];
+      for (const id of refs) if (!sourceIds.has(id)) errors.push(`agent2_stories[${i}].claims[${j}]: unknown source ID ${id}`);
+      if (claim.status !== "UNVERIFIED" && refs.length === 0) errors.push(`agent2_stories[${i}].claims[${j}]: ${claim.status} claim needs a source`);
+      if (claim.status === "VERIFIED" && !refs.some(id => story.sourceList?.find(source => source.id === id && source.tier === "A"))) errors.push(`agent2_stories[${i}].claims[${j}]: VERIFIED claim needs Tier A evidence`);
     }
   });
 }
@@ -126,6 +158,7 @@ if (data.agent25_gate) {
     requireField(g, "headline", `agent25_gate[${i}]`);
     requireField(g, "total", `agent25_gate[${i}]`);
     requireField(g, "decision", `agent25_gate[${i}]`);
+    if (g.decision === "ADVANCE" && !data.agent2_stories?.some(story => story.id === g.id)) errors.push(`ADVANCE lead ${g.id} has no story packet with claims and sources`);
   });
 }
 
@@ -156,6 +189,9 @@ for (const signal of data.agent3_blackDesk || []) {
   const review = (data.agent4_adversarial || []).find(a => a.id === signal.signalId);
   if (!review) errors.push(`Agent 4 disposition missing for Black Desk signal ${signal.signalId}`);
   else requireField(review, "targetCheck", `agent4_adversarial[${signal.signalId}]`);
+}
+for (const gate of data.agent25_gate || []) {
+  if (gate.decision === "ADVANCE" && !data.agent4_adversarial?.some(review => review.id === gate.id)) errors.push(`ADVANCE story ${gate.id} has no adversarial review`);
 }
 
 // Agent 5
@@ -196,6 +232,12 @@ requireField(data, "agent8_hygiene", "root");
 // Held stories (can be empty array)
 if (!Array.isArray(data.heldStories)) {
   errors.push("Missing: heldStories (must be array, can be empty)");
+} else {
+  data.heldStories.forEach((held, i) => {
+    requireField(held, "storyId", `heldStories[${i}]`);
+    requireField(held, "headline", `heldStories[${i}]`);
+    if (!data.agent2_stories?.some(story => story.id === held.storyId)) errors.push(`heldStories[${i}]: story packet missing for ${held.storyId}`);
+  });
 }
 
 // Trust dashboard
@@ -384,14 +426,19 @@ advancing.forEach((gate, idx) => {
   if (gate.reporterTaskMemo) {
     children.push(para(gate.reporterTaskMemo, { italics: true }));
   }
+  if (story?.sourceList?.length) {
+    children.push(boldPara("Story sources: ", story.sourceList.map(source => `${source.id}: ${source.url || source.recordRef}`).join("; ")));
+  }
 });
 
 // ── Dashboard: Held Stories ─────────────────────────────────────────
 if (data.heldStories && data.heldStories.length > 0) {
   children.push(h2("Stories on Hold"));
   data.heldStories.forEach(held => {
+    const packet = data.agent2_stories.find(story => story.id === held.storyId);
     children.push(h3(held.headline));
     children.push(colorLabel("Severity", GRAY, "HOLD"));
+    if (packet) children.push(boldPara("Story sources: ", packet.sourceList.map(source => `${source.id}: ${source.url || source.recordRef}`).join("; ")));
     if (held.source) children.push(boldPara("Source: ", held.source));
     if (held.details) children.push(para(held.details));
     if (held.scoring) children.push(para(held.scoring));
@@ -464,12 +511,15 @@ children.push(h2("Agent 2: Story Expansion — Full Drafts"));
 (data.agent2_stories || []).forEach(story => {
   children.push(h3(story.headline));
   children.push(...longText(story.draft));
-  if (story.sources) {
-    children.push(new Paragraph({
-      spacing: { before: 80, after: 160 },
-      children: [new TextRun({ text: `Sources: ${story.sources}`, font: "Calibri", size: 20, italics: true, color: GRAY })],
-    }));
-  }
+  children.push(h3("Claims and evidence"));
+  story.claims.forEach(claim => {
+    children.push(boldPara(`[${claim.status}] ${claim.id}: `, claim.text));
+    children.push(para(`Sources: ${claim.sourceIds.length ? claim.sourceIds.join(", ") : "none yet"}${claim.note ? ` — ${claim.note}` : ""}`));
+  });
+  children.push(h3("Source list"));
+  story.sourceList.forEach(source => {
+    children.push(bullet(`[${source.id}] Tier ${source.tier} — ${source.title} — ${source.url || source.recordRef} — ${source.locator}${source.date ? ` — ${source.date}` : ""}`));
+  });
 });
 
 // ── Agent 2.5: Newsworthiness Gate ──────────────────────────────────

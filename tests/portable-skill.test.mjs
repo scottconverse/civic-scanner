@@ -90,7 +90,7 @@ test('report validation runs without docx and rejects missing meeting coverage',
     stats: { scanned: 1, advanced: 1, held: 0, killed: 0, suppressed: 0, tierACounts: 1, tierBCounts: 0, tierCCounts: 0 },
     meetingCoverage: { status: 'COMPLETE', sourceInventory: 'Council portal and recording checked', meetings: [{ body: 'City Council', date: '2026-09-22', coverageStatus: 'complete' }], actions: [{ actionId: 'future-agenda', timestamp: '00:45:00', motionOrAction: 'Put marijuana hospitality rules on a future agenda', outcome: 'passed', vote: '4-3', policyStage: 'future discussion directed', evidence: 'official recording at 00:45:00', disposition: 'lead' }], agendaReconciliation: 'Agenda and recording matched', unresolvedGaps: [] },
     agent1_leads: [{ id: 'future-agenda', tier: 'A', headline: 'Council requests future discussion', details: 'Official meeting action documented in the recording.' }],
-    agent2_stories: [{ id: 'future-agenda', headline: 'Council requests future discussion', draft: 'Evidence. '.repeat(50) }],
+    agent2_stories: [{ id: 'future-agenda', headline: 'Council requests future discussion', draft: 'Evidence. '.repeat(50), claims: [{ id: 'c1', text: 'Council requested a future discussion', status: 'VERIFIED', sourceIds: ['s1'] }], sourceList: [{ id: 's1', title: 'Council meeting recording', tier: 'A', url: 'https://example.org/council-recording', locator: '00:45:00' }] }],
     agent25_gate: [{ id: 'future-agenda', headline: 'Council requests future discussion', total: 10, decision: 'ADVANCE' }],
     agent3_blackDesk: [],
     agent4_adversarial: [{ id: 'future-agenda', headline: 'Council requests future discussion', gate1: 'checked', gate2: 'checked', gate3_counterNarrative: 'Counterevidence reviewed. '.repeat(6) }],
@@ -105,6 +105,30 @@ test('report validation runs without docx and rejects missing meeting coverage',
     writeFileSync(reportPath, JSON.stringify(data));
     const pass = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
     assert.equal(pass.status, 0, pass.stderr);
+    data.heldStories = [{ storyId: 'missing-packet', headline: 'Held lead' }];
+    writeFileSync(reportPath, JSON.stringify(data));
+    const detachedHold = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
+    assert.equal(detachedHold.status, 1);
+    assert.match(detachedHold.stderr, /story packet missing/);
+    data.heldStories = [];
+    data.agent2_stories[0].id = 'wrong-story';
+    writeFileSync(reportPath, JSON.stringify(data));
+    const detachedStory = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
+    assert.equal(detachedStory.status, 1);
+    assert.match(detachedStory.stderr, /no story packet with claims and sources/);
+    data.agent2_stories[0].id = 'future-agenda';
+    data.agent2_stories[0].claims[0].sourceIds = ['missing-source'];
+    writeFileSync(reportPath, JSON.stringify(data));
+    const brokenClaim = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
+    assert.equal(brokenClaim.status, 1);
+    assert.match(brokenClaim.stderr, /unknown source ID/);
+    data.agent2_stories[0].claims[0].sourceIds = ['s1'];
+    delete data.agent2_stories[0].sourceList[0].url;
+    writeFileSync(reportPath, JSON.stringify(data));
+    const missingUrl = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
+    assert.equal(missingUrl.status, 1);
+    assert.match(missingUrl.stderr, /URL or offline recordRef required/);
+    data.agent2_stories[0].sourceList[0].url = 'https://example.org/council-recording';
     data.agent3_blackDesk = [{ signalId: 's1', source: 'local report', sourceTier: 'B', confidence: 0.3, title: 'Possible linked changes', speculativeAngle: 'This may link two local developments that need independent verification.', investigationQuestion: 'Are they connected?', vulnerabilityTypes: ['no-primary-record'], vulnerabilityDetail: 'No original document found' }];
     writeFileSync(reportPath, JSON.stringify(data));
     const missingHandoff = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });

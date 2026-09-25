@@ -14,6 +14,8 @@ Source tiers are **claim-specific**. A hospital's own announcement is primary ev
 
 For each claim, record the source URL or interview/observation notes, document title and date, page or agenda item, and if applicable the recording timestamp. Separate **scheduled**, **proposed**, **discussed**, **moved**, **seconded**, **voted**, **adopted**, and **implemented**. Check that headline verbs match the verified stage. A first reading, a study session, or a future-agenda motion does not establish final adoption.
 
+Keep claims and sources **inside each story packet**. Assign stable source IDs, store each source's title, tier, public URL or honest offline record reference, and exact locator. List every consequential factual claim in the packet with status (`VERIFIED`, `CONTESTED`, or `UNVERIFIED`) and the IDs of sources supporting it. A verified claim must resolve to at least one Tier A source in that packet. An unverified claim stays visible as a reporting gap. Do not make the reader reconstruct a story's evidence from a global bibliography or another story's sources.
+
 If an official recording transcript is machine generated, use it to locate an action, then confirm consequential wording, named speakers, and tallies with the audio/video or approved minutes. If that confirmation is unavailable, label the detail unverified and provide the timestamp for human review.
 
 Search each registry source separately over the specified date window, including nongovernment institutions and local reporting. Record checked, inaccessible, and not-yet-posted sources. Search snippets from blocked pages may suggest leads but never prove the page's contents. A broad web result is not evidence that every civic beat, meeting, or agenda item was checked.

@@ -105,12 +105,44 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["id", "headline", "draft"],
+        "required": ["id", "headline", "draft", "claims", "sourceList"],
         "properties": {
           "id": { "type": "string" },
           "headline": { "type": "string" },
           "draft": { "type": "string", "minLength": 400, "$comment": "Full 400-800 word story draft. NOT a summary." },
-          "sources": { "type": "string" }
+          "claims": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["id", "text", "status", "sourceIds"],
+              "properties": {
+                "id": { "type": "string" },
+                "text": { "type": "string" },
+                "status": { "type": "string", "enum": ["VERIFIED", "CONTESTED", "UNVERIFIED"] },
+                "sourceIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+                "note": { "type": "string" }
+              }
+            }
+          },
+          "sourceList": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["id", "title", "tier", "locator"],
+              "properties": {
+                "id": { "type": "string" },
+                "title": { "type": "string" },
+                "tier": { "type": "string", "enum": ["A", "B", "C"] },
+                "url": { "type": "string", "format": "uri" },
+                "recordRef": { "type": "string" },
+                "locator": { "type": "string", "$comment": "Page, item, timestamp, or other precise location" },
+                "date": { "type": "string" }
+              },
+              "anyOf": [{ "required": ["url"] }, { "required": ["recordRef"] }]
+            }
+          }
         }
       }
     },
@@ -266,7 +298,22 @@
       "type": "object",
       "properties": { "text": { "type": "string" } }
     },
-    "heldStories": { "type": "array" },
+    "heldStories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["storyId", "headline"],
+        "properties": {
+          "storyId": { "type": "string", "$comment": "References an agent2_stories packet with claims and sourceList" },
+          "headline": { "type": "string" },
+          "source": { "type": "string" },
+          "details": { "type": "string" },
+          "scoring": { "type": "string" },
+          "reason": { "type": "string" },
+          "elevate": { "type": "string" }
+        }
+      }
+    },
     "suppressionLedger": { "type": "array" },
     "upcomingMeetings": { "type": "array", "items": { "type": "string" } },
     "trustDashboard": { "type": "object" }
