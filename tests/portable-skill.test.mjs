@@ -51,7 +51,11 @@ test('installer copies the skill bundle and leaves historical beat memory out', 
     const { destination } = install({ target: 'codex', dest: parent });
     assert.ok(existsSync(join(destination, 'SKILL.md')));
     assert.ok(existsSync(join(destination, 'references', 'daily-scan.md')));
+    assert.ok(existsSync(join(destination, 'references', 'reddit-intake.md')));
+    assert.ok(existsSync(join(destination, 'references', 'reddit-access-and-schema.md')));
     assert.ok(existsSync(join(destination, 'scripts', 'check-coverage.mjs')));
+    assert.ok(existsSync(join(destination, 'scripts', 'reddit_extract.py')));
+    assert.ok(existsSync(join(destination, 'scripts', 'reddit_extract.LICENSE')));
     assert.equal(existsSync(join(destination, 'references', 'longmont-beat-memory.json')), false);
     assert.match(readFileSync(join(destination, 'SKILL.md'), 'utf8'), /every substantive motion and vote/i);
     assert.throws(() => install({ target: 'codex', dest: parent }), /already exists/);
@@ -74,8 +78,10 @@ test('ChatGPT/Codex plugin package has a discoverable skill and local marketplac
     const manifest = JSON.parse(readFileSync(join(plugin, 'plugin.json'), 'utf8'));
     const marketplace = JSON.parse(readFileSync(join(out, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
     assert.equal(manifest.name, 'civic-scanner');
+    assert.equal(manifest.version, '2.5.0');
     assert.equal(marketplace.plugins[0].source.path, './plugins/civic-scanner');
     assert.ok(existsSync(join(plugin, 'skills', 'civic-scanner', 'references', 'daily-scan.md')));
+    assert.ok(existsSync(join(plugin, 'skills', 'civic-scanner', 'scripts', 'reddit_extract.py')));
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
@@ -86,7 +92,7 @@ test('report validation runs without docx and rejects missing meeting coverage',
   const reportPath = join(parent, 'pipeline.json');
   const builder = fileURLToPath(new URL('../build-report.js', import.meta.url));
   const data = {
-    meta: { city: 'Longmont', state: 'CO', date: '2026-09-24', runNumber: 1, version: '2.4.0' },
+    meta: { city: 'Longmont', state: 'CO', date: '2026-09-24', runNumber: 1, version: '2.5.0' },
     stats: { scanned: 1, advanced: 1, held: 0, killed: 0, suppressed: 0, tierACounts: 1, tierBCounts: 0, tierCCounts: 0 },
     meetingCoverage: { status: 'COMPLETE', sourceInventory: 'Council portal and recording checked', meetings: [{ body: 'City Council', date: '2026-09-22', coverageStatus: 'complete' }], actions: [{ actionId: 'future-agenda', timestamp: '00:45:00', motionOrAction: 'Put marijuana hospitality rules on a future agenda', outcome: 'passed', vote: '4-3', policyStage: 'future discussion directed', evidence: 'official recording at 00:45:00', disposition: 'lead' }], agendaReconciliation: 'Agenda and recording matched', unresolvedGaps: [] },
     agent1_leads: [{ id: 'future-agenda', tier: 'A', headline: 'Council requests future discussion', details: 'Official meeting action documented in the recording.' }],

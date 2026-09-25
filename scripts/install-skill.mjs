@@ -57,6 +57,8 @@ export function install(options) {
   mkdirSync(join(destination, 'scripts'));
   cpSync(join(root, 'scripts', 'transcript-ledger.mjs'), join(destination, 'scripts', 'transcript-ledger.mjs'));
   cpSync(join(root, 'scripts', 'check-coverage.mjs'), join(destination, 'scripts', 'check-coverage.mjs'));
+  cpSync(join(root, 'scripts', 'reddit_extract.py'), join(destination, 'scripts', 'reddit_extract.py'));
+  cpSync(join(root, 'scripts', 'reddit_extract.LICENSE'), join(destination, 'scripts', 'reddit_extract.LICENSE'));
   cpSync(join(root, 'build-report.js'), join(destination, 'build-report.js'));
   cpSync(join(root, 'report-schema.json'), join(destination, 'report-schema.json'));
   const installed = readFileSync(join(destination, 'SKILL.md'), 'utf8');

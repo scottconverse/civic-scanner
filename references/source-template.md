@@ -44,7 +44,7 @@ For a government action, use an official record. For a nongovernment development
 |--------|-----|-------------|-----------------|
 | City Council Agendas | [URL] | [PrimeGov/Granicus/Legistar/Municode/custom] | [e.g., 1st & 3rd Tuesdays, 7 PM] |
 | City Council Minutes | [URL] | [same portal or separate] | [published ~X days after meeting] |
-| City Clerk / Public Records | [URL] | [records request portal] | Ongoing |
+| City Clerk / Published Records Archive | [URL] | [publicly accessible documents] | Ongoing |
 | City Budget Documents | [URL] | [finance dept page] | Annual cycle |
 | Building Permits | [URL] | [community development portal] | Ongoing |
 | Planning & Zoning | [URL] | [planning dept page] | [schedule] |
@@ -64,7 +64,6 @@ For a government action, use an official record. For a nongovernment development
 | County Commissioners / Supervisors | [URL] | [agendas + minutes] |
 | County Clerk & Recorder | [URL] | [property, elections] |
 | State Secretary of State | [URL] | [business filings, elections] |
-| State Open Records Act | [statute reference] | [your state's FOIA equivalent] |
 
 ### School District
 
@@ -131,13 +130,11 @@ For a government action, use an official record. For a nongovernment development
 
 ---
 
-## Open Records Law Reference
+## Published-source access plan
 
-- **Statute:** [your state's open records act — e.g., CORA, FOIA, OPRA, etc.]
-- **Response deadline:** [e.g., 3 business days to acknowledge]
-- **Fees:** [e.g., first hour free, then research/copy fees]
-- **Exemptions:** [common exemptions in your state]
-- **Appeal process:** [how to challenge a denial]
+- **Public archives and data:** [URLs for already posted primary evidence]
+- **Access gaps:** [important documents not publicly available and the claims they limit]
+- **No records requests:** Do not include request portals, formal request steps, or fee-based retrieval in this registry.
 
 ---
 

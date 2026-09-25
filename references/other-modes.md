@@ -8,7 +8,7 @@ State the claim precisely, including who did what, when, and the stage of any pr
 
 ## `research {topic}`
 
-Find the original evidence chain and affected institutions or jurisdictions. Build a dated chronology and explain the event or policy mechanism, people affected, money or land involved, remaining decisions, and competing accounts. Deliver a research brief with verified facts, disputed claims, missing documents, suggested records requests, interviews, and a falsification plan. If the topic involves a meeting, apply the meeting coverage rules in `daily-scan.md` to that meeting.
+Find the original evidence chain and affected institutions or jurisdictions. Build a dated chronology and explain the event or policy mechanism, people affected, money or land involved, remaining decisions, and competing accounts. Deliver a research brief with verified facts, disputed claims, missing documents, accessible follow-up sources, interviews, and a falsification plan. Do not suggest formal records requests. If the topic involves a meeting, apply the meeting coverage rules in `daily-scan.md` to that meeting.
 
 ## `legal-threat {situation}`
 

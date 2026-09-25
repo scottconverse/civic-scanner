@@ -6,6 +6,8 @@ The default source town is Longmont, Colorado. Use `discover` to build a registr
 
 "Whole civic landscape" describes the **range of beats**, not a promise to capture literally every event. Each scan names its date window and source inventory, and marks gaps. Government votes require official records; developments outside government need appropriate primary evidence, such as an organization's original documents or firsthand reporting. Local news and community posts are lead sources, not proof by themselves.
 
+The workflow uses published and freely accessible evidence. It never files, drafts, or recommends CORA, FOIA, or another formal records request, and does not incur records-access fees. Missing evidence stays marked as a gap; claims that depend on it remain unverified or are held.
+
 ## Install in an agent tool
 
 The same `SKILL.md` and `references/` work across tools that support Agent Skills. The installer uses Node.js built-ins and copies the complete skill bundle to the selected user's skill directory; it never changes model settings. Review an existing installation before replacing it. `--force` saves a backup of the previous skill directory.
@@ -61,6 +63,10 @@ Every expanded story also carries its own **claims and sources**: a status for e
 
 In `full-pipeline`, the **Black Desk** takes weak leads and anomalies from that broad scan, labels each hypothesis's evidence problem, and gives the adversarial desk a specific check. The report shows these possible stories in their own **Unverified** dashboard section, with the source, confidence, next check, and adversarial disposition; the verification appendix keeps the full handoff. Its output is never reported as fact. The daily scan collects weak signals but does not run the full Black Desk stage.
 
+Subreddits such as **r/Longmont** are active Tier C lead sources. The scan checks recent posts and targeted searches, records direct post links and dates, and follows promising claims to primary evidence. `references/reddit-intake.md` includes the workflow and `scripts/reddit_extract.py` builds URLs and parses saved RSS or Redlib pages when Python is available. Fetching stays under the agent's control; browser chats can follow the same workflow without Python. Reddit posts remain internal reporting leads, not verified facts.
+
+The parser and its regression fixtures are copied from Scott Converse's [reddit-search-redlib](https://github.com/scottconverse/reddit-search-redlib) at commit `5d08aee`, under its MIT license (`scripts/reddit_extract.LICENSE`). The optional Redlib installation and lifecycle scripts stay in that separate project; Civic Scanner does not install or start a server.
+
 Coverage is `COMPLETE` only for the stated source inventory and date window after all available recording ranges, motion/vote cues, and agenda/minutes discrepancies are reviewed. Otherwise the result is `PARTIAL` with exact gaps. Search hits alone never satisfy the coverage gate.
 
 ## Optional transcript scaffold
@@ -89,6 +95,9 @@ node build-report.js path/to/pipeline-data.json
 - [`SKILL.md`](SKILL.md): concise entry point and mandatory rules.
 - [`references/editorial-controls.md`](references/editorial-controls.md): evidence, status, scoring, and adversarial gates.
 - [`references/daily-scan.md`](references/daily-scan.md): complete meeting coverage and briefing format.
+- [`references/reddit-intake.md`](references/reddit-intake.md): subreddit discovery, provenance, and lead triage.
+- [`references/reddit-access-and-schema.md`](references/reddit-access-and-schema.md): RSS/Redlib routes, parser fields, and failure categories.
+- [`scripts/reddit_extract.py`](scripts/reddit_extract.py): optional Python URL builder and parser for saved Reddit RSS or Redlib HTML; it does not fetch network content.
 - [`references/full-pipeline.md`](references/full-pipeline.md): downstream editorial stages.
 - [`references/other-modes.md`](references/other-modes.md): verification, research, legal triage, and discovery.
 - [`archive/legacy-v2.3.md`](archive/legacy-v2.3.md): historical detailed prompts in the repository, excluded from installation. Current files govern; do not follow old provider-specific commands.

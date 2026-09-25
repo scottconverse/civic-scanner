@@ -51,7 +51,6 @@ These records are the primary evidence for government actions. Nongovernment sto
 | Boulder County Clerk & Recorder | https://www.bouldercounty.gov/departments/clerk-and-recorder/ | Property, elections |
 | Weld County (partial jurisdiction) | https://www.weldgov.com/ | Eastern Longmont parcels |
 | Colorado Secretary of State | https://www.sos.state.co.us/ | Business filings, elections |
-| Colorado Open Records (CORA) | Via specific agency request | Formal CORA requests |
 
 ### School District
 
@@ -95,7 +94,7 @@ referenced in published reporting.
 
 | Source | Platform | Notes |
 |--------|----------|-------|
-| r/Longmont | Reddit | Community discussion, complaints, tips |
+| r/Longmont | Reddit | [New posts RSS](https://www.reddit.com/r/Longmont/new/.rss) and [subreddit](https://www.reddit.com/r/Longmont/); scan per `reddit-intake.md`, keeping direct post links and dates |
 | Longmont Nextdoor groups | Nextdoor | Hyperlocal neighborhood signals |
 | Longmont community Facebook groups | Facebook | Events, complaints, rumors |
 | YouTube comments on city meetings | YouTube | Public sentiment, questions |
@@ -112,7 +111,7 @@ For **daily-scan** mode, check these mapped sources and identify gaps from the c
 3. SVVSD board — new agendas?
 4. Boulder County Commissioners — new agendas?
 5. Times-Call — new local stories? (Tier B, leads only)
-6. r/Longmont — new signals? (Tier C, verify before use)
+6. r/Longmont — check new posts and targeted subreddit searches for the date window; keep promising Tier C links and verify before use
 
 ---
 
@@ -128,12 +127,6 @@ For **daily-scan** mode, check these mapped sources and identify gaps from the c
 
 ---
 
-## CORA (Colorado Open Records Act) Notes
+## Access boundary
 
-- Any person can request public records under CORA (CRS 24-72-201 et seq.)
-- Agencies must respond within 3 business days (acknowledge) and provide records
-  within a "reasonable" time
-- Fees: first hour free, then reasonable research/copy fees
-- Exemptions: ongoing investigations, attorney-client privilege, personnel records
-- Appeal: denial can be challenged in district court
-- Use CORA requests to obtain Tier A documents not published online
+Use already published agendas, packets, minutes, recordings, public data, and other accessible primary sources. Do not file or recommend a CORA or other formal records request. If an essential document is not publicly accessible, log the exact gap and keep dependent claims unverified.

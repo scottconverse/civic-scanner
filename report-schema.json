@@ -169,7 +169,7 @@
           "beat": { "type": "string" },
           "headlineAudit": { "type": "string" },
           "legalRisk": { "type": "string" },
-          "reporterTaskMemo": { "type": "string", "$comment": "Confirmed / Missing / Calls / Docs / What Kills This Story" },
+          "reporterTaskMemo": { "type": "string", "$comment": "Confirmed / Missing / Calls / Published Docs / What Kills This Story; no formal records requests" },
           "visualDirection": { "type": "string", "$comment": "FULL visual direction brief with generation prompts. NOT a one-liner." }
         }
       }

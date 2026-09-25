@@ -4,3 +4,5 @@ dist/
 .DS_Store
 Thumbs.db
 pipeline-data-*.json
+__pycache__/
+*.pyc
