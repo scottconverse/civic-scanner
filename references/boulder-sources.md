@@ -17,7 +17,9 @@ All sources classified by tier (A/B/C) per the Civic Grounding Protocol.
 
 ---
 
-## Tier A — Official Records (Publishable)
+## Tier A — Official records currently mapped
+
+These sources establish official actions. A broad city scan must also map original evidence for nongovernment beats; this historical registry alone does not provide complete citywide coverage.
 
 ### City Council & Government
 

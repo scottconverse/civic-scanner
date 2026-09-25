@@ -1,7 +1,7 @@
 # Source Registry Template — [Your City]
 
-Configure this template for your municipality. Replace bracketed placeholders
-with your city's actual sources. Delete rows that don't apply. Add rows as needed.
+Configure this template for the civic ecosystem affecting your town. Replace bracketed placeholders
+with verified local sources. Delete rows that don't apply. Add rows as needed.
 
 The Civic Source Scanner reads this file to know what to scan and how to classify it.
 
@@ -17,7 +17,26 @@ The Civic Source Scanner reads this file to know what to scan and how to classif
 
 ---
 
-## Tier A — Official Records (Publishable)
+## Civic beat coverage map
+
+The registry should cover these beats where relevant. A blank row is a discovery gap, not proof that nothing happened. Mark sources checked and gaps in each scan.
+
+| Beat | Primary sources | Secondary sources / signals | Coverage status |
+|------|-----------------|-----------------------------|-----------------|
+| Government & elections | [portals, filings] | [news/community] | [mapped/gap] |
+| Schools & youth | [districts, colleges, organizations] | [news/community] | [mapped/gap] |
+| Housing & land use | [permits, housing providers, developers] | [news/community] | [mapped/gap] |
+| Business & jobs | [employers, filings, labor data] | [news/community] | [mapped/gap] |
+| Health & public safety | [health providers, agencies, data] | [news/community] | [mapped/gap] |
+| Transportation & utilities | [operators, projects, data] | [news/community] | [mapped/gap] |
+| Environment | [monitoring agencies, groups, data] | [news/community] | [mapped/gap] |
+| Arts, culture & neighborhoods | [venues, libraries, nonprofits] | [news/community] | [mapped/gap] |
+
+---
+
+## Tier A — Original, claim-specific evidence
+
+For a government action, use an official record. For a nongovernment development, an organization's original documents, attributable firsthand reporting, or direct observation may be primary evidence for the claim it actually supports. Primary status does not mean every statement in the source is true.
 
 ### City Council & Government
 
@@ -63,9 +82,19 @@ The Civic Source Scanner reads this file to know what to scan and how to classif
 | [Fire District] | [URL] | |
 | [Library District] | [URL] | |
 
+### Nongovernment primary sources
+
+| Source | URL / contact | Beat | What it can establish |
+|--------|---------------|------|-----------------------|
+| [Major employer or business registry] | [URL] | Business & jobs | [Original announcement or filing] |
+| [Hospital or health provider] | [URL] | Health | [Original service notices or data] |
+| [Housing provider or developer] | [URL] | Housing | [Project announcement, filing, application] |
+| [Arts venue, library, or nonprofit] | [URL] | Culture / community | [Event, program, or service announcement] |
+| [Firsthand interview / observation log] | [secure newsroom record] | [beat] | [Attributed observation or statement] |
+
 ---
 
-## Tier B — Institutional Sources (Leads Only)
+## Tier B — Secondary reporting and institutional context (leads only)
 
 | Source | URL | Notes |
 |--------|-----|-------|
