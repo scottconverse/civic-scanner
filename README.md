@@ -59,7 +59,7 @@ The daily scan starts with a source inventory and meeting action ledger. The act
 
 Every expanded story also carries its own **claims and sources**: a status for each consequential claim, source IDs tied to it, and a source list with public URLs and page/item/timestamp locators. Offline interviews or files use an explicit record reference rather than a fabricated URL. The report builder checks those links and prints the ledger with each story.
 
-In `full-pipeline`, the **Black Desk** takes weak leads and anomalies from that broad scan, labels each hypothesis's evidence problem, and gives the adversarial desk a specific check. Its output is never reported as fact. The daily scan collects these signals but does not run the full Black Desk stage.
+In `full-pipeline`, the **Black Desk** takes weak leads and anomalies from that broad scan, labels each hypothesis's evidence problem, and gives the adversarial desk a specific check. The report shows these possible stories in their own **Unverified** dashboard section, with the source, confidence, next check, and adversarial disposition; the verification appendix keeps the full handoff. Its output is never reported as fact. The daily scan collects weak signals but does not run the full Black Desk stage.
 
 Coverage is `COMPLETE` only for the stated source inventory and date window after all available recording ranges, motion/vote cues, and agenda/minutes discrepancies are reviewed. Otherwise the result is `PARTIAL` with exact gaps. Search hits alone never satisfy the coverage gate.
 

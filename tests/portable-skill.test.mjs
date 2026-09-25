@@ -140,6 +140,12 @@ test('report validation runs without docx and rejects missing meeting coverage',
     assert.equal(missingReview.status, 1);
     assert.match(missingReview.stderr, /Agent 4 disposition missing/);
     data.agent4_adversarial.push({ id: 's1', headline: 'Possible linked changes', gate1: 'checked', gate2: 'checked', gate3_counterNarrative: 'Alternative explanation reviewed. '.repeat(6), targetCheck: 'Original announcement found; link remains unverified', severity: 'UNVERIFIABLE', verdict: 'HOLD' });
+    delete data.agent4_adversarial.at(-1).verdict;
+    writeFileSync(reportPath, JSON.stringify(data));
+    const missingDisposition = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
+    assert.equal(missingDisposition.status, 1);
+    assert.match(missingDisposition.stderr, /verdict/);
+    data.agent4_adversarial.at(-1).verdict = 'HOLD';
     writeFileSync(reportPath, JSON.stringify(data));
     const handoffPass = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
     assert.equal(handoffPass.status, 0, handoffPass.stderr);

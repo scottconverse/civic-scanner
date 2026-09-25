@@ -188,7 +188,9 @@ if (data.agent4_adversarial) {
 for (const signal of data.agent3_blackDesk || []) {
   const review = (data.agent4_adversarial || []).find(a => a.id === signal.signalId);
   if (!review) errors.push(`Agent 4 disposition missing for Black Desk signal ${signal.signalId}`);
-  else requireField(review, "targetCheck", `agent4_adversarial[${signal.signalId}]`);
+  else {
+    ["severity", "verdict", "targetCheck"].forEach(field => requireField(review, field, `agent4_adversarial[${signal.signalId}]`));
+  }
 }
 for (const gate of data.agent25_gate || []) {
   if (gate.decision === "ADVANCE" && !data.agent4_adversarial?.some(review => review.id === gate.id)) errors.push(`ADVANCE story ${gate.id} has no adversarial review`);
@@ -446,6 +448,21 @@ if (data.heldStories && data.heldStories.length > 0) {
     children.push(boldPara("What would elevate: ", held.elevate || "N/A"));
   });
 }
+
+// ── Dashboard: Black Desk possible stories ─────────────────────────
+children.push(h2("Black Desk — Possible Stories to Investigate (Unverified)"));
+children.push(para("These are speculative investigation leads, not verified stories or publication copy. Agent 4's check does not by itself promote a hypothesis into a story packet."));
+if (!data.agent3_blackDesk.length) children.push(para("No Black Desk hypotheses generated for this run."));
+data.agent3_blackDesk.forEach((signal, index) => {
+  const review = data.agent4_adversarial.find(item => item.id === signal.signalId);
+  children.push(h3(`${index + 1}. ${signal.title}`));
+  children.push(colorLabel("Status", GRAY, "UNVERIFIED HYPOTHESIS"));
+  children.push(boldPara("Source and confidence: ", `Tier ${signal.sourceTier} — ${signal.source}; ${signal.confidence}`));
+  children.push(boldPara("Possible story: ", signal.speculativeAngle));
+  children.push(boldPara("Evidence problem: ", `${signal.vulnerabilityTypes.join(", ")} — ${signal.vulnerabilityDetail}`));
+  children.push(boldPara("Check next: ", signal.agent4Target));
+  children.push(boldPara("Agent 4 disposition: ", `${review.verdict} (${review.severity}) — ${review.targetCheck}`));
+});
 
 // ── Dashboard: Tier B Leads ─────────────────────────────────────────
 const tierBLeads = (data.agent1_leads || []).filter(l => l.tier === "B");
