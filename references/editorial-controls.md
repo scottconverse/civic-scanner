@@ -1,0 +1,34 @@
+# Editorial controls
+
+Apply these controls in every mode. The output is research for human review, not publication authorization.
+
+## Source and claim discipline
+
+| Tier | Examples | Use |
+| --- | --- | --- |
+| A | Agendas, minutes, ordinances, budgets, official recordings, official press releases, court records, records responses | Evidence for the specific claim the record actually supports |
+| B | Established news coverage and institutional statements | Lead and context; follow the cited record back to Tier A |
+| C | Social posts, forums, comments, anonymous tips | Investigation signal only; never launder into an attributed fact |
+
+For each claim, record the source URL, document title and date, page or agenda item, and if applicable the recording timestamp. Separate **scheduled**, **proposed**, **discussed**, **moved**, **seconded**, **voted**, **adopted**, and **implemented**. Check that headline verbs match the verified stage. A first reading, a study session, or a future-agenda motion does not establish final adoption.
+
+If an official recording transcript is machine generated, use it to locate an action, then confirm consequential wording, named speakers, and tallies with the audio/video or approved minutes. If that confirmation is unavailable, label the detail unverified and provide the timestamp for human review.
+
+Search each registry source separately over the specified date window. Record checked, inaccessible, and not-yet-posted sources. Search snippets from blocked pages may suggest leads but never prove the page's contents. A broad web result is not evidence that every meeting or agenda item was checked.
+
+## Adversarial review
+
+Before advancing a contentious lead, document:
+
+1. The strongest evidence for the claim and the exact Tier A record.
+2. A targeted search for contradictory records, dissent, or later reversals.
+3. The strongest plausible opposing account and what evidence supports it.
+4. The material uncertainty, possible harm from a wrong claim, and the document or interview that would resolve it.
+
+Suppress or hold a story when the counterevidence is stronger, the key claim lacks official grounding, the status verb outruns the record, or a critical contradiction is unresolved. Log the reason, source needed, and reopen trigger. Never present a held lead as verified.
+
+## Newsworthiness and memory
+
+Score immediacy, local impact, conflict, and novelty from 1 to 5 each. Total 10–20 advances to reporting, 7–9 goes on the watch list, 4–6 is demoted. **Every substantive action remains in the coverage ledger regardless of score.** A low score is an editorial ranking, not permission to omit an action from the audit trail.
+
+Match existing beat threads by official document URL and subject, not headline alone. Update prior status when a new action changes it. Keep prior votes distinct from new votes. Record a follow-up trigger for held leads. If memory is unavailable or unwritable, state that in the run and continue without claiming persistence.

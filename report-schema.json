@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$comment": "Pipeline data schema for civic-scanner build-report.js. The pipeline MUST produce a JSON file matching this schema. The build script validates against these requirements before generating the .docx.",
   "type": "object",
-  "required": ["meta", "stats", "agent1_leads", "agent2_stories", "agent25_gate", "agent3_blackDesk", "agent4_adversarial", "agent5_completeness", "agent6_legal", "agent7_plainLanguage", "agent75_distribution", "agent8_hygiene", "heldStories", "trustDashboard"],
+  "required": ["meta", "stats", "meetingCoverage", "agent1_leads", "agent2_stories", "agent25_gate", "agent3_blackDesk", "agent4_adversarial", "agent5_completeness", "agent6_legal", "agent7_plainLanguage", "agent75_distribution", "agent8_hygiene", "heldStories", "trustDashboard"],
   "properties": {
     "meta": {
       "type": "object",
@@ -38,6 +38,47 @@
       "properties": {
         "blockedDomains": { "type": "string" },
         "manualReviewItems": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "meetingCoverage": {
+      "type": "object",
+      "required": ["status", "sourceInventory", "meetings", "actions", "agendaReconciliation", "unresolvedGaps"],
+      "properties": {
+        "status": { "type": "string", "enum": ["COMPLETE", "PARTIAL"] },
+        "sourceInventory": { "type": "string" },
+        "meetings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["body", "date", "coverageStatus"],
+            "properties": {
+              "body": { "type": "string" },
+              "date": { "type": "string" },
+              "coverageStatus": { "type": "string", "enum": ["complete", "partial", "unavailable"] },
+              "recordingUrl": { "type": "string" },
+              "gaps": { "type": "string" }
+            }
+          }
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["actionId", "timestamp", "motionOrAction", "outcome", "vote", "policyStage", "evidence", "disposition"],
+            "properties": {
+              "actionId": { "type": "string" },
+              "timestamp": { "type": "string" },
+              "motionOrAction": { "type": "string" },
+              "outcome": { "type": "string" },
+              "vote": { "type": "string" },
+              "policyStage": { "type": "string" },
+              "evidence": { "type": "string" },
+              "disposition": { "type": "string" }
+            }
+          }
+        },
+        "agendaReconciliation": { "type": "string" },
+        "unresolvedGaps": { "type": "array", "items": { "type": "string" } }
       }
     },
     "agent1_leads": {

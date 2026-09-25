@@ -8,8 +8,8 @@
  * Usage:
  *   node build-report.js <pipeline-data.json> [output-dir]
  *
- * Default output-dir: C:\Users\scott\OneDrive\Desktop\CivicScanner\
- * Pipeline JSON data files are also saved there.
+ *   node build-report.js --validate-only <pipeline-data.json>
+ * Default output-dir: the input JSON file's directory.
  *
  * The JSON file must conform to the schema in report-schema.json.
  * If validation fails, the script exits with an error listing what's missing.
@@ -21,26 +21,6 @@
 const fs = require("fs");
 const path = require("path");
 
-// Resolve docx module — check common install locations
-let docxPath;
-const candidates = [
-  path.join(__dirname, "node_modules", "docx"),
-  path.join(process.cwd(), "node_modules", "docx"),
-  "C:\\Users\\scott\\OneDrive\\Desktop\\Claude\\node_modules\\docx",
-  "docx", // global fallback
-];
-for (const c of candidates) {
-  try { require.resolve(c); docxPath = c; break; } catch {}
-}
-if (!docxPath) {
-  console.error("ERROR: Cannot find 'docx' module. Run: npm install docx");
-  process.exit(1);
-}
-const {
-  Document, Packer, Paragraph, TextRun, HeadingLevel,
-  AlignmentType, PageBreak, Footer, Header
-} = require(docxPath);
-
 // ─── Color constants ────────────────────────────────────────────────
 const GREEN = "2E7D32";
 const AMBER = "D4760A";
@@ -48,19 +28,13 @@ const RED   = "C62828";
 const GRAY  = "757575";
 
 // ─── CLI args ───────────────────────────────────────────────────────
-const os = require("os");
-const jsonPath = process.argv[2];
-const DEFAULT_OUTPUT_DIR = path.join(os.homedir(), "Desktop", "CivicScanner");
-const outputDir = process.argv[3] || DEFAULT_OUTPUT_DIR;
+const args = process.argv.slice(2);
+const validateOnly = args[0] === "--validate-only";
+const jsonPath = validateOnly ? args[1] : args[0];
+const outputDir = validateOnly ? null : (args[1] || (jsonPath ? path.dirname(path.resolve(jsonPath)) : null));
 
-// Create output directory if it doesn't exist
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
-  console.log(`Created output directory: ${outputDir}`);
-}
-
-if (!jsonPath) {
-  console.error("Usage: node build-report.js <pipeline-data.json> [output-dir]");
+if (!jsonPath || (validateOnly && args.length !== 2) || (!validateOnly && args.length > 2)) {
+  console.error("Usage: node build-report.js [--validate-only] <pipeline-data.json> [output-dir]");
   process.exit(1);
 }
 
@@ -101,6 +75,27 @@ if (data.meta) {
 
 // Stats
 requireField(data, "stats", "root");
+
+// Meeting action coverage — separate from ranked leads
+requireField(data, "meetingCoverage", "root");
+if (data.meetingCoverage) {
+  const coverage = data.meetingCoverage;
+  ["status", "sourceInventory", "agendaReconciliation"].forEach(f => requireField(coverage, f, "meetingCoverage"));
+  if (!["COMPLETE", "PARTIAL"].includes(coverage.status)) errors.push("meetingCoverage.status must be COMPLETE or PARTIAL");
+  if (!Array.isArray(coverage.meetings)) errors.push("meetingCoverage.meetings must be an array");
+  if (!Array.isArray(coverage.actions)) errors.push("meetingCoverage.actions must be an array");
+  if (!Array.isArray(coverage.unresolvedGaps)) errors.push("meetingCoverage.unresolvedGaps must be an array");
+  if (coverage.status === "COMPLETE" && coverage.unresolvedGaps?.length) errors.push("COMPLETE coverage cannot have unresolved gaps");
+  if (coverage.status === "PARTIAL" && Array.isArray(coverage.unresolvedGaps) && !coverage.unresolvedGaps.length) errors.push("PARTIAL coverage must name its unresolved gaps");
+  (coverage.meetings || []).forEach((meeting, i) => {
+    ["body", "date", "coverageStatus"].forEach(f => requireField(meeting, f, `meetingCoverage.meetings[${i}]`));
+    if (coverage.status === "COMPLETE" && meeting.coverageStatus !== "complete") errors.push(`COMPLETE coverage has a partial or unavailable meeting: ${meeting.body}`);
+  });
+  (coverage.actions || []).forEach((action, i) => {
+    ["actionId", "timestamp", "motionOrAction", "outcome", "vote", "policyStage", "evidence", "disposition"].forEach(f => requireField(action, f, `meetingCoverage.actions[${i}]`));
+    if (coverage.status === "COMPLETE" && ["unknown", "unverified", "unresolved"].some(value => [action.timestamp, action.vote, action.outcome, action.disposition].includes(value))) errors.push(`COMPLETE coverage has an unresolved action: ${action.actionId}`);
+  });
+}
 
 // Agent 1 leads
 requireArray(data, "agent1_leads", "root");
@@ -200,6 +195,23 @@ if (errors.length > 0) {
   console.error(`\n${errors.length} error(s). Fix the JSON data file and re-run.`);
   process.exit(1);
 }
+
+if (validateOnly) {
+  console.log("Report data passed required-field and meeting-coverage checks.");
+  process.exit(0);
+}
+
+// The optional docx dependency is needed only to create a document.
+let docxPath;
+for (const candidate of [path.join(__dirname, "node_modules", "docx"), path.join(process.cwd(), "node_modules", "docx"), "docx"]) {
+  try { require.resolve(candidate); docxPath = candidate; break; } catch {}
+}
+if (!docxPath) {
+  console.error("ERROR: Cannot find 'docx' module. Run: npm install docx");
+  process.exit(1);
+}
+const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, PageBreak, Footer, Header } = require(docxPath);
+if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
 // ─── Helper functions ───────────────────────────────────────────────
 
@@ -322,6 +334,28 @@ if (data.sourceAccessLimitations) {
     data.sourceAccessLimitations.manualReviewItems.forEach(item => children.push(bullet(item)));
   }
 }
+
+// Meeting coverage is an audit trail, not a subset of ranked story leads.
+const coverage = data.meetingCoverage;
+children.push(h2("Meeting Action Coverage"));
+children.push(colorLabel("Run status", coverage.status === "COMPLETE" ? GREEN : AMBER, coverage.status));
+children.push(boldPara("Source inventory: ", coverage.sourceInventory));
+children.push(boldPara("Agenda and minutes reconciliation: ", coverage.agendaReconciliation));
+coverage.meetings.forEach(meeting => {
+  children.push(bullet(`${meeting.body} — ${meeting.date} — ${meeting.coverageStatus}${meeting.recordingUrl ? ` — ${meeting.recordingUrl}` : ""}`));
+  if (meeting.gaps) children.push(boldPara("Coverage gaps: ", meeting.gaps));
+});
+if (coverage.unresolvedGaps.length) {
+  children.push(h3("Unresolved coverage gaps"));
+  coverage.unresolvedGaps.forEach(gap => children.push(bullet(gap)));
+}
+children.push(h3("All substantive actions"));
+if (!coverage.actions.length) children.push(para("No substantive actions logged for the stated window."));
+coverage.actions.forEach(action => {
+  children.push(boldPara(`${action.actionId} at ${action.timestamp}: `, action.motionOrAction));
+  children.push(para(`${action.outcome}; vote: ${action.vote}; stage: ${action.policyStage}; disposition: ${action.disposition}`));
+  children.push(boldPara("Official evidence: ", action.evidence));
+});
 
 // ── Dashboard: Publishable Stories ──────────────────────────────────
 children.push(h2("Publishable Stories"));

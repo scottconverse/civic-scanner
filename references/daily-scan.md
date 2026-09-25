@@ -1,0 +1,56 @@
+# Daily scan and meeting coverage
+
+Use this workflow for `daily-scan` and as the intake stage for `full-pipeline`. The source town, date window, and registry must be explicit. Longmont uses `longmont-sources.md`; a different town needs its own registry or a clearly marked provisional source list.
+
+## 1. Inventory sources before ranking leads
+
+Open each relevant Tier A registry entry separately: council portal and packet, minutes, official recordings, boards and commissions, school district, county, and special districts. Check new and recently changed records within the date window. Note exact titles, dates, URLs, and access failures. Use Tier B coverage and Tier C signals to find omissions, never to replace official evidence.
+
+For each relevant meeting, create a **meeting record** with body, meeting date, agenda URL, minutes URL or status, recording URL or status, transcript URL or status, and a `coverage_status` of `complete`, `partial`, or `unavailable`. If the recording exists but the transcript cannot be retrieved, review the recording by time ranges if the host permits; otherwise mark the meeting partial and give the unreviewed range.
+
+## 2. Review the full meeting chronologically
+
+Read the entire accessible transcript in ordered chunks; if token limits prevent one pass, split it into consecutive time or line ranges and track every range. Do not jump only to agenda headings, keyword hits, or likely story items. Search cues such as *move*, *second*, *all in favor*, *passes*, *fails*, *future agenda*, *direction to staff*, and *consent* to aid discovery, then read the surrounding discussion and remaining chunks. The optional `scripts/transcript-ledger.mjs` makes a chunk and cue scaffold; it does not certify coverage or replace semantic review.
+
+For **every substantive motion and vote**, make an action row, even if it was not on the posted agenda, was procedural, received a low newsworthiness score, or only schedules future discussion. Include consent agenda actions and amendments where they alter substance. Routine approval of minutes, adjournment, and other purely administrative acts can be grouped as `routine`, but still account for them in the ledger.
+
+Required action fields:
+
+| Field | Meaning |
+| --- | --- |
+| `action_id` | Stable local identifier for this meeting and action |
+| `timestamp` | Recording time or transcript line range; `unknown` only if explicitly unresolved |
+| `agenda_item` | Posted item or `not on posted agenda` |
+| `motion_or_action` | What was actually moved, directed, voted, or decided |
+| `outcome` | Passed, failed, withdrawn, tabled, discussion only, or unresolved |
+| `vote` | Verified tally or `unverified`; identify roll call if available |
+| `policy_stage` | Scheduled, proposed, discussion directed, first reading, final adoption, etc. |
+| `evidence` | Official URL plus page/section/time |
+| `disposition` | Lead, watch, routine, duplicate, or unresolved, with reason |
+
+Example: A 4–3 motion to place marijuana hospitality rules on a later agenda is an action row with `policy_stage: future discussion directed`; it is **not** a vote adopting hospitality rules. A dispensary annexation decision is a separate action. Neither may be silently merged into the other.
+
+Record a **chunk ledger** for each transcript or recording range: start/end, whether the full range was reviewed, cue IDs, actions found, and any gap. A range is `reviewed` only after all its content, not merely a search snippet, was inspected. If the transcript has no timestamps, use line ranges and say so. If another assistant or human supplies a summary, label its provenance; do not mark the original range reviewed by you.
+
+## 3. Reconcile sources and search for omissions
+
+Compare each agenda item with the action ledger: scheduled with no action, changed, deferred, withdrawn, and added during the meeting. Compare minutes and subsequent city postings to the ledger. Search local reporting for mentioned votes or motions and trace each candidate back to Tier A. Run a second targeted pass over all `motion`, `vote`, `future agenda`, `direction`, and roll-call cues. Resolve each candidate as a distinct action, a duplicate, routine, or an explicit unresolved item. Treat missing or later posted minutes as a source status, not as proof that no vote occurred.
+
+The scan completion gate is satisfied only when every relevant source has an access status, every available meeting range has a review status, every substantive action/cue has a disposition, and the agenda/recording/minutes comparison has no unexplained mismatch. If any gate fails, label the run `PARTIAL`, identify exact gaps, and avoid a claim of exhaustive coverage. A `COMPLETE` gate means the listed source inventory was fully reviewed for this date window; it is not a guarantee that the city has published every record.
+
+## 4. Rank and deliver
+
+For each verified lead, write 200–300 words of sourced research, a 1–5 score for each newsworthiness dimension, a concise why-it-matters note, and a 100–150 word plain-language summary for advance or watch items. Tier B leads get a short note with the Tier A record needed. Tier C signals get a one-line investigation note. Do not describe either as verified.
+
+The briefing starts with:
+
+```text
+DAILY BRIEFING — {town} — {date window}
+Run status: COMPLETE | PARTIAL
+Source inventory: {checked / blocked / not posted}
+Meetings: {recording URLs, coverage status, unreviewed ranges}
+Action coverage: {substantive actions, routine groups, unresolved cues}
+Agenda reconciliation: {matched, changed, unexplained}
+```
+
+Then give (1) a compact **all-actions ledger** with timestamps and dispositions; (2) scored story leads; (3) held/unverified leads and specific next steps; (4) upcoming meetings; (5) beat-memory changes if saved. Keep the all-actions ledger separate from the ranked leads so an important but low-scoring motion remains visible.
