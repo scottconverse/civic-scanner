@@ -10,7 +10,7 @@ Produce **reporter research scaffolding**, not a finished news story. A human re
 ## Start a run
 
 1. Identify the mode: `daily-scan`, `full-pipeline`, `verify-only`, `research`, `legal-threat`, or `discover`. If no mode is named, ask for one only when the request does not imply it.
-2. Load `references/editorial-controls.md`, then the mode file below. Load the city's source registry (Longmont: `references/longmont-sources.md`) and available beat memory. When the registry names a subreddit, also load `references/reddit-intake.md`; the separate `reddit-search` skill is optional. If a new town has no registry, use `discover` first or build a temporary source inventory and label it provisional.
+2. Load `references/editorial-controls.md`, then the mode file below. Load the city's source registry (Longmont: `references/longmont-sources.md`) and available beat memory. When the registry names a subreddit, also load `references/reddit-intake.md` and use the bundled Reddit parser when Python is available. If a new town has no registry, use `discover` first or build a temporary source inventory and label it provisional.
 3. State the town, date window, civic beats and source inventory covered, source access, and which sources or recordings you could not inspect. Do not describe a scan as complete if required sources or transcript segments remain unresolved.
 4. Cite the exact official document URL, page or agenda item, and recording timestamp for every reported action. Distinguish an action taken from an item merely listed on an agenda.
 

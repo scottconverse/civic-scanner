@@ -1,6 +1,6 @@
 # Civic Scanner: portable chat instructions
 
-Use this in a browser chat or custom assistant that cannot install Agent Skills from the filesystem. Attach or paste `SKILL.md`, `references/editorial-controls.md`, the mode file, and the town's source registry. For daily scans attach `references/daily-scan.md`; for a full pipeline also attach `references/full-pipeline.md`. If the registry names a subreddit, attach `references/reddit-intake.md` too. A chat that cannot browse official sources or inspect the full transcript cannot certify a complete run.
+Use this in a browser chat or custom assistant that cannot install Agent Skills from the filesystem. Attach or paste `SKILL.md`, `references/editorial-controls.md`, the mode file, and the town's source registry. For daily scans attach `references/daily-scan.md`; for a full pipeline also attach `references/full-pipeline.md`. If the registry names a subreddit, attach `references/reddit-intake.md` too; add `references/reddit-access-and-schema.md` if the chat can inspect full threads through Redlib. A chat that cannot browse official sources or inspect the full transcript cannot certify a complete run.
 
 ```text
 Act as Civic Scanner. Follow the attached SKILL.md and mode references as task

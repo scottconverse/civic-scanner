@@ -61,7 +61,9 @@ Every expanded story also carries its own **claims and sources**: a status for e
 
 In `full-pipeline`, the **Black Desk** takes weak leads and anomalies from that broad scan, labels each hypothesis's evidence problem, and gives the adversarial desk a specific check. The report shows these possible stories in their own **Unverified** dashboard section, with the source, confidence, next check, and adversarial disposition; the verification appendix keeps the full handoff. Its output is never reported as fact. The daily scan collects weak signals but does not run the full Black Desk stage.
 
-Subreddits such as **r/Longmont** are active Tier C lead sources. The scan checks recent posts and targeted searches, records direct post links and dates, and follows promising claims to primary evidence. `references/reddit-intake.md` works with ordinary host browsing; Scott Converse's separate [reddit-search skill](https://github.com/scottconverse/reddit-search-redlib) adds RSS parsing and optional Redlib enrichment when installed. Reddit posts remain internal reporting leads, not verified facts.
+Subreddits such as **r/Longmont** are active Tier C lead sources. The scan checks recent posts and targeted searches, records direct post links and dates, and follows promising claims to primary evidence. `references/reddit-intake.md` includes the workflow and `scripts/reddit_extract.py` builds URLs and parses saved RSS or Redlib pages when Python is available. Fetching stays under the agent's control; browser chats can follow the same workflow without Python. Reddit posts remain internal reporting leads, not verified facts.
+
+The parser and its regression fixtures are copied from Scott Converse's [reddit-search-redlib](https://github.com/scottconverse/reddit-search-redlib) at commit `5d08aee`, under its MIT license (`scripts/reddit_extract.LICENSE`). The optional Redlib installation and lifecycle scripts stay in that separate project; Civic Scanner does not install or start a server.
 
 Coverage is `COMPLETE` only for the stated source inventory and date window after all available recording ranges, motion/vote cues, and agenda/minutes discrepancies are reviewed. Otherwise the result is `PARTIAL` with exact gaps. Search hits alone never satisfy the coverage gate.
 
@@ -92,6 +94,8 @@ node build-report.js path/to/pipeline-data.json
 - [`references/editorial-controls.md`](references/editorial-controls.md): evidence, status, scoring, and adversarial gates.
 - [`references/daily-scan.md`](references/daily-scan.md): complete meeting coverage and briefing format.
 - [`references/reddit-intake.md`](references/reddit-intake.md): subreddit discovery, provenance, and lead triage.
+- [`references/reddit-access-and-schema.md`](references/reddit-access-and-schema.md): RSS/Redlib routes, parser fields, and failure categories.
+- [`scripts/reddit_extract.py`](scripts/reddit_extract.py): optional Python URL builder and parser for saved Reddit RSS or Redlib HTML; it does not fetch network content.
 - [`references/full-pipeline.md`](references/full-pipeline.md): downstream editorial stages.
 - [`references/other-modes.md`](references/other-modes.md): verification, research, legal triage, and discovery.
 - [`archive/legacy-v2.3.md`](archive/legacy-v2.3.md): historical detailed prompts in the repository, excluded from installation. Current files govern; do not follow old provider-specific commands.
