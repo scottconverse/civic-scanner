@@ -1,5 +1,20 @@
 # Release Notes — civic-scanner skill
 
+## v2.4.0 — 2026-09-24
+
+### Portable civic research skill
+
+- Reorganized the current workflow as a portable Agent Skill with install targets for Claude Code, Codex, Gemini CLI, Grok Code, and DeepSeek Deep Code. Added portable instructions for browser chats and a local ChatGPT/Codex plugin package builder. Host tools still determine which sources and recordings the agent can inspect.
+- Expanded the scan across government, schools, housing, business, health, transportation, environment, culture, and community life. Source registries now identify beat gaps instead of implying that city records cover the entire town.
+- Added a meeting coverage ledger and transcript scaffold. Every substantive motion and vote, including future-agenda actions, gets a separate disposition and must be reconciled with agenda and minutes. Incomplete source or recording coverage is labeled `PARTIAL`.
+- Kept a claim ledger and source list with each expanded story packet, including URLs and exact locators or an explicit offline record reference. The report validator checks that verified claims point to listed primary sources.
+- Restored the Black Desk as a testable, unverified hypothesis stage. Its possible stories have a dedicated dashboard section and a full verification-appendix handoff to Agent 4, the Dark Signal Desk.
+- Fixed `build-report.js --validate-only` so validation does not require the optional `docx` package. The report builder remains an optional document output, not an autonomous scanner.
+
+This release is an AI workflow and supporting tools, not a standalone web app or background crawler. The GitHub Pages site is documentation.
+
+---
+
 ## v2.3.0 — 2026-03-30
 
 ### Adversarial Hardening — Kill Over Publish
