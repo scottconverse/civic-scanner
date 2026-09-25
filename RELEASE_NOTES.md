@@ -1,5 +1,19 @@
 # Release Notes — civic-scanner skill
 
+## v2.6.0 — 2026-09-25
+
+### One-person newsroom workflow
+
+- Made the AI the primary reporter and the human the editor. The full pipeline now calls for nearly finished sourced drafts when the evidence supports them, with AI Reporting Notes and specific human reporting only when essential.
+- Added editorial readiness tiers separate from source quality tiers and the newsworthiness score. The editor desk keeps all ranked packets visible and supports direct editing, rewrite, deeper investigation through the Dark Signal Desk, hold, or kill.
+- Added `revise` mode for editor feedback. Story IDs, claims, sources, status history, and Black Desk hypotheses survive rewrites and deeper digs.
+- Kept Black Desk possible stories in their own unverified dashboard and appendix section, and retained full drafts, meeting action coverage, receipts, and adversarial review.
+- Let a full-pipeline report contain only Black Desk possibilities or no scored stories without inventing a draft to satisfy the report schema.
+- Expanded the transcript cue scaffold to flag conversational vote outcomes such as “that carries” and “without objection.” Refreshed Longmont council schedule and portal guidance from the City's 2026 calendar and portal pages. The calendar remains subject to per-run checking.
+- Kept the no-records-request and no-fee rules. The editor may do firsthand reporting when public evidence cannot settle a material question.
+
+---
+
 ## v2.5.0 — 2026-09-24
 
 ### Reddit leads and a no-request access boundary

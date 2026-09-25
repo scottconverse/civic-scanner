@@ -93,14 +93,14 @@
   <!-- Agent 2: Story Expansion -->
   <rect x="260" y="425" width="600" height="80" rx="14" fill="url(#greenGrad)" stroke="#2E7D32" stroke-width="3" filter="url(#shadow)"/>
   <text x="560" y="460" text-anchor="middle" font-size="20" font-weight="bold" fill="#1B5E20">Agent 2: Story Expansion</text>
-  <text x="560" y="488" text-anchor="middle" font-size="16" fill="#388E3C">Draft 400-800 word research scaffolding per lead</text>
+  <text x="560" y="488" text-anchor="middle" font-size="16" fill="#388E3C">Draft 400-800+ word editor-ready story per lead</text>
   <line x1="560" y1="505" x2="560" y2="540" stroke="#1F4E79" stroke-width="3" marker-end="url(#arrowhead)"/>
 
   <!-- Agent 2.5: Newsworthiness Gate (KILL GATE) -->
   <rect x="210" y="545" width="700" height="100" rx="14" fill="url(#amberGrad)" stroke="#D4760A" stroke-width="3.5" filter="url(#shadow)"/>
   <text x="560" y="578" text-anchor="middle" font-size="20" font-weight="bold" fill="#E65100">Agent 2.5: Newsworthiness Gate</text>
   <text x="560" y="604" text-anchor="middle" font-size="16" fill="#BF360C">Immediacy / Impact / Conflict / Novelty (1-5 each, threshold 10/20)</text>
-  <text x="560" y="628" text-anchor="middle" font-size="16" fill="#BF360C">Produces: Reporter Task Memo + Visual Direction Brief + AI Prompts</text>
+  <text x="560" y="628" text-anchor="middle" font-size="16" fill="#BF360C">Produces: Editorial Tier + Reporting Notes + Visual Direction</text>
   <text x="185" y="578" text-anchor="end" font-size="16" font-weight="bold" fill="#D4760A">KILL</text>
   <text x="185" y="598" text-anchor="end" font-size="16" font-weight="bold" fill="#D4760A">GATE</text>
   <line x1="910" y1="595" x2="1020" y2="595" stroke="#C62828" stroke-width="3" marker-end="url(#redarrow)"/>
@@ -211,7 +211,7 @@
   <text x="665" y="2140" font-size="16" fill="#BF360C" font-weight="bold">4-tier fallback protocol:</text>
   <text x="665" y="2165" font-size="15" fill="#333">1. Direct access (patched extension)</text>
   <text x="665" y="2190" font-size="15" fill="#333">2. Google index (site:reddit.com queries)</text>
-  <text x="665" y="2215" font-size="15" fill="#333">3. Manual review checklist for reporter</text>
+  <text x="665" y="2215" font-size="15" fill="#333">3. Manual review checklist for editor</text>
   <text x="665" y="2240" font-size="15" fill="#333">4. Reference to Appendix A fix</text>
 
   <!-- YouTube/Video Discovery -->

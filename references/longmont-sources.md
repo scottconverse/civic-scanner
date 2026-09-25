@@ -1,6 +1,6 @@
 # Longmont, Colorado — Source Registry
 
-Starting source configuration for the Civic Source Scanner. It includes strong public-record coverage and selected local reporting/community signals; it is not a complete map of Longmont's civic life. Confirm URLs, schedules, and coverage gaps at each run.
+Starting source configuration for the Civic Source Scanner. It includes strong public-record coverage and selected local reporting/community signals; it is not a complete map of Longmont's civic life. Confirm URLs, schedules, and coverage gaps at each run. City Council schedule and portal guidance below were checked against City of Longmont pages on 2026-09-25; meeting changes still need a fresh portal check for each run.
 All sources are classified by tier (A/B/C) per the Civic Grounding Protocol.
 
 ---
@@ -28,9 +28,9 @@ These records are the primary evidence for government actions. Nongovernment sto
 
 | Source | URL | Type | Schedule |
 |--------|-----|------|----------|
-| City Council Agendas | https://longmont.primegov.com | PrimeGov portal | 1st & 3rd Tuesdays, 7:00 PM |
-| City Council Minutes | https://longmont.primegov.com | PrimeGov portal | Published ~1 week after meeting |
-| City Clerk Records | https://www.longmontcolorado.gov/departments/city-clerk | Public records hub | Ongoing |
+| City Council Agendas and packets | https://longmontcolorado.gov/city-clerk/agenda-management-portal/ | City portal links to PrimeGov | Check posted meeting calendar and cancellations |
+| City Council Minutes | https://longmontcolorado.gov/government/city-council-meetings/ | Minutes archive linked by City | Check actual posting status; do not assume a one-week lag |
+| City published records | https://longmontcolorado.gov/city-clerk/public-records/ | Self-service records portal, including annexation documents, ordinances, resolutions, and minutes | Ongoing; use published records only |
 | City Budget Documents | https://www.longmontcolorado.gov/departments/finance | Annual + amendments | Annual cycle |
 | Building Permits | https://www.longmontcolorado.gov/departments/community-development | Permit database | Ongoing |
 | Planning & Zoning | https://www.longmontcolorado.gov/departments/community-development/planning | Agendas + decisions | As scheduled |
@@ -41,7 +41,7 @@ These records are the primary evidence for government actions. Nongovernment sto
 | Source | URL | Notes |
 |--------|-----|-------|
 | City of Longmont YouTube | https://www.youtube.com/@CityofLongmont | Auto-transcripts available |
-| Council Meeting Recordings | Via PrimeGov links | Video + agenda synced |
+| Council Meeting Recordings | https://longmontcolorado.gov/city-clerk/agenda-management-portal/ | Council and Planning and Zoning HTML agendas bookmark video by item when available; inspect full meeting chronologically despite bookmarks |
 
 ### County & State
 
@@ -83,6 +83,7 @@ These sources generate leads and context. Trace consequential claims to original
 | SVVSD Communications | https://www.svvsd.org/news/ | District press releases |
 | Longmont Chamber of Commerce | https://www.longmontchamber.org/ | Business community |
 | Longmont Economic Development | https://www.longmontcolorado.gov/departments/city-manager/economic-development | Development projects |
+| City News & Alerts | https://longmontcolorado.gov/news/ | City announcements and community updates; original evidence of what the City announced, not independent proof of effects |
 
 ---
 
@@ -115,12 +116,12 @@ For **daily-scan** mode, check these mapped sources and identify gaps from the c
 
 ---
 
-## Meeting Calendar (Recurring)
+## Meeting Calendar (Check current official schedule)
 
 | Body | Day | Time | Frequency |
 |------|-----|------|-----------|
-| City Council Regular Session | Tuesday | 7:00 PM | 1st & 3rd |
-| City Council Study Session | Tuesday | 7:00 PM | 2nd & 4th |
+| City Council Regular Session | Tuesday | 7:00 PM | Usually 2nd & 4th; check [2026 City schedule](https://longmontcolorado.gov/government/city-council-meetings/2026-council-meeting-schedule/) and [agenda portal](https://longmontcolorado.gov/city-clerk/agenda-management-portal/) for changes |
+| City Council Study Session | Tuesday | 7:00 PM | Often 1st Tuesday, with exceptions; check the official schedule and portal |
 | Planning & Zoning Commission | Wednesday | 7:00 PM | As needed |
 | SVVSD Board of Education | Wednesday | 6:00 PM | 2nd & 4th |
 | Boulder County Commissioners | Tuesday/Thursday | 9:30 AM | Weekly |

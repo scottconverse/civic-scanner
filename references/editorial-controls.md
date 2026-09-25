@@ -1,6 +1,6 @@
 # Editorial controls
 
-Apply these controls in every mode. The output is research for human review, not publication authorization.
+Apply these controls in every mode. The AI is the reporter and the human is the editor. The output is an editorial packet, not publication authorization.
 
 ## Source and claim discipline
 
@@ -38,3 +38,17 @@ Suppress or hold a story when the counterevidence is stronger, the key claim lac
 Score immediacy, local impact, conflict, and novelty from 1 to 5 each. Total 10–20 advances to reporting, 7–9 goes on the watch list, 4–6 is demoted. **Every substantive action remains in the coverage ledger regardless of score.** A low score is an editorial ranking, not permission to omit an action from the audit trail.
 
 Match existing beat threads by official document URL and subject, not headline alone. Update prior status when a new action changes it. Keep prior votes distinct from new votes. Record a follow-up trigger for held leads. If memory is unavailable or unwritable, state that in the run and continue without claiming persistence.
+
+## Editorial readiness tiers and editor decisions
+
+These tiers describe what the editor can do with a packet. They are separate from source tiers A/B/C and from the 4–20 newsworthiness score. Assign the highest supported tier after verification and adversarial review; give the reason and the next move. Keep lower-tier and Black Desk possibilities visible for the editor to choose, even when the score is low.
+
+| Editorial tier | AI deliverable | Editor's choice |
+| --- | --- | --- |
+| 1 — Ready for edit | Nearly finished, sourced story draft; central claims verified; counterevidence, status, limitations, claims, receipts, and source URLs attached | Edit directly, return for rewrite, ask for more digging, or kill |
+| 2 — Developing | Substantial draft or reporting brief with verified core, clearly marked gaps, strongest counter-account, and specific AI-accessible next checks | Prioritize more AI reporting, do firsthand reporting if essential, hold, or kill |
+| 3 — Potential | Distinct weak lead or Black Desk hypothesis with provenance, evidence problem, falsification target, and next test; never factual publication copy | Order a Dark Signal Desk dig, keep on watch, or kill |
+
+An `ADVANCE` newsworthiness score alone cannot make a story Tier 1. If a central claim or material contradiction is unresolved, assign Tier 2 or 3 and hold the publication claim. The editor's decision is not prefilled by the AI. If the editor returns a story, keep its ID, claims, sources, and earlier decision; revise the draft and rerun the affected evidence, adversarial, status-verb, and legal-risk checks. If the editor kills a story, preserve the reason and a precise reopen trigger in beat memory; do not revive it merely because a similar signal appears again.
+
+Complete all research accessible to the AI before naming a human-only step. If firsthand reporting is genuinely required, identify the question, the prospective person/place, why public evidence cannot answer it, and what wording is safe while it remains open. The editor may act as that reporter, but that is an exception, not the default workload. Never propose a formal records request or a retrieval fee.

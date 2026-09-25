@@ -22,13 +22,13 @@ export function packagePlugin(outputRoot, { force = false } = {}) {
   const manifest = {
     $schema: 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json',
     name: 'civic-scanner',
-    version: '2.5.0',
-    description: 'Source-grounded scan of a citywide civic landscape and meeting actions for local reporting.',
+    version: '2.6.0',
+    description: 'AI-reported citywide civic leads and sourced story drafts for a human editor.',
     repository: 'https://github.com/scottconverse/civic-scanner',
     extensions: { 'com.openai': { interface: {
       displayName: 'Civic Scanner',
       shortDescription: 'Find sourced leads across a town\'s civic life.',
-      longDescription: 'Find and verify developments across local civic beats, with a complete action ledger for relevant public meetings.',
+      longDescription: 'Find and verify developments across local civic beats, keep a complete action ledger for relevant public meetings, and prepare tiered, sourced story drafts for the editor.',
       developerName: 'Scott Converse',
       category: 'Productivity',
       capabilities: ['Read'],
