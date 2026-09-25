@@ -1,5 +1,16 @@
 # Release Notes — civic-scanner skill
 
+## v2.5.0 — 2026-09-24
+
+### Reddit leads and a no-request access boundary
+
+- Made subreddits such as r/Longmont an explicit Tier C intake source: check recent posts and targeted searches, retain canonical post links and dates, record comment coverage, and turn promising claims into specific verification tasks.
+- Bundled the RSS/Redlib URL builder and parser from Scott Converse's `reddit-search-redlib` project under its MIT license. The parser makes no network requests; the agent controls fetching and pacing. Redlib remains optional and is not installed or started by Civic Scanner.
+- Removed formal records requests from every current mode and source registry. The workflow never files, drafts, or recommends CORA, FOIA, or another formal records request and never incurs records-access fees. If a necessary source is not already accessible, the claim remains unverified or is held.
+- Removed outdated CORA procedure and fee notes from the Longmont and Boulder source registries. Source discovery now maps published archives and access gaps.
+
+---
+
 ## v2.4.0 — 2026-09-24
 
 ### Portable civic research skill

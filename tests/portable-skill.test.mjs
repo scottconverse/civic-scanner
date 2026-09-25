@@ -78,6 +78,7 @@ test('ChatGPT/Codex plugin package has a discoverable skill and local marketplac
     const manifest = JSON.parse(readFileSync(join(plugin, 'plugin.json'), 'utf8'));
     const marketplace = JSON.parse(readFileSync(join(out, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
     assert.equal(manifest.name, 'civic-scanner');
+    assert.equal(manifest.version, '2.5.0');
     assert.equal(marketplace.plugins[0].source.path, './plugins/civic-scanner');
     assert.ok(existsSync(join(plugin, 'skills', 'civic-scanner', 'references', 'daily-scan.md')));
     assert.ok(existsSync(join(plugin, 'skills', 'civic-scanner', 'scripts', 'reddit_extract.py')));
@@ -91,7 +92,7 @@ test('report validation runs without docx and rejects missing meeting coverage',
   const reportPath = join(parent, 'pipeline.json');
   const builder = fileURLToPath(new URL('../build-report.js', import.meta.url));
   const data = {
-    meta: { city: 'Longmont', state: 'CO', date: '2026-09-24', runNumber: 1, version: '2.4.0' },
+    meta: { city: 'Longmont', state: 'CO', date: '2026-09-24', runNumber: 1, version: '2.5.0' },
     stats: { scanned: 1, advanced: 1, held: 0, killed: 0, suppressed: 0, tierACounts: 1, tierBCounts: 0, tierCCounts: 0 },
     meetingCoverage: { status: 'COMPLETE', sourceInventory: 'Council portal and recording checked', meetings: [{ body: 'City Council', date: '2026-09-22', coverageStatus: 'complete' }], actions: [{ actionId: 'future-agenda', timestamp: '00:45:00', motionOrAction: 'Put marijuana hospitality rules on a future agenda', outcome: 'passed', vote: '4-3', policyStage: 'future discussion directed', evidence: 'official recording at 00:45:00', disposition: 'lead' }], agendaReconciliation: 'Agenda and recording matched', unresolvedGaps: [] },
     agent1_leads: [{ id: 'future-agenda', tier: 'A', headline: 'Council requests future discussion', details: 'Official meeting action documented in the recording.' }],
