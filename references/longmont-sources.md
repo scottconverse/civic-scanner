@@ -95,7 +95,7 @@ referenced in published reporting.
 
 | Source | Platform | Notes |
 |--------|----------|-------|
-| r/Longmont | Reddit | Community discussion, complaints, tips |
+| r/Longmont | Reddit | [New posts RSS](https://www.reddit.com/r/Longmont/new/.rss) and [subreddit](https://www.reddit.com/r/Longmont/); scan per `reddit-intake.md`, keeping direct post links and dates |
 | Longmont Nextdoor groups | Nextdoor | Hyperlocal neighborhood signals |
 | Longmont community Facebook groups | Facebook | Events, complaints, rumors |
 | YouTube comments on city meetings | YouTube | Public sentiment, questions |
@@ -112,7 +112,7 @@ For **daily-scan** mode, check these mapped sources and identify gaps from the c
 3. SVVSD board — new agendas?
 4. Boulder County Commissioners — new agendas?
 5. Times-Call — new local stories? (Tier B, leads only)
-6. r/Longmont — new signals? (Tier C, verify before use)
+6. r/Longmont — check new posts and targeted subreddit searches for the date window; keep promising Tier C links and verify before use
 
 ---
 

@@ -51,6 +51,7 @@ test('installer copies the skill bundle and leaves historical beat memory out', 
     const { destination } = install({ target: 'codex', dest: parent });
     assert.ok(existsSync(join(destination, 'SKILL.md')));
     assert.ok(existsSync(join(destination, 'references', 'daily-scan.md')));
+    assert.ok(existsSync(join(destination, 'references', 'reddit-intake.md')));
     assert.ok(existsSync(join(destination, 'scripts', 'check-coverage.mjs')));
     assert.equal(existsSync(join(destination, 'references', 'longmont-beat-memory.json')), false);
     assert.match(readFileSync(join(destination, 'SKILL.md'), 'utf8'), /every substantive motion and vote/i);

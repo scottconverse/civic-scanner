@@ -4,7 +4,7 @@ Use this workflow for `daily-scan` and as the intake stage for `full-pipeline`. 
 
 ## 1. Inventory sources before ranking leads
 
-Open each relevant registry entry separately. Cover the applicable beats: government and elections; schools and youth; housing and land use; business and jobs; public safety and health; transportation and utilities; environment; arts and culture; and neighborhood or nonprofit activity. Include council packets, minutes, recordings, boards and commissions, school districts, county and special districts, original documents from involved organizations, local reporting, and community signals. Check new and recently changed material within the date window. Note exact titles, dates, URLs, and access failures. Follow Tier B coverage and Tier C signals to original evidence before presenting a claim as verified.
+Open each relevant registry entry separately. Cover the applicable beats: government and elections; schools and youth; housing and land use; business and jobs; public safety and health; transportation and utilities; environment; arts and culture; and neighborhood or nonprofit activity. Include council packets, minutes, recordings, boards and commissions, school districts, county and special districts, original documents from involved organizations, local reporting, and community signals. Check new and recently changed material within the date window. Note exact titles, dates, URLs, and access failures. For a subreddit in the registry, follow `reddit-intake.md`: inspect recent posts and targeted searches, keep direct links and dates for promising Tier C signals, and record thread-access gaps. Follow Tier B coverage and Tier C signals to original evidence before presenting a claim as verified.
 
 Keep a **beat/source inventory** with each source's tier, beat, check date, access status, and whether it produced a lead. A registry with only government portals does not support a claim that the whole civic landscape was scanned. Mark uncovered beats and registry gaps explicitly; use `discover` to expand the registry instead of inventing coverage.
 
@@ -42,7 +42,7 @@ The scan completion gate is satisfied only when every source in the declared bea
 
 ## 4. Rank and deliver
 
-For each verified lead from any civic beat, write 200–300 words of sourced research, a 1–5 score for each newsworthiness dimension, a concise why-it-matters note, and a 100–150 word plain-language summary for advance or watch items. Tier B leads get a short note with the primary evidence needed. Tier C signals get a one-line investigation note. Do not describe either as verified.
+For each verified lead from any civic beat, write 200–300 words of sourced research, a 1–5 score for each newsworthiness dimension, a concise why-it-matters note, and a 100–150 word plain-language summary for advance or watch items. Tier B leads get a short note with the primary evidence needed. Tier C signals get a one-line investigation note; for Reddit, include the post date, canonical permalink, and next primary-source check. Do not describe either as verified.
 
 Under each expanded lead, include its consequential claims and a compact source list with URLs and exact locators. Mark unresolved claims rather than silently dropping them. Carry this evidence into the full story packet if the lead advances.
 

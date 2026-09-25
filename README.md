@@ -61,6 +61,8 @@ Every expanded story also carries its own **claims and sources**: a status for e
 
 In `full-pipeline`, the **Black Desk** takes weak leads and anomalies from that broad scan, labels each hypothesis's evidence problem, and gives the adversarial desk a specific check. The report shows these possible stories in their own **Unverified** dashboard section, with the source, confidence, next check, and adversarial disposition; the verification appendix keeps the full handoff. Its output is never reported as fact. The daily scan collects weak signals but does not run the full Black Desk stage.
 
+Subreddits such as **r/Longmont** are active Tier C lead sources. The scan checks recent posts and targeted searches, records direct post links and dates, and follows promising claims to primary evidence. `references/reddit-intake.md` works with ordinary host browsing; Scott Converse's separate [reddit-search skill](https://github.com/scottconverse/reddit-search-redlib) adds RSS parsing and optional Redlib enrichment when installed. Reddit posts remain internal reporting leads, not verified facts.
+
 Coverage is `COMPLETE` only for the stated source inventory and date window after all available recording ranges, motion/vote cues, and agenda/minutes discrepancies are reviewed. Otherwise the result is `PARTIAL` with exact gaps. Search hits alone never satisfy the coverage gate.
 
 ## Optional transcript scaffold
@@ -89,6 +91,7 @@ node build-report.js path/to/pipeline-data.json
 - [`SKILL.md`](SKILL.md): concise entry point and mandatory rules.
 - [`references/editorial-controls.md`](references/editorial-controls.md): evidence, status, scoring, and adversarial gates.
 - [`references/daily-scan.md`](references/daily-scan.md): complete meeting coverage and briefing format.
+- [`references/reddit-intake.md`](references/reddit-intake.md): subreddit discovery, provenance, and lead triage.
 - [`references/full-pipeline.md`](references/full-pipeline.md): downstream editorial stages.
 - [`references/other-modes.md`](references/other-modes.md): verification, research, legal triage, and discovery.
 - [`archive/legacy-v2.3.md`](archive/legacy-v2.3.md): historical detailed prompts in the repository, excluded from installation. Current files govern; do not follow old provider-specific commands.
