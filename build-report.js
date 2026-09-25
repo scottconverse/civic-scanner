@@ -130,7 +130,14 @@ if (data.agent25_gate) {
 }
 
 // Agent 3 black desk
-requireArray(data, "agent3_blackDesk", "root");
+requireArray(data, "agent3_blackDesk", "root", 0);
+if (data.agent3_blackDesk) {
+  data.agent3_blackDesk.forEach((signal, i) => {
+    ["signalId", "source", "sourceTier", "confidence", "title", "speculativeAngle", "investigationQuestion", "vulnerabilityDetail", "agent4Target"].forEach(f => requireField(signal, f, `agent3_blackDesk[${i}]`));
+    requireArray(signal, "vulnerabilityTypes", `agent3_blackDesk[${i}]`);
+    if (signal.confidence < 0.1 || signal.confidence > 0.5) errors.push(`agent3_blackDesk[${i}].confidence must be 0.1–0.5`);
+  });
+}
 
 // Agent 4 adversarial
 requireArray(data, "agent4_adversarial", "root");
@@ -144,6 +151,11 @@ if (data.agent4_adversarial) {
       errors.push(`agent4_adversarial[${i}].gate3_counterNarrative too short (${a.gate3_counterNarrative.length} chars): "${a.headline}"`);
     }
   });
+}
+for (const signal of data.agent3_blackDesk || []) {
+  const review = (data.agent4_adversarial || []).find(a => a.id === signal.signalId);
+  if (!review) errors.push(`Agent 4 disposition missing for Black Desk signal ${signal.signalId}`);
+  else requireField(review, "targetCheck", `agent4_adversarial[${signal.signalId}]`);
 }
 
 // Agent 5
@@ -489,9 +501,12 @@ children.push(h2("Agent 3: Black Desk — Speculative Signals"));
 children.push(para("NOTE: Black Desk output is NEVER publishable. It feeds the adversarial desk and reporter investigation."));
 (data.agent3_blackDesk || []).forEach((sig, i) => {
   children.push(h3(`Signal ${i + 1}: ${sig.title} (Confidence: ${sig.confidence})`));
+  children.push(boldPara("Source: ", `${sig.sourceTier} — ${sig.source}`));
   children.push(boldPara("Speculative Angle: ", sig.speculativeAngle));
   if (sig.connections) children.push(boldPara("Connections: ", sig.connections));
   children.push(boldPara("Investigation Question: ", sig.investigationQuestion));
+  children.push(boldPara("Vulnerability: ", `${sig.vulnerabilityTypes.join(", ")} — ${sig.vulnerabilityDetail}`));
+  children.push(boldPara("Agent 4 target: ", sig.agent4Target));
 });
 
 // ── Agent 4: Adversarial Challenge ──────────────────────────────────
@@ -500,6 +515,7 @@ children.push(h2("Agent 4: Adversarial Challenge — Full 4-Gate Verification"))
 (data.agent4_adversarial || []).forEach(adv => {
   children.push(h3(`${adv.headline}`));
   children.push(colorLabel("Verdict", severityColor(adv.severity), `${adv.severity} — ${adv.verdict}`));
+  if (adv.targetCheck) children.push(boldPara("Black Desk target check: ", adv.targetCheck));
   children.push(boldPara("Gate 1 — Contestation Check: ", adv.gate1));
   children.push(boldPara("Gate 2 — Mandatory Adverse Search: ", adv.gate2));
   children.push(h3("Gate 3 — Counter-Narrative (Full Text)"));

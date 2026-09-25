@@ -144,17 +144,25 @@
     },
     "agent3_blackDesk": {
       "type": "array",
-      "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["signalId", "confidence", "title", "speculativeAngle", "investigationQuestion"],
+        "required": ["signalId", "source", "sourceTier", "confidence", "title", "speculativeAngle", "investigationQuestion", "vulnerabilityTypes", "vulnerabilityDetail", "agent4Target"],
         "properties": {
           "signalId": { "type": "string" },
-          "confidence": { "type": "number" },
+          "source": { "type": "string" },
+          "sourceTier": { "type": "string", "enum": ["A", "B", "C"] },
+          "confidence": { "type": "number", "minimum": 0.1, "maximum": 0.5 },
           "title": { "type": "string" },
           "speculativeAngle": { "type": "string", "minLength": 50, "$comment": "Full speculative reasoning, not a one-liner" },
           "connections": { "type": "string" },
-          "investigationQuestion": { "type": "string" }
+          "investigationQuestion": { "type": "string" },
+          "vulnerabilityTypes": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "enum": ["single-source-anonymous", "conflict-of-interest", "no-primary-record", "temporal-mismatch", "amplification-pattern", "hearsay-chain", "missing-counterparty", "jurisdiction-mismatch", "numerical-uncertainty", "unsupported-inference"] }
+          },
+          "vulnerabilityDetail": { "type": "string" },
+          "agent4Target": { "type": "string" }
         }
       }
     },
@@ -171,6 +179,7 @@
           "gate2": { "type": "string", "minLength": 50 },
           "gate3_counterNarrative": { "type": "string", "minLength": 100, "$comment": "FULL counter-narrative. The strongest possible opposing argument." },
           "gate4": { "type": "string" },
+          "targetCheck": { "type": "string", "$comment": "For a Black Desk handoff: result of the named Agent 4 target check" },
           "severity": { "type": "string" },
           "verdict": { "type": "string" }
         }

@@ -44,6 +44,8 @@ The scan completion gate is satisfied only when every source in the declared bea
 
 For each verified lead from any civic beat, write 200–300 words of sourced research, a 1–5 score for each newsworthiness dimension, a concise why-it-matters note, and a 100–150 word plain-language summary for advance or watch items. Tier B leads get a short note with the primary evidence needed. Tier C signals get a one-line investigation note. Do not describe either as verified.
 
+When the user requests `full-pipeline`, carry the Tier B/C signals and unexplained anomalies forward to the Black Desk. Do not quietly convert them into verified leads or drop them solely because their initial score is low.
+
 The briefing starts with:
 
 ```text

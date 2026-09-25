@@ -92,8 +92,8 @@ test('report validation runs without docx and rejects missing meeting coverage',
     agent1_leads: [{ id: 'future-agenda', tier: 'A', headline: 'Council requests future discussion', details: 'Official meeting action documented in the recording.' }],
     agent2_stories: [{ id: 'future-agenda', headline: 'Council requests future discussion', draft: 'Evidence. '.repeat(50) }],
     agent25_gate: [{ id: 'future-agenda', headline: 'Council requests future discussion', total: 10, decision: 'ADVANCE' }],
-    agent3_blackDesk: [{}],
-    agent4_adversarial: [{ headline: 'Council requests future discussion', gate1: 'checked', gate2: 'checked', gate3_counterNarrative: 'Counterevidence reviewed. '.repeat(6) }],
+    agent3_blackDesk: [],
+    agent4_adversarial: [{ id: 'future-agenda', headline: 'Council requests future discussion', gate1: 'checked', gate2: 'checked', gate3_counterNarrative: 'Counterevidence reviewed. '.repeat(6) }],
     agent5_completeness: [{}],
     agent6_legal: [{ analysis: 'Review with counsel if needed.' }],
     agent7_plainLanguage: [{ headline: 'Council requests future discussion', rewrite: 'The council asked for a future discussion. '.repeat(5) }],
@@ -105,6 +105,21 @@ test('report validation runs without docx and rejects missing meeting coverage',
     writeFileSync(reportPath, JSON.stringify(data));
     const pass = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
     assert.equal(pass.status, 0, pass.stderr);
+    data.agent3_blackDesk = [{ signalId: 's1', source: 'local report', sourceTier: 'B', confidence: 0.3, title: 'Possible linked changes', speculativeAngle: 'This may link two local developments that need independent verification.', investigationQuestion: 'Are they connected?', vulnerabilityTypes: ['no-primary-record'], vulnerabilityDetail: 'No original document found' }];
+    writeFileSync(reportPath, JSON.stringify(data));
+    const missingHandoff = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
+    assert.equal(missingHandoff.status, 1);
+    assert.match(missingHandoff.stderr, /agent4Target/);
+    data.agent3_blackDesk[0].agent4Target = 'Find the original announcement and a counterparty response';
+    writeFileSync(reportPath, JSON.stringify(data));
+    const missingReview = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
+    assert.equal(missingReview.status, 1);
+    assert.match(missingReview.stderr, /Agent 4 disposition missing/);
+    data.agent4_adversarial.push({ id: 's1', headline: 'Possible linked changes', gate1: 'checked', gate2: 'checked', gate3_counterNarrative: 'Alternative explanation reviewed. '.repeat(6), targetCheck: 'Original announcement found; link remains unverified', severity: 'UNVERIFIABLE', verdict: 'HOLD' });
+    writeFileSync(reportPath, JSON.stringify(data));
+    const handoffPass = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
+    assert.equal(handoffPass.status, 0, handoffPass.stderr);
+    data.agent3_blackDesk = [];
     data.meetingCoverage.meetings[0].coverageStatus = 'partial';
     writeFileSync(reportPath, JSON.stringify(data));
     const inconsistent = spawnSync(process.execPath, [builder, '--validate-only', reportPath], { encoding: 'utf8' });
