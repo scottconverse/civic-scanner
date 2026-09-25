@@ -98,7 +98,7 @@ if (data.meetingCoverage) {
 }
 
 // Agent 1 leads
-requireArray(data, "agent1_leads", "root");
+requireArray(data, "agent1_leads", "root", 0);
 if (data.agent1_leads) {
   data.agent1_leads.forEach((lead, i) => {
     requireField(lead, "headline", `agent1_leads[${i}]`);
@@ -108,7 +108,7 @@ if (data.agent1_leads) {
 }
 
 // Agent 2 stories
-requireArray(data, "agent2_stories", "root");
+requireArray(data, "agent2_stories", "root", 0);
 if (data.agent2_stories) {
   const storyIds = new Set();
   data.agent2_stories.forEach((story, i) => {
@@ -152,7 +152,7 @@ if (data.agent2_stories) {
 }
 
 // Agent 2.5 gate
-requireArray(data, "agent25_gate", "root");
+requireArray(data, "agent25_gate", "root", 0);
 if (data.agent25_gate) {
   data.agent25_gate.forEach((g, i) => {
     requireField(g, "headline", `agent25_gate[${i}]`);
@@ -178,7 +178,7 @@ if (data.agent3_blackDesk) {
 }
 
 // Agent 4 adversarial
-requireArray(data, "agent4_adversarial", "root");
+requireArray(data, "agent4_adversarial", "root", 0);
 if (data.agent4_adversarial) {
   data.agent4_adversarial.forEach((a, i) => {
     requireField(a, "headline", `agent4_adversarial[${i}]`);
@@ -202,10 +202,10 @@ for (const gate of data.agent25_gate || []) {
 }
 
 // Agent 5
-requireArray(data, "agent5_completeness", "root");
+requireArray(data, "agent5_completeness", "root", 0);
 
 // Agent 6
-requireArray(data, "agent6_legal", "root");
+requireArray(data, "agent6_legal", "root", 0);
 if (data.agent6_legal) {
   data.agent6_legal.forEach((l, i) => {
     requireField(l, "analysis", `agent6_legal[${i}]`);
@@ -213,7 +213,7 @@ if (data.agent6_legal) {
 }
 
 // Agent 7
-requireArray(data, "agent7_plainLanguage", "root");
+requireArray(data, "agent7_plainLanguage", "root", 0);
 if (data.agent7_plainLanguage) {
   data.agent7_plainLanguage.forEach((p, i) => {
     requireField(p, "rewrite", `agent7_plainLanguage[${i}]`);
@@ -224,7 +224,7 @@ if (data.agent7_plainLanguage) {
 }
 
 // Agent 7.5
-requireArray(data, "agent75_distribution", "root");
+requireArray(data, "agent75_distribution", "root", 0);
 if (data.agent75_distribution) {
   data.agent75_distribution.forEach((d, i) => {
     ["seo", "twitter", "facebook", "linkedin", "nextdoor", "newsletter", "emailSubjects"].forEach(f => {
@@ -422,6 +422,7 @@ coverage.actions.forEach(action => {
 children.push(h2("Editor Desk — Tiered Story Packets"));
 children.push(para("Editorial readiness Tier 1 = nearly finished draft for edit; Tier 2 = developing story with identified gaps; Tier 3 = possible lead for investigation. These differ from source tiers A/B/C and newsworthiness scores. The AI recommends a move; the human editor may edit, request a rewrite, order more reporting or a Dark Signal Desk dig, hold, or kill any item. Full drafts, claims, and sources appear in the appendix."));
 const ranked = [...data.agent25_gate].sort((a, b) => a.editorialTier - b.editorialTier || b.total - a.total);
+if (!ranked.length) children.push(para("No scored story packet is ready in this run. Review the Black Desk and Tier B/C signals below for possible reporting."));
 ranked.forEach((gate, idx) => {
   const story = data.agent2_stories.find(st => st.id === gate.id);
   const adv = data.agent4_adversarial.find(a => a.id === gate.id);

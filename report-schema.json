@@ -83,7 +83,7 @@
     },
     "agent1_leads": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "type": "object",
         "required": ["id", "tier", "headline", "details"],
@@ -102,7 +102,7 @@
     },
     "agent2_stories": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "type": "object",
         "required": ["id", "headline", "draft", "claims", "sourceList"],
@@ -148,7 +148,7 @@
     },
     "agent25_gate": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "type": "object",
         "required": ["id", "headline", "immediacy", "impact", "conflict", "novelty", "total", "decision", "editorialTier", "editorRecommendation", "whatCannotSay", "aiNextStep", "reportingNotes"],
@@ -204,7 +204,7 @@
     },
     "agent4_adversarial": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "type": "object",
         "required": ["id", "headline", "gate1", "gate2", "gate3_counterNarrative", "severity", "verdict"],
@@ -223,7 +223,7 @@
     },
     "agent5_completeness": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "type": "object",
         "required": ["id", "headline", "attribution", "balance", "harm", "legalFlag", "verdict"],
@@ -241,7 +241,7 @@
     },
     "agent6_legal": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "type": "object",
         "required": ["id", "headline", "riskLevel", "analysis", "recommendation"],
@@ -258,7 +258,7 @@
     },
     "agent7_plainLanguage": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "type": "object",
         "required": ["id", "headline", "rewrite"],
@@ -271,7 +271,7 @@
     },
     "agent75_distribution": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "type": "object",
         "required": ["id", "headline", "seo", "twitter", "facebook", "linkedin", "nextdoor", "newsletter", "emailSubjects"],
