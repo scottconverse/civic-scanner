@@ -59,6 +59,7 @@ export function install(options) {
   cpSync(join(root, 'scripts', 'check-coverage.mjs'), join(destination, 'scripts', 'check-coverage.mjs'));
   cpSync(join(root, 'scripts', 'reddit_extract.py'), join(destination, 'scripts', 'reddit_extract.py'));
   cpSync(join(root, 'scripts', 'reddit_extract.LICENSE'), join(destination, 'scripts', 'reddit_extract.LICENSE'));
+  cpSync(join(root, 'scripts', 'civic_fetch.py'), join(destination, 'scripts', 'civic_fetch.py'));
   cpSync(join(root, 'build-report.js'), join(destination, 'build-report.js'));
   cpSync(join(root, 'report-schema.json'), join(destination, 'report-schema.json'));
   const installed = readFileSync(join(destination, 'SKILL.md'), 'utf8');
