@@ -36,7 +36,14 @@ These records are the primary evidence for government actions. Nongovernment sto
 | Planning & Zoning | https://www.longmontcolorado.gov/departments/community-development/planning | Agendas + decisions | As scheduled |
 | Municipal Code | https://library.municode.com/co/longmont | Municode | Updated with ordinances |
 
-### Official Meeting Recordings
+#### Portal access notes (checked 2026-10-04)
+
+- Meeting lists: `https://longmont.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=YYYY` and `.../ListUpcomingMeetings` return JSON with each meeting's documents and YouTube link.
+- Documents: `https://longmont.primegov.com/Public/CompiledDocument/{documentId}?compileOutputType=1` returns the PDF. The `?meetingTemplateId=` query form returns a "Document Not Found" page. HTML agendas (`compileOutputType=3`) were not downloadable.
+- Minutes for a regular session appear in the **next** regular session's packet. Study sessions have no minutes; the recording is the record.
+- `scripts/civic_fetch.py` automates all of the above.
+
+## Official Meeting Recordings
 
 | Source | URL | Notes |
 |--------|-----|-------|

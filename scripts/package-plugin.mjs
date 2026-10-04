@@ -22,7 +22,7 @@ export function packagePlugin(outputRoot, { force = false } = {}) {
   const manifest = {
     $schema: 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json',
     name: 'civic-scanner',
-    version: '2.6.0',
+    version: '2.7.0',
     description: 'AI-reported citywide civic leads and sourced story drafts for a human editor.',
     repository: 'https://github.com/scottconverse/civic-scanner',
     extensions: { 'com.openai': { interface: {

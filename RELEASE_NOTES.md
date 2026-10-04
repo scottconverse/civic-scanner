@@ -1,5 +1,17 @@
 # Release Notes — civic-scanner skill
 
+## v2.7.0: 2026-10-04
+
+### Fetch tool, Reddit access order, and news credit
+
+- Added `scripts/civic_fetch.py`, a no-dependency Python tool that does the fetch work from the 2026-10-04 Longmont run in one repeatable command. It lists PrimeGov meetings through the public JSON API, downloads agendas, packets, and minutes, writes whole-file and per-page text, can OCR scanned PDFs, fetches recording captions with yt-dlp, and writes a manifest of every URL, fetch time, hash, page count, and failure. It flags YouTube's cloud bot check as `blocked_bot_check` instead of "no captions", and supports `--cookies-from-browser` for runs on the user's computer. `--by-publish-date` catches documents posted in the window for meetings outside it.
+- Fixed caption de-duplication: a repeated line is dropped only when it echoes within 30 seconds, so a real repeat such as a later "Second." is kept.
+- Reddit intake now uses the `reddit-search` skill when the host has it, then the bundled parser, then the user's local Redlib or browser through the device bridge, and only then marks Reddit blocked.
+- Added a Tier B rule: local news may be read and used when the outlet is documented in the source list and credited by name in the story, with no exceptions. Blocked sites are logged, not bypassed.
+- Added Longmont PrimeGov portal access notes.
+
+---
+
 ## v2.6.0 — 2026-09-25
 
 ### One-person newsroom workflow

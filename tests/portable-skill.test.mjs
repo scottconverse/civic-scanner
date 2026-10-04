@@ -62,6 +62,7 @@ test('installer copies the skill bundle and leaves historical beat memory out', 
     assert.ok(existsSync(join(destination, 'scripts', 'check-coverage.mjs')));
     assert.ok(existsSync(join(destination, 'scripts', 'reddit_extract.py')));
     assert.ok(existsSync(join(destination, 'scripts', 'reddit_extract.LICENSE')));
+    assert.ok(existsSync(join(destination, 'scripts', 'civic_fetch.py')));
     assert.equal(existsSync(join(destination, 'references', 'longmont-beat-memory.json')), false);
     assert.match(readFileSync(join(destination, 'SKILL.md'), 'utf8'), /every substantive motion and vote/i);
     assert.throws(() => install({ target: 'codex', dest: parent }), /already exists/);
@@ -84,10 +85,11 @@ test('ChatGPT/Codex plugin package has a discoverable skill and local marketplac
     const manifest = JSON.parse(readFileSync(join(plugin, 'plugin.json'), 'utf8'));
     const marketplace = JSON.parse(readFileSync(join(out, '.agents', 'plugins', 'marketplace.json'), 'utf8'));
     assert.equal(manifest.name, 'civic-scanner');
-    assert.equal(manifest.version, '2.6.0');
+    assert.equal(manifest.version, '2.7.0');
     assert.equal(marketplace.plugins[0].source.path, './plugins/civic-scanner');
     assert.ok(existsSync(join(plugin, 'skills', 'civic-scanner', 'references', 'daily-scan.md')));
     assert.ok(existsSync(join(plugin, 'skills', 'civic-scanner', 'scripts', 'reddit_extract.py')));
+    assert.ok(existsSync(join(plugin, 'skills', 'civic-scanner', 'scripts', 'civic_fetch.py')));
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
