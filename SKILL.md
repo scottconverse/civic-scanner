@@ -44,4 +44,4 @@ Daily briefings must include the coverage ledger summary, source access notes, e
 
 The optional `build-report.js` creates a `.docx` from full-pipeline JSON after schema validation; `docx` is needed only for that step. A daily scan may be delivered in Markdown unless the user asks for a document.
 
-The earlier v2.3 prompt is archived in the source repository for historical reference. Current mode files govern this skill. Older v2.3 prompts are archived and not authoritative, because they carried provider-specific tool names and machine paths that break portability. Do not import provider-specific tool names, browser-extension changes, or machine-specific paths from older versions.
+The earlier v2.3 prompt is archived in the source repository for historical reference. Current mode files govern this skill. Do not import provider-specific tool names, browser-extension changes, or machine-specific paths from older versions.
