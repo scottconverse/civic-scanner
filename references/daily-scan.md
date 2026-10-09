@@ -14,7 +14,7 @@ For each relevant public meeting, create a **meeting record** with body, meeting
 
 ## 2. Review the full meeting chronologically
 
-Read the entire accessible transcript in ordered chunks; if token limits prevent one pass, split it into consecutive time or line ranges and track every range. Do not jump only to agenda headings, keyword hits, or likely story items. Search cues such as *move*, *second*, *all in favor*, *that carries*, *without objection*, *passes*, *fails*, *future agenda*, *direction to staff*, and *consent* to aid discovery, then read the surrounding discussion and remaining chunks. The optional `scripts/transcript-ledger.mjs` makes a chunk and cue scaffold; it does not certify coverage or replace semantic review.
+Read the entire accessible transcript in ordered chunks; if token limits prevent one pass, split it into consecutive time or line ranges and track every range. Search cues such as *move*, *second*, *all in favor*, *that carries*, *without objection*, *passes*, *fails*, *future agenda*, *direction to staff*, and *consent* to aid discovery, then read the surrounding discussion and remaining chunks. The optional `scripts/transcript-ledger.mjs` makes a chunk and cue scaffold; it does not certify coverage or replace semantic review.
 
 For **every substantive motion and vote**, make an action row, even if it was not on the posted agenda, was procedural, received a low newsworthiness score, or only schedules future discussion. Include consent agenda actions and amendments where they alter substance. Routine approval of minutes, adjournment, and other purely administrative acts can be grouped as `routine`, but still account for them in the ledger.
 
@@ -62,4 +62,4 @@ Action coverage: {substantive actions, routine groups, unresolved cues}
 Agenda reconciliation: {matched, changed, unexplained}
 ```
 
-Then give (1) a compact **all-actions ledger** with timestamps and dispositions; (2) scored story leads with editorial readiness tiers; (3) held/unverified leads and specific next AI checks; (4) upcoming meetings; (5) beat-memory changes if saved. Keep the all-actions ledger separate from the ranked leads so an important but low-scoring motion remains visible. The editor may edit, send a lead back for rewrite or more digging, order a Dark Signal Desk check, or kill it. Escalate a human reporting task only when a specific necessary question cannot be answered from accessible sources.
+Then give (1) a compact **all-actions ledger** with timestamps and dispositions; (2) scored story leads with editorial readiness tiers; (3) held/unverified leads and specific next AI checks; (4) upcoming meetings; (5) beat-memory changes if saved. Keep the all-actions ledger separate from the ranked leads so an important but low-scoring motion remains visible. The editor may edit, send a lead back for rewrite or more digging, order a Dark Signal Desk check, or kill it.
