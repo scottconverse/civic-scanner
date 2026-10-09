@@ -16,8 +16,6 @@ For each claim, record the source URL or interview/observation notes, document t
 
 Keep claims and sources **inside each story packet**. Assign stable source IDs, store each source's title, tier, public URL or honest offline record reference, and exact locator. List every consequential factual claim in the packet with status (`VERIFIED`, `CONTESTED`, or `UNVERIFIED`) and the IDs of sources supporting it. A verified claim must resolve to at least one Tier A source in that packet. An unverified claim stays visible as a reporting gap. Do not make the reader reconstruct a story's evidence from a global bibliography or another story's sources.
 
-If an official recording transcript is machine generated, use it to locate an action, then confirm consequential wording, named speakers, and tallies with the audio/video or approved minutes. If that confirmation is unavailable, label the detail unverified and provide the timestamp for human review.
-
 Search each registry source separately over the specified date window, including nongovernment institutions and local reporting. Record checked, inaccessible, and not-yet-posted sources. Search snippets from blocked pages may suggest leads but never prove the page's contents. A broad web result is not evidence that every civic beat, meeting, or agenda item was checked.
 
 Do not file, draft, or recommend formal records requests or fee-based records retrieval. Look for already posted documents, public archives, open data, published statements, recordings, and firsthand reporting. An inaccessible record is an evidence gap, not a task to request it. Hold or suppress a consequential claim that cannot be verified through available sources.
@@ -35,7 +33,7 @@ Suppress or hold a story when the counterevidence is stronger, the key claim lac
 
 ## Newsworthiness and memory
 
-Score immediacy, local impact, conflict, and novelty from 1 to 5 each. Total 10–20 advances to reporting, 7–9 goes on the watch list, 4–6 is demoted. **Every substantive action remains in the coverage ledger regardless of score.** A low score is an editorial ranking, not permission to omit an action from the audit trail.
+Score immediacy, local impact, conflict, and novelty from 1 to 5 each. Total 10–20 advances to reporting, 7–9 goes on the watch list, 4–6 is demoted. A low score is an editorial ranking, not permission to omit an action from the audit trail.
 
 Match existing beat threads by official document URL and subject, not headline alone. Update prior status when a new action changes it. Keep prior votes distinct from new votes. Record a follow-up trigger for held leads. If memory is unavailable or unwritable, state that in the run and continue without claiming persistence.
 
@@ -51,4 +49,4 @@ These tiers describe what the editor can do with a packet. They are separate fro
 
 An `ADVANCE` newsworthiness score alone cannot make a story Tier 1. If a central claim or material contradiction is unresolved, assign Tier 2 or 3 and hold the publication claim. The editor's decision is not prefilled by the AI. If the editor returns a story, keep its ID, claims, sources, and earlier decision; revise the draft and rerun the affected evidence, adversarial, status-verb, and legal-risk checks. If the editor kills a story, preserve the reason and a precise reopen trigger in beat memory; do not revive it merely because a similar signal appears again.
 
-Complete all research accessible to the AI before naming a human-only step. If firsthand reporting is genuinely required, identify the question, the prospective person/place, why public evidence cannot answer it, and what wording is safe while it remains open. The editor may act as that reporter, but that is an exception, not the default workload. Never propose a formal records request or a retrieval fee.
+If firsthand reporting is genuinely required, identify the question, the prospective person/place, why public evidence cannot answer it, and what wording is safe while it remains open. The editor may act as that reporter, but that is an exception, not the default workload. Never propose a formal records request or a retrieval fee.
